@@ -1,0 +1,22 @@
+{
+    "name": "Hosportal",
+    "short_name": "Hosportal",
+    "start_url": "/",
+    "scope": ".",
+    "display": "standalone",
+    "background_color": "#FFF",
+    "theme_color": "#493174",
+    "description": "Web-Application for Hosportal Site",
+    "dir": "ltr",
+    "lang": "en-US",
+    "orientation": "portrait-primary",
+    
+    "icons": [
+        {
+          "src": "/static/images/icons/icon_colour.png",
+          "type": "image/png",
+          "sizes": "512x512",
+          "purpose": "maskable any"
+        }        
+      ]
+}
