@@ -1,29 +1,16 @@
-
-const CACHE = 'cache_typexasfhwq';
+const CACHE = 'cahce_v1';
 const filestoCache = ['/static/noconn.html',
-                      'https://cdn.plot.ly/plotly-latest.min.js',
-                      '/static/style/basestyle.css',
-                      '/static/style/devstyle.css',
-                      '/static/style/h_details.css',
-                      '/static/style/h_details_change.css',
-                      '/static/style/homestyle.css',
-                      '/static/style/statstyle.css',
-                      '/static/style/loginstyle.css',
+                      // '/static/style/basestyle.css',
+                      // '/static/style/devstyle.css',
+                      // '/static/style/h_details.css',
+                      // '/static/style/h_details_change.css',
+                      // '/static/style/homestyle.css',
+                      // '/static/style/statstyle.css',
+                      // '/static/style/loginstyle.css',
                       '/manifest.json',
-                      '/static/images/assets/Avishrant.jpg',
-                      '/static/images/assets/Kunal.jpg',
-                      '/static/images/assets/ambulance.svg',
-                      '/static/images/assets/doctor.svg',
-                      '/static/images/assets/Hola.svg',
-                      '/static/images/assets/hospital.svg',
-                      '/static/images/assets/stats.svg',
-                      '/static/images/assets/Prateek.jpg',
-                      '/static/images/assets/Pushpdeep.jpg',
-                      '/static/images/icons/avatar.svg',
-                      '/static/images/icons/avatar.png',
-                      '/static/images/icons/icon.svg',
-                      '/static/images/icons/icon_colour.svg',
-]
+                      '/static/assets/icons/avatar.svg',
+                      '/static/assets/icons/avatar.png',
+                      ]
 const offlineURL = ['/static/noconn.html']
 
 self.addEventListener('install', function(event) {

@@ -1,0 +1,54 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}
+    SignUp
+{%endblock title%}
+{%block link%}
+    <link href="{%static 'stylesheet/signup.css'%}" rel="stylesheet" media="print" onload="this.media='all'">
+
+{%endblock link%}
+   
+{%block content%}
+    <div class="signup">
+        <div id="sign">
+            
+            <h2>Sign up</h2>
+            <div id="formstyle">
+                <form method="post" style="color: black;">
+
+                        {% csrf_token %}
+                        
+                        {% for field in form %}
+                            <p>
+                                {{ field.label_tag }}<br>
+                                {{ field }}
+                                {% if field.help_text %}
+                                    <small style="color: grey">{{ field.help_text | safe }}</small>
+                                {% endif %}
+                            
+                                {% for error in field.errors %}
+                                    <p style="color: red">{{ error | safe }}</p>
+                                {% endfor %}
+                            
+                            </p>
+                        {% endfor %}
+                        <button type="submit">Sign up</button>
+                        
+                
+                </form>
+                <div id="notification">
+                    <div style="color:red;display:none;"  id="login_not">
+                        <span class="glyphicon glyphicon-remove"></span> Username already taken.
+                    </div>
+                    <div style="color: green;display: none;" id="login_ok">
+                        <span class="glyphicon glyphicon-ok"></span> Username available.
+                    </div>
+                    <div style="color: green;display: none;" id="process">
+                        <span class="glyphicon glyphicon-ok"></span> Processing
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+{%endblock content%}

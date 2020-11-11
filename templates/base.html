@@ -16,6 +16,35 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
         <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        <meta charset="UTF-8">
+        <meta name="description" content="To Infinity and Beyond with ProjectY">
+        <meta name="keywords" content="E-Commerce, Bazaar">
+        <meta name="author" content="Avishrant Sharma, Prateek Thakur, Spriha Gautam, Sitaram Rathi">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        
+        <!-- Path to manifest.json -->
+        <link rel="manifest" href="/manifest.json">
+
+        <!-- Icons for Apple Devices -->
+        <link rel="apple-touch-icon" href="/static/assets/icons/avatar.png" sizes="512x512">
+        <meta name="theme-color" content="#0A0302">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-title" content="Uphaar">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+        <!-- Service Worker Registration -->
+        <script type="text/javascript">
+            // Initialize the service worker
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/serviceworker.js').then(function (registration) {
+                    // Registration was successful
+                    console.log('django-progressive-web-app: ServiceWorker registration successful');
+                }, function (err) {
+                    // registration failed :(
+                    console.log('django-progressive-web-app: ServiceWorker registration failed: ', err);
+                });
+            }
+
+        </script>
     
         {%block link%}
 
@@ -30,7 +59,23 @@
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                    {%if user.is_authenticated%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'logout'%}">Logout</a>
+                        {{user.email}}
+                    </li>
+                    {%else%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'login'%}">Login</a><a class="nav-link" href="{%url 'sign'%}">Signup</a>
+                    </li>
+                    {%endif%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> Another Page</a>
+                    </li>
+                    </ul>
+                </div>
             </div>
         </nav>
 
