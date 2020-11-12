@@ -1,0 +1,22 @@
+{
+    "name": "ProjectY",
+    "short_name": "ProjectY",
+    "start_url": "/",
+    "scope": ".",
+    "display": "standalone",
+    "background_color": "#FFF",
+    "theme_color": "#493174",
+    "description": "Web-Application for ProjectY Site",
+    "dir": "ltr",
+    "lang": "en-US",
+    "orientation": "portrait-primary",
+    
+    "icons": [
+        {
+          "src": "/static/assets/icons/avatar.png",
+          "type": "image/png",
+          "sizes": "512x512",
+          "purpose": "maskable any"
+        }        
+      ]
+}
