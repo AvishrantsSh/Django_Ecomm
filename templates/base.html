@@ -12,7 +12,7 @@
         <!--Tailwind CSS-->
         <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
         <!--Tailwind CSS end-->
-        <link rel='stylesheet' href='{%static "stylesheet/base.css"%}?v = 1.4'>
+        <link rel='stylesheet' href='{%static "stylesheet/base.css"%}?v = 1.5'>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -60,7 +60,7 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="{%url 'home'%}" id = "head_start">Hola</a>
                 <input type="text" name="search" placeholder="Search Component.."> 
-                <a class="nav-link" style="text-decoration: none;" href="#" ><i class="fa fa-search" style="color: #000; border: 2px solid #000;"></i></a>
+                <button class="nav-link" href="#"><i class="fa fa-search" style="color: #000;"></i></button>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                     <span class="navbar-toggler-icon"></span>
                 </button>
