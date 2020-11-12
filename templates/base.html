@@ -60,15 +60,15 @@
             <div class="container-fluid">
                 <a class="navbar-brand" href="{%url 'home'%}" id = "head_start">Hola</a>
                 <input type="text" name="search" placeholder="Search Component.."> 
-                <a class="nav-link" style="text-decoration: none;" href="#" ><i class="fa fa-search" style="color: #000; border: 2px solid #000;"></i></a>
+                <button class="nav-link"  ><i class="fa fa-search"></i></button>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                     <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                     {%if user.is_authenticated%}
-                    <li>
-                        <i class="fas fa-user"></i> {{user.email}}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"><i class="fas fa-user"></i> {{user.username}}</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="{%url 'logout'%}">Logout <i class="fas fa-sign-out-alt"></i></a>

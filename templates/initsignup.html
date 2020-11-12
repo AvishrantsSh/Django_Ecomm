@@ -35,8 +35,10 @@
                     <form method="post">
                         {% csrf_token %}
                         {% for field in f_login %}
-                                {{ field.label_tag }}<br>
-                                {{ field }}
+                                <div class="login_field">
+                                    {{ field.label_tag }}<br>
+                                    {{ field }}
+                                </div>
                         {% endfor %}
                         {{f_login.errors}}
                         <button type="submit">Login</button>
@@ -55,8 +57,10 @@
                     <form method="post">
                         {% csrf_token %}
                         {% for field in form %}
+                            <div class="signup_field">
                                 {{ field.label_tag }}<br>
                                 {{ field }}
+                            </div>
                        {% endfor %}
                        {{form.errors}}
                         <button type="submit">Sign up</button>
