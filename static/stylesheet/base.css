@@ -2,3 +2,113 @@
 	   margin: 0px;
 	   padding: 0px;
 }
+/******************* Footer *****************/
+@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
+:root {
+  --primaryColor: #f09d51;
+  --mainWhite: #fff;
+  --mainBlack: #222;
+  --mainGrey: #ececec;
+  --mainSpacing: 0.1rem;
+  --mainTransition: all 0.3s linear;
+}
+.footer{
+	width: 90vw;
+	margin: 0 auto;
+	margin-top: 15px;
+	max-width: 1170px;
+	background:  rgb(231, 226, 221);
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	/* grid-template-columns: repeat(4,1fr); */
+	/* grid-template-columns: 1fr 1fr 1fr 1fr; */
+	grid-column-gap: 1.5rem;
+	grid-row-gap: 2rem;
+	text-decoration: none;
+	padding-bottom: 20px;
+  }
+  .footer-super-container{
+	background:  rgb(231, 226, 221);
+	height: 100%;
+	letter-spacing: var(--mainSpacing);
+	width: 100%;
+	
+  }
+  .widget-title{
+	font-size: 20px;
+  }
+  .footer-container{
+	display: flex;
+  }
+  .pay-icons{
+	margin-top: 10px;
+	padding: 5px 5px 5px 5px;
+	width: 60px;
+	height: 40px;
+  }
+  .footer-list{
+	list-style-type: none;
+  }
+  .footer-list-div{
+	font-size: 15px;
+  }
+  .footer-list-div a{
+	margin-top: 10px;
+	padding: 0px 6px 0px 6px;
+	text-decoration: none;
+	color:#515151;
+	cursor: pointer;
+	display: block;
+  }
+  .footer-list-div a:hover{
+	font-weight: bold;
+	color: black;
+	transition: var(--mainTransition);
+  }
+  .footer-end{
+	width: 90vw;
+	margin: 0 auto;
+	margin-top: 5px;
+	max-width: 1170px;
+	background:  rgb(231, 226, 221);
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+	/* grid-template-columns: repeat(4,1fr); */
+	/* grid-template-columns: 1fr 1fr 1fr 1fr; */
+	grid-column-gap: 1.5rem;
+	grid-row-gap: 2rem;
+	padding-bottom: 0px;
+  }
+  #fb,
+  #insta,
+  #twit,
+  #link{
+	margin-top: 6px;
+	color: #515151;
+	height: 30px;
+	width: 30px;
+  }
+  #fb:hover{
+	color: black;
+	transition: var(--mainTransition);
+  }
+  #insta:hover{
+	color: black;
+	transition: var(--mainTransition);
+  }
+  #twit:hover{
+	color: black;
+	transition: var(--mainTransition);
+  }
+  #link:hover{
+	color: black;
+	transition: var(--mainTransition);
+  }
+  .end-text{
+	font-size: 10px;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	padding-bottom: 20px;
+  }
+/******************* End Footer *****************/
