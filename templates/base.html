@@ -1,0 +1,159 @@
+<!-- template for other sites -->
+
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title>
+            {%block title%}
+        
+            {%endblock title%}
+        </title>
+        <!--Tailwind CSS-->
+        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+        <!--Tailwind CSS end-->
+        <link rel='stylesheet' href='{%static "stylesheet/base.css"%}?v = 1.7'>
+
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        <meta charset="UTF-8">
+        <meta name="description" content="To Infinity and Beyond with ProjectY">
+        <meta name="keywords" content="E-Commerce, Bazaar">
+        <meta name="author" content="Avishrant Sharma, Prateek Thakur, Spriha Gautam, Sitaram Rathi">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        
+        <!-- Path to manifest.json -->
+        <link rel="manifest" href="/manifest.json">
+
+        <!-- Icons for Apple Devices -->
+        <link rel="apple-touch-icon" href="/static/assets/icons/avatar.png" sizes="512x512">
+        <meta name="theme-color" content="#0A0302">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-title" content="Uphaar">
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+        <!-- Service Worker Registration -->
+        <script type="text/javascript">
+            // Initialize the service worker
+            if ('serviceWorker' in navigator) {
+                navigator.serviceWorker.register('/serviceworker.js').then(function (registration) {
+                    // Registration was successful
+                    console.log('django-progressive-web-app: ServiceWorker registration successful');
+                }, function (err) {
+                    // registration failed :(
+                    console.log('django-progressive-web-app: ServiceWorker registration failed: ', err);
+                });
+            }
+
+        </script>
+    
+        {%block link%}
+
+        {%endblock link%}
+        
+    </head>
+
+    <body>
+        <nav class="navbar navbar-expand-md navbar-light bg-light sticky-top">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="{%url 'home'%}" id = "head_start">Hola</a>
+                <input type="text" name="search" placeholder="Search Component.."> 
+                <a class="nav-link" style="text-decoration: none;" href="#" ><i class="fa fa-search" style="color: #000; border: 2px solid #000;"></i></a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <ul class="navbar-nav ml-auto">
+                    {%if user.is_authenticated%}
+                    <li>
+                        <i class="fas fa-user"></i> {{user.email}}
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'logout'%}">Logout <i class="fas fa-sign-out-alt"></i></a>
+                    </li>
+                    {%else%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{%url 'login'%}">Login <i class="fas fa-sign-in-alt"></i></a>
+                    </li>
+                    <li>
+                        <a class="nav-link" href="{%url 'sign'%}">Signup <i class="fas fa-user-plus"></i></a>
+                    </li>
+                    {%endif%}
+                    <li class="nav-item">
+                        <a class="nav-link" href="#"> Another Page</a>
+                    </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+
+        <div class = "main-box container-fluid">
+            {%block content%}
+            
+            {%endblock content%}
+        </div>
+        
+        <footer>
+            <div class="footer-super-container container-fluid">
+                <div class="footer row">
+                    <div class="col-md-6 col-lg-4">
+                        <h2 class="widget-title">About</h2>
+                        <div class="footer-list-div">
+                            <p>Made by <b>Nit Hamirpur</b> Students aim at providing Electronics Devices at Cheaper Rate to Students.</p><br>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-2">
+                        <h2 class="widget-title">Categories</h2>
+                            <div class="footer-list-div">
+                                <ul class="footer-list">
+                                    <li><a href="#">Mobiles and Accessories</a></li>
+                                    <li><a href="#">Television</a></li>
+                                    <li><a href="#">Laptops and Accessories</a></li>
+                                </ul>
+                            </div>
+                    </div>
+                    <div class="col-md-6 col-lg-2">
+                        <h2 class="widget-title">Terms and Policy</h2>
+                            <div class="footer-list-div">
+                                <ul class="footer-list">
+                                    <li><a href="#">Shipment and Delivery</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Terms and Conditions</a></li>
+                                </ul>
+                            </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <h2 class="widget-title">Contact info</h2>
+                            <div class="footer-list-div">
+                                <ul class="footer-list">
+                                    <li><i class="fas fa-phone-square"></i> Contact us: +91 1234567890</li>
+                                    <li><i class="fas fa-envelope"></i> E-mail: ecommerce@gmail.com</li>
+                                    <li><i class="fas fa-map-marker-alt"></i> Address: Himadri Boys Hostel, Nit-Hamirpur, Hamirpur-177001, Himachal Pradesh</li>
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+               
+            <div class="footer-end-container">
+                <div class="footer-end">
+                        <h2 class="widget-title">Follow us on</h2>
+                        <div class="footer-end-list-div">
+                            <ul class="footer-end-list">
+                                </li><a href="#"><i id="fb" class="fab fa-facebook-square fa-2x"></i></a>
+                                <a href="#"><i id="insta" class="fab fa-instagram fa-2x"></i></a>
+                                <a href="#"><i id="twit" class="fab fa-twitter fa-2x"></i></a>
+                                <a href="#"><i id="link" class="fab fa-linkedin fa-2x"></i></a>
+                            </ul>
+                        </div>
+                </div>
+                <div class="end-text">
+                    Copyright Team Enigma
+                </div>
+            </div>
+        </div>
+        </footer>
+
+    </body>
+</html>
