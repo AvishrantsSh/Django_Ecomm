@@ -1,3 +1,7 @@
 body{
     background-color: steelblue;
 }
+
+.main-box{
+    min-height: 52vh;
+}
