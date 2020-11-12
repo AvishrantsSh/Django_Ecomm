@@ -12,7 +12,7 @@
         <!--Tailwind CSS-->
         <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
         <!--Tailwind CSS end-->
-        <link rel='stylesheet' href='{%static "stylesheet/base.css"%}?v = 1.7'>
+        <link rel='stylesheet' href='{%static "stylesheet/base.css"%}?v = 1.2'>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -75,11 +75,9 @@
                     </li>
                     {%else%}
                     <li class="nav-item">
-                        <a class="nav-link" href="{%url 'login'%}">Login <i class="fas fa-sign-in-alt"></i></a>
+                        <a class="nav-link" href="{%url 'reg'%}">Login <i class="fas fa-sign-in-alt"></i></a>
                     </li>
-                    <li>
-                        <a class="nav-link" href="{%url 'sign'%}">Signup <i class="fas fa-user-plus"></i></a>
-                    </li>
+                    
                     {%endif%}
                     <li class="nav-item">
                         <a class="nav-link" href="#"> Another Page</a>

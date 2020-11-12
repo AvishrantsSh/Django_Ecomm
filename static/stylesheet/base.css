@@ -94,7 +94,7 @@
 	transition: var(--mainTransition);
   }
   .end-text{
-	font-size: 3vh;
+	font-size: 1.5vh;
 	display: flex;
 	align-items: center;
 	justify-content: center;

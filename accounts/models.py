@@ -9,7 +9,9 @@ class CustomUser(AbstractUser):
     username = models.CharField(max_length=50, unique=False)
     phone = models.CharField(max_length=10, validators=[reg])
     email = models.EmailField(unique=True, blank=False)
+    first_name = None
+    last_name = None
     USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = ['username','first_name','phone']
+    REQUIRED_FIELDS = ['username','phone']
 
 # Create your models here.

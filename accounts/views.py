@@ -1,24 +1,31 @@
-from django.shortcuts import render
-from django.views import generic
-from django.contrib.auth import get_user_model, authenticate, login
-from django.urls import reverse_lazy
-from django.http import HttpResponse
-from django.core import serializers
-from .forms import CustomUserCreationForm
-from core.models import Product_List, Category
+from django.shortcuts import render, redirect
+from django.contrib.auth import get_user_model, authenticate, login, logout
+from .forms import CustomUserCreationForm, CustomAuthenticationForm
 import csv, json
 
 User=get_user_model()
-class SignUp(generic.CreateView):
-    form_class = CustomUserCreationForm
-    success_url = reverse_lazy('home')
-    template_name = 'initsignup.html'
 
-    def form_valid(self, form):
-        valid = super(SignUp, self).form_valid(form)
-        user = form.save()
-        login(self.request, user, backend='accounts.backend.EmailBackend')
-        return valid
+def SignUp(request):
+    if request.method == 'POST':
+        form = CustomUserCreationForm(request.POST)
+        f_login = CustomAuthenticationForm(data = request.POST)
+        if form.is_valid():
+            user = form.save()
+            login(request, user, backend='accounts.backend.EmailBackend')
+            return redirect('home')
 
+        elif f_login.is_valid():
+            if f_login.is_valid():
+                user = f_login.get_user()
+                login(request, user, backend='accounts.backend.EmailBackend')
+                return redirect('home')
+            
+    else:
+        form = CustomUserCreationForm()
+        f_login = CustomAuthenticationForm()
+    return render(request, 'initsignup.html', {'form': form, 'f_login': f_login})
 
+def Logout(request):
+    logout(request)
+    return redirect('home')
 # Create your views here.
