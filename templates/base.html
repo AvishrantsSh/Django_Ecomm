@@ -9,7 +9,7 @@
         
             {%endblock title%}
         </title>
-        <link rel='stylesheet' href='{%static "stylesheet/base.css"%}?v = 1.2'>
+        <link rel='stylesheet' href='{%static "stylesheet/base.css"%}?v = 1.4'>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -56,8 +56,8 @@
         <nav class="navbar navbar-expand-md navbar-fixed-top">
             <div class="container-fluid">
                 <a class="navbar-brand cherry" href="{%url 'home'%}" id = "head_start">Hola</a>
-                <div style="display: flex; margin-left: 20px;">
-                    <input type="text" style="border: none; outline: none; " name="search" placeholder="Search"> 
+                <div style="display: flex;">
+                    <input type="text" style="border: none; outline: none; width: 50vw; justify-content: center;" name="search" placeholder="Search"> 
                 <button id="search-icon" class="nav-link" ><i class="fa fa-search"></i></button>
                 </div>
                 
@@ -85,7 +85,7 @@
         </div>
         
         <footer>
-            <div class="container-fluid" style="background-color: #eee;">
+            <div class="container-fluid">
                 <div class="row pt-3">
                     <div class="col-md-6 col-lg-4">
                         <h2 class="widget-title">About</h2>
