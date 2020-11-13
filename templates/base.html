@@ -59,28 +59,31 @@
         <nav class="navbar navbar-expand-md sticky-top">
             <div class="container-fluid">
                 <a class="navbar-brand hlink" href="{%url 'home'%}" id = "head_start">Hola</a>
-                <input type="text" name="search" placeholder="Search Component.."> 
-                <button class="nav-link"  ><i class="fa fa-search"></i></button>
+                <div style="display: flex; margin-left: 20px;">
+                    <input type="text" style="border: none; outline: none; " name="search" placeholder="Search Component.."> 
+                <button id="search-icon" class="nav-link" ><i class="fa fa-search"></i></button>
+                </div>
+                
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
-                    <span class="navbar-toggler-icon"></span>
+                    <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto">
+                    <ul class="navbar-nav ml-auto drop-list">
                     {%if user.is_authenticated%}
                     <li class="nav-item">
-                        <a class="nav-link" href="#"><i class="fas fa-user"></i> {{user.username}}</a>
+                        <a class="nav-link drop-list" href="#"><i class="fas fa-user"></i> {{user.username}}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="{%url 'logout'%}">Logout <i class="fas fa-sign-out-alt"></i></a>
+                        <a class="nav-link drop-list" href="{%url 'logout'%}">Logout <i class="fas fa-sign-out-alt"></i></a>
                     </li>
                     {%else%}
                     <li class="nav-item">
-                        <a class="nav-link" href="{%url 'reg'%}">Login <i class="fas fa-sign-in-alt"></i></a>
+                        <a class="nav-link drop-list" href="{%url 'reg'%}">Login <i class="fas fa-sign-in-alt"></i></a>
                     </li>
                     
                     {%endif%}
                     <li class="nav-item">
-                        <a class="nav-link" href="#"> Another Page</a>
+                        <a class="nav-link drop-list" href="#"> Another Page</a>
                     </li>
                     </ul>
                 </div>
