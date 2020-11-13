@@ -42,8 +42,10 @@
                                     {{ field }}
                                 </div>
                         {% endfor %}
-                        {{f_login.errors}}
-                        <button type="submit" class="submit_btn">Login</button>
+                        {% for error in f_login.non_field_errors %}
+                            {{error|safe}}<br>
+                        {%endfor%}
+                        <input type="submit" class="submit_btn my-3" value="Login" name="submit"/>
                     </form>
                     <a data-target="#carousel_forms" data-slide-to="1" href="#"><div class="switch">I'm New Here</div></a>                    
 
@@ -54,6 +56,10 @@
                 <!-- Signup Form -->
                 <div id="sign">
                     <div class="heading">Sign Up</div>
+
+                    {% if field.help_text %}
+                        <small style="color: grey">{{ field.help_text | safe }}</small>
+                    {% endif %}
                     <!-- Form Comes here!!!!-->
                     <form method="post">
                         {% csrf_token %}
@@ -62,9 +68,11 @@
                                 {{ field.label_tag }}<br>
                                 {{ field }}
                             </div>
-                       {% endfor %}
-                       {{form.errors}}
-                        <button type="submit" class="submit_btn">Sign up</button>
+                        {% endfor %}
+                        {% for key,error in form.errors.items %}
+                            {{error}}<br>
+                        {%endfor%}
+                        <input type="submit" class="submit_btn my-3" value="Sign Up" name="submit"/>
                     </form>
                         <a id="switch-link" data-target="#carousel_forms" data-slide-to="0" href="#"><div class="switch">I already have an account.</div></a>
 

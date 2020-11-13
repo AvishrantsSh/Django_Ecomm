@@ -3,10 +3,7 @@
 }
 
 .main-box{
-   background-color: rgba(236, 20, 56, 0.8);
-}
-
-.super-signup-container{
+   background-color: rgba(236, 20, 56, 0.95);
 }
 
 .carousel-item{
@@ -33,10 +30,12 @@
    padding: 0;
 }
 .submit_btn{
-   background-color: rgba(236, 20, 56, 0.85);
+   background-color: rgba(236, 20, 56, 0.95);
+   outline: none;
    padding: 10px;
-   border-radius: 10px;
+   border-radius: 15px;
    width: 195px;
+   border: 0;
    margin-left: 2vh;
    color: white;
 }
@@ -58,7 +57,6 @@
 
 .slide-box{
    background-color: rgba(255, 255, 255, 1);
-   box-shadow: -2px 0px 3px rgba(0, 0, 0, 0.781);
 }
 
 .sign{
@@ -86,12 +84,12 @@ label{
    padding: 0.5vh;
    padding-left: 1vh;
    transition: 1s;
+   width: 300px;
 }
 
 .text-box:focus{
    border-bottom: 1.5px solid rgba(138, 20, 44, 0.5);
    color:black;
-   box-shadow: 0px 2px 3px rgba(255, 21, 68, 0.1);
 }
 
 .switch{

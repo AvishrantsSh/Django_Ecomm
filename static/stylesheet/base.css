@@ -1,22 +1,18 @@
-*{
-	   margin: 0px;
-	   padding: 0px;
+.cherry{
+	color:  rgba(236, 20, 56, 0.95);
 }
-/****************search icon****************/
-@media only screen and (max-width: 768px) {
-	#navbarResponsive{
-		margin-left: 85%;
-	}
-  }
-.drop-list{
+*{
+	padding: 0;
+}
+.nav_link{
 	text-decoration: none;
 	color: black;
 }
-.drop-list:hover{
-	color: #C22025;
+.nav_link:hover{
+	color:  rgba(236, 20, 56, 0.95);
 }
 .navbar-toggler:hover{
-	color: #C22025;
+	color:  rgba(236, 20, 56, 0.95);
 }
 #search-icon{
 	margin-left: 0px;
@@ -28,99 +24,45 @@
 	padding: 1px 5px 1px 5px;
 }
 #search-icon:hover{
-	background-color: #C22025;
+	background-color:  rgba(236, 20, 56, 0.95);
 	color: #eee;
 }
-/******************* Footer *****************/
-@import url("https://fonts.googleapis.com/css?family=Lato:400,700");
-
 .navbar{
 	background-color: #eee;
 }
-
-.footer{
-	margin: 0 auto;
-	margin-top: 2vh;
-/*	max-width: 1170px;*/
-	background:   #eee;
-	text-decoration: none;
-	padding: 2vh;
-	align-content: center;
-  }
-  .footer-super-container{
-	background:  rgb #eee;
-	height: 100%;
-	width: 100%;
-  }
-
-  .footer-widget{
-	  padding: 1vh;
-  }
-  .widget-title{
+.footer-widget{
+	padding: 1vh;
+}
+.widget-title{
 	font-size: 20px;
-  }
-  
-  .footer-list{
+}
+.footer-list{
 	list-style-type: none;
-  }
-  .footer-list-div{
+}
+.footer-list-div{
 	font-size: 15px;
-  }
-  .footer-list-div a{
+}
+.footer-list-div a{
 	margin-top: 10px;
-	padding: 0px 6px 0px 6px;
 	text-decoration: none;
 	color:#515151;
 	cursor: pointer;
 	display: block;
-  }
-  .footer-list-div a:hover{
-	font-weight: bold;
+}
+.footer-list-div a:hover{
 	color: #C22025;
 	transition: var(--mainTransition);
-  }
-  .footer-end{
-	width: 100;
-	margin: 0 auto;
-	margin-top: 5px;
-	max-width: 1170px;
-	background: #eee;
-	text-align: center;
-	padding-bottom: 0px;
-  }
-  #fb,
-  #insta,
-  #twit,
-  #link{
+}
+
+#fb, #insta, #twit, #link{
 	margin-top: 6px;
 	color: #515151;
 	height: 30px;
 	width: 30px;
-  }
-  #fb:hover{
+}
+#fb:hover, #insta:hover, #twit:hover, #link:hover{
 	color:#C22025;
 	transition: var(--mainTransition);
-  }
-  #insta:hover{
-	color: #C22025;
-	transition: var(--mainTransition);
-  }
-  #twit:hover{
-	color: #C22025;
-	transition: var(--mainTransition);
-  }
-  #link:hover{
-	color:#C22025;
-	transition: var(--mainTransition);
-  }
-  .end-text{
-	font-size: 1.5vh;
-	display: flex;
-	align-items: center;
-	justify-content: center;
-	padding-bottom: 20px;
-  }
-  .hlink{
-	  color: #C22025
-  }
+}
+   
 /******************* End Footer *****************/

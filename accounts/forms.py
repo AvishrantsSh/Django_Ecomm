@@ -3,7 +3,7 @@ from django.contrib.auth.forms import UserCreationForm, UserChangeForm, Authenti
 from .models import CustomUser
 
 class CustomUserCreationForm(UserCreationForm):
-    username = forms.CharField(widget=forms.TextInput(
+    username = forms.CharField(label="Name", widget=forms.TextInput(
                                 attrs={
                                     'required':'True',
                                     'class':'text-box'
@@ -18,12 +18,12 @@ class CustomUserCreationForm(UserCreationForm):
                                     'required':'True',
                                     'class':'text-box'
                                     }))
-    password1 = forms.CharField(widget=forms.PasswordInput(
+    password1 = forms.CharField(label="Password", widget=forms.PasswordInput(
                                 attrs={
                                     'required':'True',
                                     'class':'text-box'
                                     }))
-    password2 = forms.CharField(widget=forms.PasswordInput(
+    password2 = forms.CharField(label="Confirm Password", widget=forms.PasswordInput(
                                 attrs={
                                     'required':'True',
                                     'class':'text-box'
