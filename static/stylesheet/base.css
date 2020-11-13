@@ -2,6 +2,35 @@
 	   margin: 0px;
 	   padding: 0px;
 }
+/****************search icon****************/
+@media only screen and (max-width: 768px) {
+	#navbarResponsive{
+		margin-left: 85%;
+	}
+  }
+.drop-list{
+	text-decoration: none;
+	color: black;
+}
+.drop-list:hover{
+	color: #C22025;
+}
+.navbar-toggler:hover{
+	color: #C22025;
+}
+#search-icon{
+	margin-left: 0px;
+	background-color: white;
+	color: black;
+	border: none;
+	outline: none;
+	height: 30px;
+	padding: 1px 5px 1px 5px;
+}
+#search-icon:hover{
+	background-color: #C22025;
+	color: #eee;
+}
 /******************* Footer *****************/
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
 
@@ -13,13 +42,13 @@
 	margin: 0 auto;
 	margin-top: 2vh;
 /*	max-width: 1170px;*/
-	background:  rgb(231, 226, 221);
+	background:   #eee;
 	text-decoration: none;
 	padding: 2vh;
 	align-content: center;
   }
   .footer-super-container{
-	background:  rgb(231, 226, 221);
+	background:  rgb #eee;
 	height: 100%;
 	width: 100%;
   }
@@ -47,15 +76,15 @@
   }
   .footer-list-div a:hover{
 	font-weight: bold;
-	color: black;
+	color: #C22025;
 	transition: var(--mainTransition);
   }
   .footer-end{
-	width: 90vw;
+	width: 100;
 	margin: 0 auto;
 	margin-top: 5px;
 	max-width: 1170px;
-	background:  rgb(231, 226, 221);
+	background: #eee;
 	text-align: center;
 	padding-bottom: 0px;
   }
@@ -69,19 +98,19 @@
 	width: 30px;
   }
   #fb:hover{
-	color: black;
+	color:#C22025;
 	transition: var(--mainTransition);
   }
   #insta:hover{
-	color: black;
+	color: #C22025;
 	transition: var(--mainTransition);
   }
   #twit:hover{
-	color: black;
+	color: #C22025;
 	transition: var(--mainTransition);
   }
   #link:hover{
-	color: black;
+	color:#C22025;
 	transition: var(--mainTransition);
   }
   .end-text{
@@ -92,6 +121,6 @@
 	padding-bottom: 20px;
   }
   .hlink{
-	  color: #D90C18
+	  color: #C22025
   }
 /******************* End Footer *****************/
