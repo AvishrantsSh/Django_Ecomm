@@ -2,6 +2,13 @@
 	outline: none;
 }
 
+.main-box{
+   background-color: rgba(236, 20, 56, 0.8);
+}
+
+.super-signup-container{
+}
+
 .carousel-item{
    padding: 3vh;
 }
@@ -14,22 +21,22 @@
    margin: 4vh;
    margin-top: 8vh;
    margin-right: 0vh;
-   background-color: rgba(255, 21, 68, 0.7);
+   background-color: rgba(255, 255, 255, 0.7);
    padding-top: 8vh;
    padding-bottom: 8vh;
    text-align: center;
    border-radius: 10px;
-   box-shadow: 0px 2px 5px grey;
+   box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.7);
 }
 
 .col-md-6{
    padding: 0;
 }
 .submit_btn{
-   background-color: rgba(236, 20, 56, 0.95);
+   background-color: rgba(236, 20, 56, 0.85);
    padding: 10px;
    border-radius: 10px;
-   width: 40%;
+   width: 195px;
    margin-left: 2vh;
    color: white;
 }
@@ -41,19 +48,37 @@
 }
 
 .brand_text{
-   color: whitesmoke;
+   color: rgba(236, 20, 56, 0.85);
 }
 
 .login_form{
    margin-top: 5vh;
-   min-height: 50vh;
+   min-height: 62.4vh;
+}
+
+.slide-box{
+   background-color: rgba(255, 255, 255, 1);
+   box-shadow: -2px 0px 3px rgba(0, 0, 0, 0.781);
+}
+
+.sign{
+   min-height: 60vh;
 }
 
 .login_field, .signup_field{
    margin: 1vh;
-   padding: 1vh;
+   margin-top: 0vh;
+   padding: 0.5vh;
    font-family: sans-serif;
 }
+
+label{
+   margin-bottom: 0px;
+}
+
+/*#carousel_form{
+   max-height: 60vh;
+}*/
 
 .text-box{
    border: 0;
@@ -67,4 +92,20 @@
    border-bottom: 1.5px solid rgba(138, 20, 44, 0.5);
    color:black;
    box-shadow: 0px 2px 3px rgba(255, 21, 68, 0.1);
+}
+
+.switch{
+   background-color: whitesmoke;
+   text-align: center;
+   padding: 10px;
+   border-radius: 10px;
+   width: 195px;
+   margin-left: 2vh;
+}
+
+.switch:focus{
+   padding: 10px;
+   border-radius: 10px;
+   width: 195px;
+   margin-left: 2vh;
 }

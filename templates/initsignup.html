@@ -4,12 +4,12 @@
     SignUp
 {%endblock title%}
 {%block link%}
-    <link href="{%static 'stylesheet/signup.css'%}?v=1.2" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="{%static 'stylesheet/signup.css'%}?v=1.5" rel="stylesheet" media="print" onload="this.media='all'">
 {%endblock link%}
    
 {%block content%}
 
-<div class="row">
+<div class="row super-signup-container">
 
 <!-- Brand Box -->
 <div class="col-md-2"></div>
@@ -23,7 +23,9 @@
     </div>
 </div>
 
-<div class="col-md-6">
+<div class="col-md-1"></div>
+
+<div class="col-md-5 slide-box">
     <div id="carousel_forms" class="carousel slide" data-ride="carousel" data-interval="100000,000">
         <div class="carousel-inner">
             
@@ -43,9 +45,8 @@
                         {{f_login.errors}}
                         <button type="submit" class="submit_btn">Login</button>
                     </form>
-                    <div class="switch">
-                    <a data-target="#carousel_forms" data-slide-to="1" href="#">I'm New Here</a>                    
-                    </div>
+                    <a data-target="#carousel_forms" data-slide-to="1" href="#"><div class="switch">I'm New Here</div></a>                    
+
                 </div><!-- End Login Form -->
             </div>
 
@@ -63,11 +64,10 @@
                             </div>
                        {% endfor %}
                        {{form.errors}}
-                        <button type="submit">Sign up</button>
+                        <button type="submit" class="submit_btn">Sign up</button>
                     </form>
-                    <div class="switch">
-                        <a data-target="#carousel_forms" data-slide-to="0" href="#">I already have an account.</a>
-                    </div>
+                        <a id="switch-link" data-target="#carousel_forms" data-slide-to="0" href="#"><div class="switch">I already have an account.</div></a>
+
                 </div>        
             </div><!-- End Signup Form -->
 
