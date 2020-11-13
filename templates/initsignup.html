@@ -26,10 +26,13 @@
 <div class="col-md-1"></div>
 
 <div class="col-md-5 slide-box">
-    <div id="carousel_forms" class="carousel slide" data-ride="carousel" data-interval="100000,000">
+    <div id="carousel_forms" class="carousel slide" data-ride="carousel" data-interval="100000000">
         <div class="carousel-inner">
-            
+            {%if form.errors%}
+            <div class="carousel-item">
+            {%else%}
             <div class="carousel-item active">
+            {%endif%}
                 <!-- Login Form -->
                 <div class="login_form"> 
                     <div class="heading">Login</div>
@@ -52,7 +55,11 @@
                 </div><!-- End Login Form -->
             </div>
 
+            {%if form.errors%}
+            <div class="carousel-item active">
+            {%else%}
             <div class="carousel-item">
+            {%endif%}
                 <!-- Signup Form -->
                 <div id="sign">
                     <div class="heading">Sign Up</div>
