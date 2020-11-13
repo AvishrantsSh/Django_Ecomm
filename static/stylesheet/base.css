@@ -4,14 +4,11 @@
 }
 /******************* Footer *****************/
 @import url("https://fonts.googleapis.com/css?family=Lato:400,700");
-:root {
-  --primaryColor: #f09d51;
-  --mainWhite: #fff;
-  --mainBlack: #222;
-  --mainGrey: #ececec;
-  --mainSpacing: 0.1rem;
-  --mainTransition: all 0.3s linear;
+
+.navbar{
+	background-color: #eee;
 }
+
 .footer{
 	margin: 0 auto;
 	margin-top: 2vh;
@@ -34,12 +31,6 @@
 	font-size: 20px;
   }
   
-  .pay-icons{
-	margin-top: 10px;
-	padding: 5px 5px 5px 5px;
-	width: 60px;
-	height: 40px;
-  }
   .footer-list{
 	list-style-type: none;
   }
@@ -99,5 +90,8 @@
 	align-items: center;
 	justify-content: center;
 	padding-bottom: 20px;
+  }
+  .hlink{
+	  color: #D90C18
   }
 /******************* End Footer *****************/

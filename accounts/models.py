@@ -9,6 +9,10 @@ class CustomUser(AbstractUser):
     username = models.CharField(max_length=50, unique=False)
     phone = models.CharField(max_length=10, validators=[reg])
     email = models.EmailField(unique=True, blank=False)
+    # pincode
+    # district
+    # state
+    # country
     first_name = None
     last_name = None
     USERNAME_FIELD = 'email'
