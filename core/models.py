@@ -53,15 +53,16 @@ class Seller(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     bs_name = models.CharField(max_length=50)
     bs_category = models.CharField(max_length=30, choices=choice)
-    reg_no = models.CharField(max_length=15)
-    id_card = models.FileField(upload_to=change_name)
+    gst_no = models.CharField(max_length=20)
+    pan_no = models.CharField(max_length=20)
+    pan_card = models.FileField(upload_to=change_name)
     bank_ac = models.CharField(max_length=20)
-    # gmap_loc
-    # pincode
-    # district
-    # state
-    # country
-    # category
+    addr1 = models.CharField(max_length=50)
+    addr2 = models.CharField(max_length=50, blank=True)
+    district = models.CharField(max_length=50)
+    state = models.CharField(max_length=50)
+    country = models.CharField(max_length=50)
+    pincode = models.IntegerField()
     rating = models.PositiveIntegerField(default=0)
     total_ratings = models.PositiveIntegerField(default=0)
     status = models.CharField(max_length=20, choices=status, default="Reviewing")

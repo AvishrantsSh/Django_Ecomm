@@ -11,17 +11,63 @@
         <!-- Upload form. Note enctype attribute! -->
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
-            {% for field in form %}
-                <!-- Input class-> text-box -->
+            <!-- Div 1 -->
+            <div>
                 <div class="seller_field">
-                    {{ field.label_tag }}<br>
-                    {{ field }}
+                    <label for="{{form.bs_name.id_for_label}}">{{form.bs_name.label_tag}}</label><br>
+                    {{ form.bs_name }}
                 </div>
-            {% endfor %}
+                <div class="seller_field">
+                    <label for="{{form.bs_category.id_for_label}}">{{form.bs_category.label_tag}}</label><br>
+                    {{ form.bs_category }}
+                </div>
+                <div class="seller_field">
+                    <label for="{{form.gst_no.id_for_label}}">{{form.gst_no.label_tag}}</label><br>
+                    {{ form.gst_no }}
+                </div>
+                <div class="seller_field">
+                    <label for="{{form.pan_no.id_for_label}}">{{form.pan_no.label_tag}}</label><br>
+                    {{ form.pan_no }}
+                </div>
+                <div class="seller_field">
+                    <label for="{{form.bank_ac.id_for_label}}">{{form.bank_ac.label_tag}}</label><br>
+                    {{ form.bank_ac }}
+                </div>
+                <div class="seller_field">
+                    <label for="{{form.pan_card.id_for_label}}">{{form.pan_card.label_tag}}</label><br>
+                    {{ form.pan_card }}
+                </div>
+            </div>
+            <!-- Div 2 -->
+            <div>
+                <div class="seller_field">
+                    <label for="{{form.addr1.id_for_label}}">{{form.addr1.label_tag}}</label><br>
+                    {{ form.addr1 }}
+                </div>
+                <div class="seller_field">
+                    <label for="{{form.addr2.id_for_label}}">{{form.addr2.label_tag}}</label><br>
+                    {{ form.addr2 }}
+                </div>
+                <div class="seller_field">
+                    <label for="{{form.district.id_for_label}}">{{form.district.label_tag}}</label><br>
+                    {{ form.district }}
+                </div>
+                <div class="seller_field">
+                    <label for="{{form.state.id_for_label}}">{{form.state.label_tag}}</label><br>
+                    {{ form.state }}
+                </div>
+                <div class="seller_field">
+                    <label for="{{form.country.id_for_label}}">{{form.country.label_tag}}</label><br>
+                    {{ form.country }}
+                </div>
+                <div class="seller_field">
+                    <label for="{{form.pincode.id_for_label}}">{{form.pincode.label_tag}}</label><br>
+                    {{ form.pincode }}
+                </div>
+            </div>
             <p>{{ form.non_field_errors }}</p>
             <p>
                 {{ form.id_card.errors }}
-                {{ form.id_card }}
             </p>
             <p><input type="submit" value="Submit for Review" /></p>
         </form>

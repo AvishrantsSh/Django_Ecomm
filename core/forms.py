@@ -17,21 +17,56 @@ class DocumentForm(forms.Form):
                                     }))
     bs_category = forms.ChoiceField(label="Business Category", choices=choice)
 
-    reg_no = forms.CharField(label="Registration Number", widget=forms.TextInput(
+    gst_no = forms.CharField(label="GST Number", widget=forms.TextInput(
                                 attrs={
                                     'required':'True',
                                     'class':'text-box'
                                     }))
-    
+
+    pan_no = forms.CharField(label="Pan Number", widget=forms.TextInput(
+                                attrs={
+                                    'required':'True',
+                                    'class':'text-box'
+                                    }))
+
     bank_ac = forms.CharField(label="Bank AC No", widget=forms.TextInput(
                                 attrs={
                                     'required':'True',
                                     'class':'text-box'
                                     }))
 
-    id_card = forms.FileField(label='Select File to Upload', help_text="Max Size 10MB")
-
+    pan_card = forms.FileField(label='Select File to Upload', help_text="Max Size 10MB")
+    addr1 = forms.CharField(label="Address Line 1", widget=forms.TextInput(
+                                attrs={
+                                    'required':'True',
+                                    'class':'text-box'
+                                    }))
+    addr2 = forms.CharField(label="Address Line 2", widget=forms.TextInput(
+                                attrs={
+                                    'class':'text-box'
+                                    }))
+    district = forms.CharField(label="District", widget=forms.TextInput(
+                                attrs={
+                                    'required':'True',
+                                    'class':'text-box'
+                                    }))
+    state = forms.CharField(label="State", widget=forms.TextInput(
+                                attrs={
+                                    'required':'True',
+                                    'class':'text-box'
+                                    }))
+    country = forms.CharField(label="Country", widget=forms.TextInput(
+                                attrs={
+                                    'required':'True',
+                                    'class':'text-box'
+                                    }))
+    pincode = forms.CharField(label="Pincode", widget=forms.TextInput(
+                                attrs={
+                                    'type':'number',
+                                    'required':'True',
+                                    'class':'text-box'
+                                    }))
     class Meta:
         model= Seller
-        fields = ('bs_name', 'bs_category', 'reg_no','bank_ac', 'id_card')
+        fields = ('bs_name', 'bs_category', 'gst_no','pan_no', 'bank_ac', 'pan_card','addr1','addr2','district','country','state','pincode')
 
