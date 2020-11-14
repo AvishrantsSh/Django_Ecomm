@@ -1,6 +1,16 @@
 from django.db import models
 from uuid import uuid4
-from django.core.validators import RegexValidator
+from django.core.validators import RegexValidator, ValidationError
+
+def change_name(instance, filename):
+    return "User_{0}/{1}".format(instance.id, filename)
+
+def validate_file_extension(value):
+    import os
+    ext = os.path.splitext(value.name)[1]
+    valid_extensions = ['.pdf']
+    if not ext in valid_extensions:
+        raise ValidationError(u'File not supported!')
 
 class Sub_Category(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
@@ -27,12 +37,19 @@ class Product_List(models.Model):
         return self.name
 
 class Seller(models.Model):
+    choice = (
+        ("-","-"),
+        ("Electronics","Electronics"),
+        ("Stationary","Stationary"),
+        ("Art and Craft","Art and Craft"),
+        ("Grocery","Grocery"),
+    )
     reg = RegexValidator(r'^[0-9]*$','Only Numbers are Allowed')
     id = models.UUIDField(default=uuid4, primary_key=True)
-    name = models.TextField()
-    phone = models.CharField(max_length=10, validators=[reg])
+    bs_name = models.CharField(max_length=50)
+    bs_category = models.CharField(max_length=30, choices=choice)
     reg_no = models.CharField(max_length=15)
-    id_card = models.FileField()
+    id_card = models.FileField(upload_to=change_name)
     bank_ac = models.CharField(max_length=20)
     # gmap_loc
     # pincode
@@ -40,8 +57,8 @@ class Seller(models.Model):
     # state
     # country
     # category
-    rating = models.PositiveIntegerField()
-    total_ratings = models.PositiveIntegerField(default=100)
+    rating = models.PositiveIntegerField(default=0)
+    total_ratings = models.PositiveIntegerField(default=0)
     
 class Orders(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)

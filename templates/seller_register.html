@@ -4,5 +4,24 @@
     Seller Registration
 {%endblock title%}
 {%block link%}
-    <link href="{%static 'stylesheet/signup.css'%}?v=1.6" rel="stylesheet" media="print" onload="this.media='all'">
+    <link href="{%static 'stylesheet/seller_reg.css'%}" rel="stylesheet" media="print" onload="this.media='all'">
 {%endblock link%}
+   
+{%block content%}
+        <!-- Upload form. Note enctype attribute! -->
+        <form method="post" enctype="multipart/form-data">
+            {% csrf_token %}
+            {% for field in form %}
+                <div class="seller_field">
+                    {{ field.label_tag }}<br>
+                    {{ field }}
+                </div>
+            {% endfor %}
+            <p>{{ form.non_field_errors }}</p>
+            <p>
+                {{ form.docfile.errors }}
+                {{ form.docfile }}
+            </p>
+            <p><input type="submit" value="Upload" /></p>
+        </form>
+{%endblock content%}
