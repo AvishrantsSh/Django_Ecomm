@@ -101,19 +101,18 @@ label{
     text-decoration: none;
     color: whitesmoke;
 }
-
 .switch:hover{
    background-color:  rgba(236, 20, 56, 0.95);
 }
-
 .end-slide{
     text-align: center;
 }
-
 .pt-2{
    display: none;
 }
-
+.reg_box{
+   min-height: 77vh;
+}
 @media screen and (max-width: 768px) {
    .left{
       display: none;

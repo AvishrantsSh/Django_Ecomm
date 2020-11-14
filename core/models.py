@@ -1,6 +1,8 @@
 from django.db import models
 from uuid import uuid4
 from django.core.validators import RegexValidator, ValidationError
+from accounts.models import CustomUser
+import jsonfield
 
 def change_name(instance, filename):
     return "User_{0}/{1}".format(instance.id, filename)
@@ -50,23 +52,20 @@ class Seller(models.Model):
         
     )
     reg = RegexValidator(r'^[0-9]*$','Only Numbers are Allowed')
-    id = models.UUIDField(default=uuid4, primary_key=True)
+    id = models.UUIDField(primary_key=True)
     bs_name = models.CharField(max_length=50)
     bs_category = models.CharField(max_length=30, choices=choice)
     gst_no = models.CharField(max_length=20)
     pan_no = models.CharField(max_length=20)
     pan_card = models.FileField(upload_to=change_name)
     bank_ac = models.CharField(max_length=20)
-    addr1 = models.CharField(max_length=50)
-    addr2 = models.CharField(max_length=50, blank=True)
-    district = models.CharField(max_length=50)
-    state = models.CharField(max_length=50)
-    country = models.CharField(max_length=50)
-    pincode = models.IntegerField()
+    address = jsonfield.JSONField()
     rating = models.PositiveIntegerField(default=0)
     total_ratings = models.PositiveIntegerField(default=0)
     status = models.CharField(max_length=20, choices=status, default="Reviewing")
-    
+    def __str__(self):
+        return self.bs_name
+
 class Orders(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
     customer_id = models.UUIDField()

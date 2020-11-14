@@ -4,29 +4,29 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title>
-            {%block title%}
         
-            {%endblock title%}
-        </title>
         <link rel='stylesheet' href='{%static "stylesheet/base.css"%}?v = 1.4'>
-
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        <link rel="apple-touch-icon" href="/static/assets/icons/avatar.png" sizes="512x512">
+        <link rel="manifest" href="/manifest.json">
+        {%block link%}
+
+        {%endblock link%}
         <meta charset="UTF-8">
         <meta name="description" content="To Infinity and Beyond with ProjectY">
         <meta name="keywords" content="E-Commerce, Bazaar">
         <meta name="author" content="Avishrant Sharma, Prateek Thakur, Spriha Gautam, Sitaram Rathi">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        
         
         <!-- Path to manifest.json -->
-        <link rel="manifest" href="/manifest.json">
 
         <!-- Icons for Apple Devices -->
-        <link rel="apple-touch-icon" href="/static/assets/icons/avatar.png" sizes="512x512">
         <meta name="theme-color" content="#0A0302">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-title" content="Uphaar">
@@ -45,11 +45,12 @@
             }
 
         </script>
-    
-        {%block link%}
-
-        {%endblock link%}
+        <title>
+            {%block title%}
         
+            {%endblock title%}
+        </title>    
+                
     </head>
 
     <body>
@@ -70,7 +71,7 @@
                         <a class="nav-item nav-link nav_link" href="#"><i class="fas fa-user"></i> {{user.username}}</a>
                         <a class="nav-item nav-link nav_link" href="{%url 'logout'%}">Logout <i class="fas fa-sign-out-alt"></i></a>
                     {%else%}
-                        <a class="nav-item nav-link nav_link" href="{%url 'reg'%}">Login <i class="fas fa-sign-in-alt"></i></a>
+                        <a class="nav-item nav-link nav_link" href="{%url 'login'%}">Login <i class="fas fa-sign-in-alt"></i></a>
                     {%endif%}
                         <a class="nav-item nav-link nav_link" href="{%url 'seller_reg'%}"> Become a Seller</a>
                     </div>

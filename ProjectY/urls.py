@@ -16,11 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
-
+# from django.views.static import serve
+# from django.conf import settings
 urlpatterns = [
     path('',include('core.urls')),
     path('admin/', admin.site.urls),
     path('accounts/', include('accounts.urls')),
     path('manifest.json',TemplateView.as_view(template_name='pwa/manifest.json',content_type='text/plain')),
     path('serviceworker.js',TemplateView.as_view(template_name='pwa/serviceworker.js',content_type='text/javascript')),
+    path('<pth>', TemplateView.as_view(template_name='404.html'))
+    # path('media/<path>', serve,{'document_root': settings.MEDIA_ROOT}),
+    # path('static/<path>', serve,{'document_root': settings.STATIC_ROOT}),
 ]

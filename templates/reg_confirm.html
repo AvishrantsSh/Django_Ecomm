@@ -1,0 +1,13 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}
+    Seller Registration
+{%endblock title%}
+{%block link%}
+    <link href="{%static 'stylesheet/seller_reg.css'%}?v=1.2" rel="stylesheet" media="print" onload="this.media='all'">
+{%endblock link%}
+   
+{%block content%}
+    Thank You for Registering. We will e-mail you once your credentials have been verified.
+    <a href="{%url 'home'%}">Click</a> to go to home.
+{%endblock content%}
