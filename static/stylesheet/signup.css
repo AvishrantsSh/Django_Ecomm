@@ -2,10 +2,6 @@
 	outline: none;
 }
 
-body{
-   background-color: #eee;
-}
-
 .main-box{
    background-image: url("../assets/images/signup_back-min.jpg");
    background-position: center;
