@@ -12,6 +12,7 @@
         <form method="post" enctype="multipart/form-data">
             {% csrf_token %}
             {% for field in form %}
+                <!-- Input class-> text-box -->
                 <div class="seller_field">
                     {{ field.label_tag }}<br>
                     {{ field }}
