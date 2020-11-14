@@ -44,6 +44,11 @@ class Seller(models.Model):
         ("Art and Craft","Art and Craft"),
         ("Grocery","Grocery"),
     )
+    status = (
+        ("Active","Active"),
+        ("Reviewing","Reviewing"),
+        
+    )
     reg = RegexValidator(r'^[0-9]*$','Only Numbers are Allowed')
     id = models.UUIDField(default=uuid4, primary_key=True)
     bs_name = models.CharField(max_length=50)
@@ -59,6 +64,7 @@ class Seller(models.Model):
     # category
     rating = models.PositiveIntegerField(default=0)
     total_ratings = models.PositiveIntegerField(default=0)
+    status = models.CharField(max_length=20, choices=status, default="Reviewing")
     
 class Orders(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
