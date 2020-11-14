@@ -9,24 +9,8 @@
    background-size: cover;
 }
 
-/*
-.bg-image-blur{
-   background-image: url("../assets/images/signup_back-min.jpg");
-
-   filter: blur(4px);
-   -webkit-filter: blur(8px);
-   height: 100%;
-   background-position: center;
-   background-repeat: no-repeat;
-   background-size: cover;
-}*/
-
 .carousel-item{
    padding: 3vh;
-}
-
-.brand{
-   min-height: 60vh;
 }
 
 .brand_box{
@@ -54,15 +38,14 @@
    outline: none;
    padding: 10px;
    border-radius: 15px;
-   width: 195px;
+   width: 100%;
    border: 0;
-   margin-left: 2vh;
    color: white;
    transition-duration: 0.4s;
 }
 
 .submit_btn:hover{
-   background-color: rgba(184, 22, 49, 0.95);
+   background-color: rgba(200, 13, 56, 0.9);
 }
 
 .heading{
@@ -75,12 +58,7 @@
    color: rgba(0, 0, 0, 0.85);
 }
 
-.carousel-item{
-   min-height: 78vh;
-}
-
 .error-text{
-   margin-top: 11vh;
    font-size: 1.8vh;
    color: grey;
 }
@@ -103,10 +81,11 @@ label{
 .text-box{
    border: 0;
    border-bottom: 1px solid #777;
+   background: transparent;
    padding: 0.5vh;
    padding-left: 1vh;
    transition: 1s;
-   width: 300px;
+   width: 100%;
 }
 
 .text-box:focus{
@@ -118,9 +97,8 @@ label{
    background-color: whitesmoke;
    text-align: center;
    padding: 10px;
-   border-radius: 10px;
-   width: 195px;
-   margin-left: 2vh;
+   border-radius: 15px;
+   width: 100%;
    transition-duration: 0.5s;
 }
 
@@ -137,9 +115,24 @@ a:hover{
 .switch:hover{
    background-color:  rgba(236, 20, 56, 0.95);
 }
-
+.bg_box{
+   background-image: url("/static/assets/images/login_bg.png");
+   background-position: bottom;
+   background-repeat: no-repeat;
+   background-size: contain;
+}
+.reg_box{
+   height: 70vh;
+}
 @media screen and (max-width: 768px) {
    .left{
       display: none;
+   }
+   footer{
+      display: none;
+      visibility: hidden;
+   }
+   .reg_box{
+      height: 90vh;
    }
 }
