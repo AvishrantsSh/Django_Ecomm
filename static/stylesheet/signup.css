@@ -122,7 +122,7 @@ a:hover{
    background-size: contain;
 }
 .reg_box{
-   height: 65vh;
+   min-height: 65vh;
 }
 @media screen and (max-width: 768px) {
    .left{
