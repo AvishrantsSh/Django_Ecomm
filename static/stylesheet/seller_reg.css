@@ -6,10 +6,6 @@ body{
    background-color: #eee;
 }
 
-.main-box{
-    background-color: rgba(200, 13, 56, 0.9);
-}
-
 .carousel-item{
    padding: 3vh;
    min-height: 77vh;
@@ -96,7 +92,11 @@ label{
     color: rgba(236, 20, 56, 0.95);
     transition-duration: 0.15s;
 }
-
+.bg-image{
+   background-image: url("/static/assets/images/work.jpg");
+   background-repeat: no-repeat;
+   background-size: cover;
+}
 #switch-link:hover{
     text-decoration: none;
     color: whitesmoke;

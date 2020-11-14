@@ -126,7 +126,9 @@ a:hover{
 .reg_box{
    min-height: 77vh;
 }
-
+body{
+   background-color: #eee;
+}
 .pt-2{
    display: none;
 }

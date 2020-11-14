@@ -10,10 +10,8 @@
 {%block content%}
     <div class="row reg_box">
         <!-- Brand Box -->
-        <div class="col-md-7 left">
-            <div class="row">
-
-            </div>
+        <div class="col-md-7 left bg-image">
+            
         </div>
         <div class="col-md-5 slide-box right">
             <div id="carousel_forms" class="carousel slide h-100" data-ride="carousel" data-interval="false">
@@ -56,7 +54,7 @@
                                         </div>
 
                                     </div>
-                                    <a data-target="#carousel_forms" data-slide-to="1" href="#" id="switch-link"><div class="switch">Proceed</div></a>
+                                    <a data-target="#carousel_forms" data-slide-to="1" href="#" id="switch-link"><div class="switch my-3">Proceed</div></a>
                                 </div>
                                 <div class="col-lg-5 error-text">
                                     {% for error in f_login.non_field_errors %}
@@ -97,7 +95,7 @@
                                         </div>
                                     </div>
 
-                                    <input class="switch" id="switch-link" type="submit" value="Submit for Review" />
+                                    <input class="switch my-3" id="switch-link" type="submit" value="Submit for Review" />
                                     <a id="switch-link" data-target="#carousel_forms" data-slide-to="0" href="#"><div class="switch">Previous</div></a>
                                 </div>
                                 <div class="col-lg-5 error-text">
