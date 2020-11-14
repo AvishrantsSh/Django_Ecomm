@@ -1,25 +1,29 @@
-from django.shortcuts import render
-from .models import Product_List
+from django.shortcuts import render, redirect
+from .models import Product_List, Seller
+from django.template import RequestContext
 from django.core import serializers
+from .forms import DocumentForm
 import json
 
-def Products(request):
-    records_all = Product_List.objects.all()
-    record_list = serializers.serialize('json', records_all)
-    record_list = json.loads(record_list)
-    for d in record_list:
-        del d['model']
+def Seller_reg(request):
+    # Handle file upload
+    if request.method == 'POST':
+        form = DocumentForm(request.POST, request.FILES)
+        if form.is_valid():
+            newdoc = Seller(id_card = request.FILES['id_card'])
+            newdoc.save()
 
-    return render(request, 
-                'product_list.html',
-                {'data':record_list},
-                )
+            return redirect('home')
+    else:
+        form = DocumentForm() # A empty, unbound form
 
-def Product_Dscr(request, pk):
-    record = Product_List.objects.get(id=pk)
-    
-    return render(request, 
-                'product_dscr.html',
-                {'data':record},
-                )
+    documents = Seller.objects.all()
+
+    # Render list page with the documents and the form
+    return render(
+        request,
+        'seller_register.html',
+        {'documents': documents, 'form': form},
+        # context_instance=RequestContext(request)
+    )
 # Create your views here.
