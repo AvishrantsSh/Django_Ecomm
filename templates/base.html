@@ -9,12 +9,7 @@
         
             {%endblock title%}
         </title>
-        <!--Tailwind CSS-->
-        <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-        <!--Tailwind CSS end-->
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap" rel="stylesheet">
-        <link rel='stylesheet' href='{%static "stylesheet/base.css"%}?v = 1.2'>
+        <link rel='stylesheet' href='{%static "stylesheet/base.css"%}?v = 1.4'>
 
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
@@ -58,11 +53,11 @@
     </head>
 
     <body>
-        <nav class="navbar navbar-expand-md sticky-top">
+        <nav class="navbar navbar-expand-md navbar-fixed-top">
             <div class="container-fluid">
-                <a class="navbar-brand hlink" href="{%url 'home'%}" id = "head_start">Enigma</a>
-                <div style="display: flex; margin-left: 20px;">
-                    <input type="text" style="border: none; outline: none; " name="search" placeholder="Search Products.."> 
+                <a class="navbar-brand cherry" href="{%url 'home'%}" id = "head_start">Hola</a>
+                <div style="display: flex;">
+                    <input type="text" style="border: none; outline: none; width: 50vw; justify-content: center;" name="search" placeholder="Search"> 
                 <button id="search-icon" class="nav-link" ><i class="fa fa-search"></i></button>
                 </div>
                 
@@ -70,27 +65,15 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <ul class="navbar-nav ml-auto drop-list">
+                    <div class="navbar-nav ml-md-auto d-md-flex flex-row">
                     {%if user.is_authenticated%}
-                    <li class="nav-item">
-                        <a class="nav-link drop-list" href="#"><i class="fas fa-user"></i> {{user.username}}</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link drop-list" href="{%url 'logout'%}">Logout <i class="fas fa-sign-out-alt"></i></a>
-                    </li>
+                        <a class="nav-item nav-link nav_link" href="#"><i class="fas fa-user"></i> {{user.username}}</a>
+                        <a class="nav-item nav-link nav_link" href="{%url 'logout'%}">Logout <i class="fas fa-sign-out-alt"></i></a>
                     {%else%}
-                    <li class="nav-item">
-                        <a class="nav-link drop-list" href="{%url 'reg'%}">Login <i class="fas fa-sign-in-alt"></i></a>
-                    </li>
-                    
+                        <a class="nav-item nav-link nav_link" href="{%url 'reg'%}">Login <i class="fas fa-sign-in-alt"></i></a>
                     {%endif%}
-                    <li class="nav-item">
-                        <a class="nav-link drop-list" href="#">Sell <i class="fas fa-briefcase"></i></a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link drop-list" href="#">Cart <i class="fas fa-shopping-cart"></i></a>
-                    </li>
-                    </ul>
+                        <a class="nav-item nav-link nav_link" href="#"> Another Page</a>
+                    </div>
                 </div>
             </div>
         </nav>
@@ -102,21 +85,21 @@
         </div>
         
         <footer>
-            <div class="footer-super-container container-fluid">
-                <div class="footer row">
+            <div class="container-fluid">
+                <div class="row pt-3">
                     <div class="col-md-6 col-lg-4">
                         <h2 class="widget-title">About</h2>
                         <div class="footer-list-div">
-                            <p>We aim at Providing you the easiest Platform where you can sell your Products with minimal efforts as that's why we are here, to reduce all the work of selling Products online and make your Bussiness grow more.</p><br>
+                            We, at <b>Engima</b>, aim at providing you the easiest platform where you can sell your Products with minimal efforts as that's why we are here, to reduce all the work of selling Products online and make your Bussiness grow more.</p><br>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-2">
                         <h2 class="widget-title">Help</h2>
                             <div class="footer-list-div">
                                 <ul class="footer-list">
-                                    <li><a href="#">Payments & Shipping</a></li>
-                                    <li><a href="#">Cancellation & Returns</a></li>
-                                    <li><a href="#">FAQ</a></li>
+                                    <li><a href="#">Payments and Shipping</a></li>
+                                    <li><a href="#">Cancellation and Returns</a></li>
+                                    <li><a href="#">FAQs</a></li>
                                 </ul>
                             </div>
                     </div>
@@ -126,7 +109,7 @@
                                 <ul class="footer-list">
                                     <li><a href="#">Security</a></li>
                                     <li><a href="#">Privacy Policy</a></li>
-                                    <li><a href="#">Terms & Conditions</a></li>
+                                    <li><a href="#">Terms and Conditions</a></li>
                                 </ul>
                             </div>
                     </div>
@@ -142,20 +125,18 @@
                         </div>
                 </div>
                
-            <div class="footer-end-container">
-                <div class="footer-end">
+            <div class="container-fluid pb-4">
+                <div class="container mt-3 text-center" style="background-color: #eee;">
                         <h2 class="widget-title">Follow us on</h2>
-                        <div class="footer-end-list-div">
-                            <ul class="footer-end-list">
+                        <div>
+                            <ul>
                                 </li><a href="#"><i id="fb" class="fab fa-facebook-square fa-2x"></i></a>
                                 <a href="#"><i id="insta" class="fab fa-instagram fa-2x"></i></a>
                                 <a href="#"><i id="twit" class="fab fa-twitter fa-2x"></i></a>
                                 <a href="#"><i id="link" class="fab fa-linkedin fa-2x"></i></a>
                             </ul>
                         </div>
-                </div>
-                <div class="end-text">
-                    &copy; Copyright Team Enigma
+                        &copy; Copyright Team Enigma
                 </div>
             </div>
         </div>
