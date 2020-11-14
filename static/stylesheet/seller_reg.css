@@ -40,7 +40,7 @@ body{
 .heading{
    font-size: 4vh;
    font-weight: bold;
-   padding: 1vh;
+   padding: 0.5vh;
 }
 
 .brand_text{
@@ -48,10 +48,18 @@ body{
 }
 
 .error-text{
-   padding-top: 6vh;
-   margin-top: 5vh;
+   margin-top: 9vh;
+   padding: 2vh;
    font-size: 1.8vh;
-   color: grey;
+   border-radius: 15px;
+   color: rgba(200, 13, 56, 0.9);
+   background-color: rgba(255, 255, 255, 0.6);
+   transition-duration: 0.4s;
+}
+
+.error-text:hover{
+   background-color: rgba(255, 255, 255, 0.8);
+
 }
 
 .slide-box{
@@ -113,6 +121,7 @@ label{
 .reg_box{
    min-height: 77vh;
 }
+
 @media screen and (max-width: 768px) {
    .left{
       display: none;
