@@ -4,3 +4,4 @@ django_heroku
 pyexcel
 pyexcel_xls
 pyexcel_xlsx
+django-jsonfield
