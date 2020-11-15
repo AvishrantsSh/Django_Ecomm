@@ -5,11 +5,9 @@
     Home Page
 {%endblock title%}
 {%block link%}
-    <link rel='stylesheet' href='{%static "stylesheet/seller_info.css"%}?v=1.1'>
+    <link rel='stylesheet' href='{%static "stylesheet/seller_info.css"%}?v=1.2'>
 {%endblock link%}
 {%block content%}
-
-<a class="nav-item nav-link nav_link" href="{%url 'seller_reg'%}">Start Selling</a>
 
 <div class="tab-super-container">
     <h2>Toggleable Tabs</h2>
@@ -43,7 +41,8 @@
                         <img class="point-img" src="../../static/assets/images/work.jpg">
                     </div>
                     <div class="col-md-8 point-text">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <div class="row-head">Register your seller account</div><br>
+                        <p>All we need is your valid ID verification proof, registration number of the shop and your active bank account to receive your payments and you are all ready to upload your products.</p>
                     </div>
                 </div>
 
@@ -51,8 +50,9 @@
                     <div class="col-md-4 order-md-2 point-image">
                         <img class="point-img" src="../../static/assets/images/signup_back-min.jpg">
                     </div>
-                    <div class="col-md-8 order-md-1 point-text">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    <div class="col-md-8 order-md-1 point-text" id="right-text">
+                        <div class="row-head" >Upload your products</div><br>
+                        <p id="right-text"> Whether it be an excel sheet with the product name, description and pricing or a word/pdf you create for listing your products, we accept it all in one go.<br> No need to spend long, tiring hours on uploading your data.<br> It’s that simple.</p>
                     </div>
                 </div>
 
@@ -61,17 +61,17 @@
                         <img class="point-img" src="../../static/assets/images/work.jpg">
                     </div>
                     <div class="col-md-8 point-text">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                        <div class="row-head" >Deliver the products and receive your payment</div><br>
+                        <p>It’s that simple. Deliver according to your range and comfort and receive the payments directly in your bank account.</p>
                     </div>
                 </div>
 
-                <div class="row working-list" id="row4">
-                    <div class="col-md-4 order-md-2 point-image">
-                        <img class="point-img" src="../../static/assets/images/signup_back-min.jpg">
-                    </div>
-                    <div class="col-md-8 order-md-1 point-text">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-                    </div>
+                <div class="working-list end-text" id="row4">
+                    <p><span id="end1">Leave the rest to us.</span><br>
+                    <span id="end2">We handle your marketing, make sure the customers see your products and help your business expand.</span><br>
+                    <span id="end3">So what are you waiting for?</span></p>
+                    <a class="nav-item nav-link nav_link btn-container" href="{%url 'seller_reg'%}"><div class="start-btn">Start Selling</div></a>
+                    
                 </div>
             </div>
         </div>
