@@ -1,0 +1,88 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block title%}
+    Home Page
+{%endblock title%}
+{%block link%}
+    <link rel='stylesheet' href='{%static "stylesheet/seller_info.css"%}?v=1.1'>
+{%endblock link%}
+{%block content%}
+
+<a class="nav-item nav-link nav_link" href="{%url 'seller_reg'%}">Start Selling</a>
+
+<div class="tab-super-container">
+    <h2>Toggleable Tabs</h2>
+    <br>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link tabs active" id="tab1" data-toggle="tab" href="#home">Benefits</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link tabs" data-toggle="tab" href="#menu1">How it Works</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link tabs" data-toggle="tab" href="#menu2">FAQ</a>
+      </li>
+    </ul>
+  
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div id="home" class="container tab-pane active"><br>
+            <div class="tab-box">
+                <h3>Benefits</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+        </div>
+        <div id="menu1" class="container tab-pane fade"><br>
+            <div class="tab-box">
+                <h3>How it Works</h3>
+                <div class="row working-list" id="row1">
+                    <div class="col-md-4 point-image">
+                        <img class="point-img" src="../../static/assets/images/work.jpg">
+                    </div>
+                    <div class="col-md-8 point-text">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+
+                <div class="row working-list" id="row2">
+                    <div class="col-md-4 order-md-2 point-image">
+                        <img class="point-img" src="../../static/assets/images/signup_back-min.jpg">
+                    </div>
+                    <div class="col-md-8 order-md-1 point-text">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+
+                <div class="row working-list" id="row3">
+                    <div class="col-md-4 point-image">
+                        <img class="point-img" src="../../static/assets/images/work.jpg">
+                    </div>
+                    <div class="col-md-8 point-text">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+
+                <div class="row working-list" id="row4">
+                    <div class="col-md-4 order-md-2 point-image">
+                        <img class="point-img" src="../../static/assets/images/signup_back-min.jpg">
+                    </div>
+                    <div class="col-md-8 order-md-1 point-text">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div id="menu2" class="container tab-pane fade"><br>
+            <div class="tab-box">
+                <h3>FAQ</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{%endblock content%}
