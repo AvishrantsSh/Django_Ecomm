@@ -40,20 +40,14 @@
     align-content: center;
 }
 
-.btn-container{
-    padding-left: 10vw;
-}
-
 #row4{
     margin-top: 5vh;
 }
 .start-btn{
     background-color: rgba(200, 13, 56, 0.9);
-    padding: 10px;
     border-radius: 15px;
-    width: 50vw;
+    text-align: center;
     color: white;
-    font-size: 4vh;
     transition-duration: 0.4s;
 }
 
