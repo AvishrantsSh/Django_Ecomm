@@ -7,6 +7,9 @@ import jsonfield
 def change_name(instance, filename):
     return "User_{0}/{1}".format(instance.id, filename)
 
+def sheet_path(instance, filename):
+    return "Sheets/User_{0}/{1}".format(instance.id, filename)
+
 def validate_file_extension(value):
     import os
     ext = os.path.splitext(value.name)[1]
@@ -24,13 +27,13 @@ class Sub_Category(models.Model):
 
 class Product_List(models.Model):
     id = models.UUIDField(default=uuid4, primary_key=True)
-    img = models.ImageField()
+    # img = models.ImageField()
     name = models.CharField(max_length=100)
     brand = models.CharField(max_length=50)
     seller = models.UUIDField(unique=False)
-    category = models.ForeignKey(Sub_Category, on_delete=models.CASCADE)
-    rating = models.PositiveIntegerField(default=5)
-    total_ratings = models.PositiveIntegerField(default=100)
+    # category = models.ForeignKey(Sub_Category, on_delete=models.CASCADE)
+    rating = models.PositiveIntegerField(default=0)
+    total_ratings = models.PositiveIntegerField(default=0)
     stock = models.PositiveIntegerField(default=10)
     base_price = models.PositiveIntegerField(blank=False)
     discount = models.FloatField(default = 0)
@@ -75,4 +78,6 @@ class Orders(models.Model):
     order_type = models.CharField(max_length=15)
     status = models.CharField(max_length=15)
     user_xp = models.PositiveIntegerField(default=8)
+
+
 # Create your models here.

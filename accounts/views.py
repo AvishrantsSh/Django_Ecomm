@@ -14,14 +14,23 @@ def SignUp(request):
             if form.is_valid():
                 user = form.save()
                 login(request, user, backend='accounts.backend.EmailBackend')
-                return redirect('home')
+                try:
+                    url = request.GET['next']
+                except:
+                    url ='home'
+                return redirect(url)
 
         elif request.POST.get('submit') == 'Login':
             f_login = CustomAuthenticationForm(data = request.POST)
             if f_login.is_valid():
                 user = f_login.get_user()
                 login(request, user, backend='accounts.backend.EmailBackend')
-                return redirect('home')
+                try:
+                    url = request.GET['next']
+                except:
+                    url ='home'
+                return redirect(url)
+                
     else:
         form = CustomUserCreationForm()
         f_login = CustomAuthenticationForm()

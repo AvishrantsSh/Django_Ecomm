@@ -69,4 +69,9 @@ class DocumentForm(forms.Form):
     class Meta:
         model= Seller
         fields = ('bs_name', 'bs_category', 'gst_no','pan_no', 'bank_ac', 'pan_card','addr1','addr2','district','country','state','pincode')
+    
 
+class DocFileForm(forms.Form):
+    docfile = forms.FileField(label='Upload the Excel Sheet', help_text="Max Size 10MB")
+    
+    

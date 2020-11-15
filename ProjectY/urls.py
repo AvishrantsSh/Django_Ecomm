@@ -24,7 +24,8 @@ urlpatterns = [
     path('accounts/', include('accounts.urls')),
     path('manifest.json',TemplateView.as_view(template_name='pwa/manifest.json',content_type='text/plain')),
     path('serviceworker.js',TemplateView.as_view(template_name='pwa/serviceworker.js',content_type='text/javascript')),
-    path('<pth>', TemplateView.as_view(template_name='404.html'))
+    path('error/', TemplateView.as_view(template_name='404.html'), name='404'),
+    path('<pth>', TemplateView.as_view(template_name='404.html')),
     # path('media/<path>', serve,{'document_root': settings.MEDIA_ROOT}),
     # path('static/<path>', serve,{'document_root': settings.STATIC_ROOT}),
 ]
