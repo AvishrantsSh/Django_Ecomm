@@ -1,0 +1,23 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block title%}
+    Some description        
+{%endblock title%}
+{%block link%}
+<link rel='stylesheet' href='{%static "stylesheet/product_dscr.css"%}?v=1.2'>
+
+{%endblock link%}
+{%block content%}
+    <div class = "main_box">
+		{{data.name}}<br>
+		{{data.brand}}<br>
+		{{data.base_price}}<br>
+		{{data.stock}}<br>
+		{{data.description}}<br>
+		{%for key, value in additional.items%}
+			{{key}}->{{value}}<br>
+		{%endfor%}
+		<br>Seller Info Comming Soon<br>
+	</div>
+{%endblock content%}

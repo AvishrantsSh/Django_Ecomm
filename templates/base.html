@@ -69,7 +69,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <div class="navbar-nav ml-md-auto d-md-flex flex-row">
                     {%if user.is_authenticated%}
-                        <a class="nav-item nav-link nav_link" href="#"><i class="fas fa-user"></i> {{user.username}}</a>
+                        <a class="nav-item nav-link nav_link" href="{%url 'profile'%}"><i class="fas fa-user"></i> {{user.username}}</a>
                         <a class="nav-item nav-link nav_link" href="{%url 'logout'%}">Logout <i class="fas fa-sign-out-alt"></i></a>
                     {%else%}
                         <a class="nav-item nav-link nav_link" href="{%url 'login'%}">Login <i class="fas fa-sign-in-alt"></i></a>

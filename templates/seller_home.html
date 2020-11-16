@@ -1,0 +1,25 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block title%}
+    Product Search        
+{%endblock title%}
+{%block link%}
+	<link rel='stylesheet' href='{%static "stylesheet/product_list.css"%}?v=1.4'>
+    
+{%endblock link%}
+{%block content%}
+    <label for="myInput">Your Personnel Link: </label>
+    <input type="text" value="{{base}}{%url 'seller_shop' details.bs_category details.bs_name details.id%}" id="myInput" class="w-50" readonly>
+    <button onclick="myFunction()"><i class="fa fa-copy" aria-hidden="true"></i></button>
+    
+    <script>
+    function myFunction() {
+      var copyText = document.getElementById("myInput");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999)
+      document.execCommand("copy");
+      alert("Copied");
+    }
+    </script>
+{%endblock content%}

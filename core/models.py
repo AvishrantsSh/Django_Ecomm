@@ -48,6 +48,7 @@ class Product_List(models.Model):
     discount = models.FloatField(default = 0)
     description = models.TextField(default="Some Product")
     additional = jsonfield.JSONField()
+    
     def __str__(self):
         return self.name
 

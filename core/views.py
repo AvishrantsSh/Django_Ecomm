@@ -1,13 +1,15 @@
 from django.shortcuts import render, redirect
 from .models import Product_List, Seller
-from django.template import RequestContext
 from django.http import JsonResponse, HttpResponse
 from django.core import serializers
 from .forms import DocumentForm, DocFileForm
+from django.contrib.auth import get_user_model
 import json
 from pyexcel_xls import get_data as xls_get
 from pyexcel_xlsx import get_data as xlsx_get
-from django.utils.datastructures import MultiValueDictKeyError
+from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
+
+User = get_user_model()
 
 def to_dict(lst):
     key = lst[0]
@@ -55,11 +57,14 @@ def Seller_reg(request):
     review=False
     try:
         obj = Seller.objects.get(id=request.user.id)
-        review = True if obj.status == "Reviewing" else False
+        if obj.status == "Active":
+            return redirect('profile')
+        review= True
+
     except Seller.DoesNotExist:
-        return render(request,'seller_register.html',{'form': form, 'review': review, 'complete':False})
+        return render(request,'seller_register.html',{'form': form, 'review': review})
     
-    return render(request,'seller_register.html',{'form': form, 'review':review, 'complete':True})
+    return render(request,'seller_register.html',{'form': form, 'review':review})
 
 def Extract_dt(request):
     # Handle file upload
@@ -68,7 +73,7 @@ def Extract_dt(request):
         if form.is_valid():
             try:
                 excel_file = request.FILES['docfile']
-            except MultiValueDictKeyError:
+            except:
                 return JsonResponse({"error":"File not found"})
 
             if(str(excel_file).split('.')[-1]=="xls"):
@@ -152,5 +157,60 @@ def get_dt(request):
     cleaned_response = {'Data':tmp}
     json_file=json.dumps(cleaned_response, indent=4, sort_keys=True)
     return HttpResponse(json_file, content_type="text/plain")
-        
+
+def ItemList(request, cat, store, pk):
+    try:
+        obj = Seller.objects.get(id = pk)
+        if obj.bs_name != store or obj.bs_category != cat:
+            raise Exception
+    except:
+        return redirect('404')
+    
+    try:
+        object_list = list(Product_List.objects.filter(seller=pk).order_by('name'))
+    except:
+        return render(request,
+                  'seller_search.html',
+                  {'found':False})
+
+    paginator = Paginator(object_list, 20)
+    page = request.GET.get('page')
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+
+    return render(request,
+                  'seller_search.html',
+                  {'page': page,
+                   'products': products})   
+
+def Product_Dscr(request, pk):
+    record = Product_List.objects.get(id=pk)
+    dic = json.loads(record.additional)
+    return render(request, 
+                'product_dscr.html',
+                {'data':record, 'additional': dic},
+                )
+
+def Profile(request):
+    try:
+        slr = Seller.objects.get(id = request.user.id)
+        return render(
+                        request,
+                        'seller_home.html',
+                        {'details': slr, 'base': "{0}://{1}".format(request.scheme, request.get_host())}
+                        )
+    except Seller.DoesNotExist:
+        try:
+            User.objects.get(id = request.user.id)
+            return render(
+                            request,
+                            'profile.html',
+                            {}
+                            )
+        except:
+            return redirect('404')
 # Create your views here.
