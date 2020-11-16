@@ -5,21 +5,25 @@
     Product Search        
 {%endblock title%}
 {%block link%}
-	<link rel='stylesheet' href='{%static "stylesheet/product_list.css"%}?v=1.4'>
+	<link rel='stylesheet' href='{%static "stylesheet/search.css"%}?v=1.1'>
 
 {%endblock link%}
 {%block content%}
+<div class="row search-container">
     {%for i in products%}
-    <div class="card col-md-3">
-        <img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:100%">
-        <div class="card-body">
-            <h4 class="card-title">{{i.name}}</h4>
-            <h5 class="card-title">{{i.brand}}</h5>
-            <p class="card-text">{{i.description}}</p>
-            <a href="{%url 'product' i.pk%}" class="btn btn-primary">See Profile</a>
+    <div class="card-container col-md-3">
+        <div class="card">
+            <img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:100%">
+            <div class="card-body">
+                <h4 class="card-title">{{i.name}}</h4>
+                <h6 class="card-title">{{i.brand}}</h6>
+                <p class="card-text">{{i.description}}</p>
+                <a href="{%url 'product' i.pk%}" class="btn btn-primary">See Profile</a>
+            </div>
         </div>
     </div>
     {%endfor%}
+</div>
 
     {% if products.has_other_pages %}
     <nav aria-label="Page navigation conatiner"></nav>

@@ -1,0 +1,16 @@
+.card-container{
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+}
+
+.card:hover{
+    background-color: #fff2f5;
+    transition-duration: 0.4s;
+}
+
+.search-container{
+    padding: 3vh;
+    margin: 3vh;
+    text-align: center;
+}
+
