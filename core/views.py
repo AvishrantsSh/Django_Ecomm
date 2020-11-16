@@ -22,8 +22,8 @@ def to_dict(lst):
             tmp[str(key[j]).lower()] = i[j]
         ans.append(tmp)
         num += 1
-        if num >= 1000:
-            break
+        # if num >= 1000:
+        #     break
     return ans
 
 def Seller_reg(request):
@@ -183,7 +183,7 @@ def ItemList(request, cat, store, pk):
         products = paginator.page(paginator.num_pages)
 
     return render(request,
-                  'seller_search.html',
+                  'search.html',
                   {'page': page,
                    'products': products})   
 

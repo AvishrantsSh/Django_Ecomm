@@ -12,7 +12,7 @@
     <label for="myInput">Your Personnel Link: </label>
     <input type="text" value="{{base}}{%url 'seller_shop' details.bs_category details.bs_name details.id%}" id="myInput" class="w-50" readonly>
     <button onclick="myFunction()"><i class="fa fa-copy" aria-hidden="true"></i></button>
-    
+    <a href="{%url 'sheet'%}">Add Products</a>
     <script>
     function myFunction() {
       var copyText = document.getElementById("myInput");
