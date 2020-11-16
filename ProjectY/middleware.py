@@ -9,8 +9,8 @@ LOCK_URLS = (
             "/register/seller/",
             "/sheet/",
              )
-LOGIN_URL = ("/accounts/register",)
-LOGOUT_URL = ("/accounts/logout",)
+LOGIN_URL = ("/accounts/register/",)
+LOGOUT_URL = ("/accounts/logout/",)
 
 class AuthRequired(MiddlewareMixin):
     def __init__(self, get_response):
@@ -26,9 +26,8 @@ class AuthRequired(MiddlewareMixin):
             elif str(path) in LOGOUT_URL:
                 return redirect('home')
 
-        # if request.user.is_authenticated and str(path) in LOGIN_URL:
-        #     print("Ye wala?")
-        #     return redirect('home')
+        if request.user.is_authenticated and str(path) in LOGIN_URL:
+            return redirect('home')
         return None
             
         

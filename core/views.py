@@ -1,12 +1,28 @@
 from django.shortcuts import render, redirect
 from .models import Product_List, Seller
 from django.template import RequestContext
+from django.http import JsonResponse, HttpResponse
 from django.core import serializers
 from .forms import DocumentForm, DocFileForm
 import json
 from pyexcel_xls import get_data as xls_get
 from pyexcel_xlsx import get_data as xlsx_get
 from django.utils.datastructures import MultiValueDictKeyError
+
+def to_dict(lst):
+    key = lst[0]
+    del lst[0]
+    ans = []
+    num = 0
+    for i in lst:
+        tmp={}
+        for j in range(len(key)):
+            tmp[str(key[j]).lower()] = i[j]
+        ans.append(tmp)
+        num += 1
+        if num >= 1000:
+            break
+    return ans
 
 def Seller_reg(request):
     # Handle file upload
@@ -53,36 +69,88 @@ def Extract_dt(request):
             try:
                 excel_file = request.FILES['docfile']
             except MultiValueDictKeyError:
-                return redirect('404')
+                return JsonResponse({"error":"File not found"})
+
             if(str(excel_file).split('.')[-1]=="xls"):
-                data = xls_get(excel_file, column_limit=4)
+                data = xls_get(excel_file, column_limit=10)
 
             elif(str(excel_file).split('.')[-1]=="xlsx"):
-                data = xlsx_get(excel_file, column_limit=4)
+                data = xlsx_get(excel_file, column_limit=10)
 
             else:
-                return redirect('404')
+                return JsonResponse({"error":"Invalid File Format"})
 
-            data = data["Sheet1"]    
-            del data[0]
-            for i in data:
-                try:
-                    Product_List.objects.get(name=i[0]).delete()
-                    print("Updating Entry")
-                except Product_List.DoesNotExist:
-                    print("Adding New Entry")
+            data = data[list(data.keys())[0]]    
+            data = to_dict(data)
+            cat = Seller.objects.get(id = request.user.id).bs_category
 
-                Product_List(
-                    name = i[0],
-                    brand = i[1],
-                    base_price = i[2],
-                    stock = i[3],
-                    seller = request.user.id,
-                ).save()
+            if cat == "Electronics":
+                Product_List.objects.all().delete()
+                for i in data:
+                    Product_List(
+                        name = i["product"],
+                        brand = i["author"],
+                        base_price = i["price"],
+                        stock = i["stock"],
+                        description = i["description"] if "description" in i.keys() 
+                                                        else "No description provided by Seller",
+                        additional = json.dumps({"warranty": i["warranty"]}),
+                        seller = request.user.id,
+                    ).save()
+                    
+            elif cat == "Literature and Stationary":
+                Product_List.objects.all().delete()
+                for i in data:
+                    Product_List(
+                        name = i["title"],
+                        brand = i["publisher"],
+                        base_price = i["price"],
+                        stock = i["stock"],
+                        description = i["description"] if "description" in i.keys() 
+                                                        else "No description provided by Seller",
+                        additional = json.dumps({"author": i["author"], "pages": i["pages"], "language":i["language"], "publication date":i["publication date"]}),
+                        seller = request.user.id,
+                    ).save()
+
+            elif cat == "Groceries":
+                for i in data:
+                    try:
+                        Product_List.objects.get(name=i["product"], brand=i["brand"], seller=request.user.id).delete()
+                        print("Updating Entry")
+                    except Product_List.DoesNotExist:
+                        print("Adding New Entry")
+
+                    Product_List(
+                        name = i["product"],
+                        brand = i["brand"],
+                        base_price = i["price"],
+                        stock = i["stock"],
+                        description = i["description"] if "description" in i.keys() 
+                                                        else "No description provided by Seller",
+                        additional = json.dumps({"manufactured":i["date of manufacture"], "expiry": i["date of expiry"]}),
+                        seller = request.user.id,
+                    ).save()
+            else:
+                return JsonResponse({"error":"Bad Request"})
                 
-            return redirect('home')
+            return JsonResponse({"success":True})
     else:
         form = DocFileForm() # A empty, unbound form
     
     return render(request,'sheet_upload.html',{'form': form})
+
+def get_dt(request):
+    records = Product_List.objects.all()
+    record_list = serializers.serialize('json', records, fields=('name'))
+    data = json.loads(record_list)
+    tmp=[]
+    for d in data:
+        del d['model']
+        d['fields']['id'] = d['pk']
+        tmp.append(d['fields'])
+
+    cleaned_response = {'Data':tmp}
+    json_file=json.dumps(cleaned_response, indent=4, sort_keys=True)
+    return HttpResponse(json_file, content_type="text/plain")
+        
 # Create your views here.

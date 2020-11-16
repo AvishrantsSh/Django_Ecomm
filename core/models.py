@@ -10,6 +10,9 @@ def change_name(instance, filename):
 def sheet_path(instance, filename):
     return "Sheets/User_{0}/{1}".format(instance.id, filename)
 
+def img_path(instance, filename):
+    return "Images/User_{0}/{1}".format(instance.id, filename)
+
 def validate_file_extension(value):
     import os
     ext = os.path.splitext(value.name)[1]
@@ -18,36 +21,41 @@ def validate_file_extension(value):
         raise ValidationError(u'File not supported!')
 
 class Sub_Category(models.Model):
+    choice = (
+        ("Electronics","Electronics"),
+        ("Literature and Stationary","Literature and Stationary"),
+        ("Groceries","Groceries"),
+    )
     id = models.UUIDField(default=uuid4, primary_key=True)
-    main_cat = models.CharField(max_length=30, unique=False)
+    main_cat = models.CharField(max_length=30, unique=False, choices= choice)
     sub_cat = models.CharField(max_length=30, unique=False)
     # properties 
     def __str__(self):
         return self.main_cat + " - " + self.sub_cat
 
 class Product_List(models.Model):
+    
     id = models.UUIDField(default=uuid4, primary_key=True)
-    # img = models.ImageField()
+    img = models.ImageField(default="/product.svg", upload_to = img_path)
     name = models.CharField(max_length=100)
     brand = models.CharField(max_length=50)
     seller = models.UUIDField(unique=False)
-    # category = models.ForeignKey(Sub_Category, on_delete=models.CASCADE)
-    rating = models.PositiveIntegerField(default=0)
-    total_ratings = models.PositiveIntegerField(default=0)
+    category = models.CharField(max_length=30, unique=False, null=True)
+    # rating = models.PositiveIntegerField(default=0)
+    # total_ratings = models.PositiveIntegerField(default=0)
     stock = models.PositiveIntegerField(default=10)
     base_price = models.PositiveIntegerField(blank=False)
     discount = models.FloatField(default = 0)
     description = models.TextField(default="Some Product")
+    additional = jsonfield.JSONField()
     def __str__(self):
         return self.name
 
 class Seller(models.Model):
     choice = (
-        ("-","-"),
         ("Electronics","Electronics"),
-        ("Stationary","Stationary"),
-        ("Art and Craft","Art and Craft"),
-        ("Grocery","Grocery"),
+        ("Literature and Stationary","Literature and Stationary"),
+        ("Groceries","Groceries"),
     )
     status = (
         ("Active","Active"),
