@@ -1,3 +1,7 @@
+.main-box{
+    width: 100%;
+}
+
 .tab-super-container{
     min-height: 46vh;
 }
@@ -127,7 +131,9 @@ img{
 .flip-card-back {
     border-radius: 10px;
     padding: 2vh;
+    padding-left: 3vh;
     transform: rotateY(180deg);
+    text-align: left;
 }
 
 .flip-card-back-vertical{
@@ -137,4 +143,14 @@ img{
 .card-head{
     font-size: 3vh;
     font-weight: bold;
+}
+
+@media screen and (max-width: 768px) {
+    .working-list{
+        margin: 0vh;
+    }
+    
+    .flip-card{
+        padding-top: 2vh;
+    }
 }
