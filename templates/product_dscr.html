@@ -9,16 +9,26 @@
 
 {%endblock link%}
 {%block content%}
-    <div class = "main_box">
-		<img src="{{data.img.url}}">
-		{{data.name}}<br>
-		{{data.brand}}<br>
-		{{data.base_price}}<br>
-		{{data.stock}}<br>
-		{{data.description}}<br>
-		{%for key, value in additional.items%}
-			{{key}}->{{value}}<br>
-		{%endfor%}
-		<br>Seller Info Comming Soon<br>
+<div class = "main_box row">
+
+	<div class="card col-md-12">
+		<div class="card-inner row">
+			<img class="prod-image col-md-4" src="{{data.img.url}}">
+				<div class="product-details">
+					<div class="prod-head">{{data.name}}<br></div>
+					<div class="prod-brand">{{data.brand}}<br></div>
+					<div class="prod-price">Rs.{{data.base_price}}<br></div>
+					<div class="prod-stock">In Stock: {{data.stock}}<br></div>
+					<div class="prod-description">{{data.description}}<br></div>
+					{%for key, value in additional.items%}
+					<div class="prod-additional">
+						<span class="add-head">{{key}}</span>: <span class="add-dscr">{{value}}</span><br>
+					</div>
+					{%endfor%}
+					<br>Seller Info Coming Soon<br>
+			</div>
 	</div>
+	</div>
+
+</div>
 {%endblock content%}

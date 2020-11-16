@@ -1,0 +1,35 @@
+.main-box{
+    padding: 4vh;
+}
+
+.product-details{
+    margin-top: 4vh;
+    margin-bottom: 4vh;
+    padding: 4vh;
+    border-left: solid 1px lightgray;
+}
+
+.prod-head{
+    font-size: 6vh;
+}
+
+.prod-price{
+    font-size: 5vh;
+}
+
+.prod-brand{
+    font-size: 4vh;
+    font-weight: bold;
+}
+
+.prod-description{
+    padding: 2vh;
+    margin: 2vh;
+    margin-left: 0;
+    background-color: #eee;
+    border-radius: 5px;
+}
+
+.add-head{
+    font-weight: bold;
+}
