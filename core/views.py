@@ -170,6 +170,7 @@ def ItemList(request, cat, store, pk):
     
     try:
         object_list = list(Product_List.objects.filter(seller=pk).order_by('-rating'))
+        
     except:
         return render(request,
                   'seller_search.html',
@@ -183,20 +184,19 @@ def ItemList(request, cat, store, pk):
         products = paginator.page(1)
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
-
-    dic = json.loads(products.additional)
+            
     return render(request,
                   'search.html',
                   {'page': page,
                    'products': products,
-                   'additional': dic})   
+                 })   
 
 def Product_Dscr(request, pk):
     record = Product_List.objects.get(id=pk)
-    dic = json.loads(record.additional)
+    slr = Seller.objects.get(id = record.seller)
     return render(request, 
                 'product_dscr.html',
-                {'data':record, 'additional': dic},
+                {'data':record,'seller':slr}
                 )
 
 def Profile(request):

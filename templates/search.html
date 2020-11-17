@@ -1,6 +1,6 @@
 {%extends 'base.html'%}
 {%load static%}
-
+{%load customfilter%}
 {%block title%}
     Product Search        
 {%endblock title%}
@@ -9,20 +9,32 @@
 
 {%endblock link%}
 {%block content%}
-<div class="row search-container">
-    {%for i in products%}
-    <div class="card-container col-md-3">
-        <div class="card">
-            <img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:100%">
-            <div class="card-body">
-                <h4 class="card-title">{{i.name}}</h4>
-                <h6 class="card-title">{{i.brand}}</h6>
-                <p class="card-text">{{i.description}}</p>
-                <a href="{%url 'product' i.pk%}" class="btn btn-primary">See Profile</a>
+<div class="row">
+    <div class="col-md-2">
+
+    </div>
+    <div class="col-md-10">
+        <div class="row search-container">
+            {%for i in products%}
+            <div class="card-container col-lg-3 col-md-6">
+                <div class="card">
+                    <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
+                    <img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:100%">
+                    <div class="card-body">
+                        <h4 class="card-title">{{i.name|trim}}</h4>
+                        <h6 class="card-title">{{i.brand|trim}}</h6>
+                        <p class="card-text">{{i.description|dtrim}}</p>
+                        {{i.additional|author}}
+                        {{i.additional|pages}}
+                        {{i.additional|language}}
+                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                    </div>
+                    </a>
+                </div>
             </div>
+            {%endfor%}
         </div>
     </div>
-    {%endfor%}
 </div>
 
     {% if products.has_other_pages %}

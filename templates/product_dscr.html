@@ -1,6 +1,6 @@
 {%extends 'base.html'%}
 {%load static%}
-
+{%load customfilter%}
 {%block title%}
     Some description        
 {%endblock title%}
@@ -19,13 +19,17 @@
 					<div class="prod-brand">{{data.brand}}<br></div>
 					<div class="prod-price">Rs.{{data.base_price}}<br></div>
 					<div class="prod-stock">In Stock: {{data.stock}}<br></div>
+					{{data.rating}}
+					{{data.total_ratings}}
 					<div class="prod-description">{{data.description}}<br></div>
-					{%for key, value in additional.items%}
-					<div class="prod-additional">
-						<span class="add-head">{{key}}</span>: <span class="add-dscr">{{value}}</span><br>
-					</div>
-					{%endfor%}
+					{{data.additional|author}}
+					{{data.additional|date}}
+					{{data.additional|pages}}
+					{{data.additional|language}}
 					<br>Seller Info Coming Soon<br>
+					{{seller.bs_name}}<br>
+					{{seller.bs_category}}
+
 			</div>
 	</div>
 	</div>
