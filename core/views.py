@@ -244,6 +244,7 @@ def Products(request):
                     'search.html',
                     {'page': page,
                     'products': products,
+                    'search':product
                     })
 
     return redirect('404')
