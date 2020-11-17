@@ -2,6 +2,10 @@
     width: 100%;
 }
 
+.info-head{
+    padding-top: 2vh;
+}
+
 .tab-super-container{
     min-height: 46vh;
 }
