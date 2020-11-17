@@ -110,6 +110,8 @@ def Extract_dt(request):
                         name = i["title"],
                         brand = i["publisher"],
                         base_price = i["price"],
+                        rating = i["rating"],
+                        total_ratings= i ["total ratings"],
                         stock = i["stock"],
                         description = i["description"] if "description" in i.keys() 
                                                         else "No description provided by Seller",
@@ -167,7 +169,7 @@ def ItemList(request, cat, store, pk):
         return redirect('404')
     
     try:
-        object_list = list(Product_List.objects.filter(seller=pk).order_by('name'))
+        object_list = list(Product_List.objects.filter(seller=pk).order_by('-rating'))
     except:
         return render(request,
                   'seller_search.html',
@@ -182,10 +184,12 @@ def ItemList(request, cat, store, pk):
     except EmptyPage:
         products = paginator.page(paginator.num_pages)
 
+    dic = json.loads(products.additional)
     return render(request,
                   'search.html',
                   {'page': page,
-                   'products': products})   
+                   'products': products,
+                   'additional': dic})   
 
 def Product_Dscr(request, pk):
     record = Product_List.objects.get(id=pk)
