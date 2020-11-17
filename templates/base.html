@@ -59,8 +59,10 @@
             <div class="container-fluid">
                 <a class="navbar-brand cherry" href="{%url 'home'%}" id = "head_start">Hola</a>
                 <div style="display: flex;">
-                    <input type="text" style="border: none; outline: none; width: 50vw; justify-content: center;" name="search" placeholder="Search"> 
-                <button id="search-icon" class="nav-link" ><i class="fa fa-search"></i></button>
+                    <form action="{%url 'search'%}">
+                        <input type="text" style="border: none; outline: none; width: 50vw; justify-content: center;" name="product" placeholder="Search" id="search"> 
+                        <button id="search-icon" class="nav-link" type="submit"><i class="fa fa-search"></i></button>
+                    </form>
                 </div>
                 
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
@@ -143,6 +145,6 @@
             </div>
         </div>
         </footer>
-
+        
     </body>
 </html>

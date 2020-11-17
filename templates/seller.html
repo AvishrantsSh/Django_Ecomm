@@ -1,0 +1,12 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load customfilter%}
+{%block title%}
+    Add Products
+{%endblock title%}
+{%block link%}
+{%endblock link%}
+{%block content%}
+    Seller Page (as seen be customer)
+    <a href="{%url 'search'%}?id={{seller.id}}">View Products</a>
+{%endblock content%}

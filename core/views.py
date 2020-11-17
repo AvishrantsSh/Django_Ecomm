@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Product_List, Seller
 from django.http import JsonResponse, HttpResponse
 from django.core import serializers
+from django.db.models import Q
 from .forms import DocumentForm, DocFileForm
 from django.contrib.auth import get_user_model
 import json
@@ -160,7 +161,7 @@ def get_dt(request):
     json_file=json.dumps(cleaned_response, indent=4, sort_keys=True)
     return HttpResponse(json_file, content_type="text/plain")
 
-def ItemList(request, cat, store, pk):
+def Seller_Landing(request, cat, store, pk):
     try:
         obj = Seller.objects.get(id = pk)
         if obj.bs_name != store or obj.bs_category != cat:
@@ -168,28 +169,9 @@ def ItemList(request, cat, store, pk):
     except:
         return redirect('404')
     
-    try:
-        object_list = list(Product_List.objects.filter(seller=pk).order_by('-rating'))
-        
-    except:
-        return render(request,
-                  'seller_search.html',
-                  {'found':False})
-
-    paginator = Paginator(object_list, 20)
-    page = request.GET.get('page')
-    try:
-        products = paginator.page(page)
-    except PageNotAnInteger:
-        products = paginator.page(1)
-    except EmptyPage:
-        products = paginator.page(paginator.num_pages)
-            
     return render(request,
-                  'search.html',
-                  {'page': page,
-                   'products': products,
-                 })   
+                  'seller.html',
+                  {'seller': obj})   
 
 def Product_Dscr(request, pk):
     record = Product_List.objects.get(id=pk)
@@ -217,4 +199,53 @@ def Profile(request):
                             )
         except:
             return redirect('404')
+
+def Products(request):
+    if request.method == "GET":
+        try:
+            seller_pk = request.GET["id"]
+        except:
+            seller_pk = None
+        try:
+            sort = request.GET["sort"]
+        except:
+            sort = None
+        try:
+            product = request.GET["product"]
+        except:
+            product = None
+        # Ah Snap...Here we go again
+        try:
+            if seller_pk:
+                object_list = list(Product_List.objects.filter(
+                                                                Q(seller=seller_pk) &
+                                                                Q(name__icontains = product if product else "")
+                                                          
+                                                        ).order_by('-'+sort if sort else "rating"))
+            
+            else:
+                object_list = list(Product_List.objects.filter(Q(name__icontains = product if product else "")).order_by('-'+sort if sort else "rating"))
+            
+        except:
+            return render(request,
+                    'search.html',
+                    {'found':False})
+
+        paginator = Paginator(object_list, 20)
+        page = request.GET.get('page')
+        try:
+            products = paginator.page(page)
+        except PageNotAnInteger:
+            products = paginator.page(1)
+        except EmptyPage:
+            products = paginator.page(paginator.num_pages)
+                
+        return render(request,
+                    'search.html',
+                    {'page': page,
+                    'products': products,
+                    })
+
+    return redirect('404')
+
 # Create your views here.
