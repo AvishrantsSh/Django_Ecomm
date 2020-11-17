@@ -221,10 +221,10 @@ def Products(request):
                                                                 Q(seller=seller_pk) &
                                                                 Q(name__icontains = product if product else "")
                                                           
-                                                        ).order_by('-'+sort if sort else "rating"))
+                                                        ).order_by('-rating' if sort is None else "-"+sort))
             
             else:
-                object_list = list(Product_List.objects.filter(Q(name__icontains = product if product else "")).order_by('-'+sort if sort else "rating"))
+                object_list = list(Product_List.objects.filter(Q(name__icontains = product if product else "")).order_by('-rating' if sort is None else "-"+sort))
             
         except:
             return render(request,

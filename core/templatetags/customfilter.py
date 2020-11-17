@@ -39,3 +39,15 @@ def date(dic):
 def language(dic):
     return json.loads(dic)["language"]
        
+@register.filter
+def authtrim(value):
+    if ',' in value:
+        value = value.split(',')
+    
+    if '/' in value:
+        value = value.split('/')
+    
+    else:
+        value = [value]
+    x = "" if len(value) == 1 else " and more"
+    return value[0] + x

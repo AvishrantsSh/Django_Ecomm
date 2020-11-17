@@ -35,7 +35,7 @@
                         <h4 class="card-title">{{i.name|trim}}</h4>
                         <h6 class="card-title">{{i.brand|trim}}</h6>
                         <p class="card-text">{{i.description|dtrim}}</p>
-                        {{i.additional|author}}<br>
+                        Authors: {{i.additional|author|authtrim}}<br>
                         {{i.additional|pages}} Pages | 
                         {{i.additional|language}}<br>
                     </div>
