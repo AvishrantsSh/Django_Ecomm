@@ -5,7 +5,7 @@
     Some description        
 {%endblock title%}
 {%block link%}
-<link rel='stylesheet' href='{%static "stylesheet/product_dscr.css"%}?v=1.3'>
+<link rel='stylesheet' href='{%static "stylesheet/product_dscr.css"%}?v=1.4'>
 
 {%endblock link%}
 {%block content%}
@@ -21,31 +21,30 @@
 					<div class="prod-stock">In Stock: {{data.stock}}<br></div>
 					Rating: {{data.rating}} from {{data.total_ratings}} Total Ratings
 					<div class="prod-description">{{data.description}}<br></div>
-					Author: {{data.additional|author}}<br>
-					Date of Publication: {{data.additional|date}}<br>
-					Pages: {{data.additional|pages}}<br>
-					Language: {{data.additional|language}}
-					
+					<span class="add-head">Author: </span>{{data.additional|author}}<br>
+					<span class="add-head">Date of Publication: </span>{{data.additional|date}}<br>
+					<span class="add-head">Pages: </span>{{data.additional|pages}}<br>
+					<span class="add-head">Language: </span>{{data.additional|language}}<br>
 			</div>
 			</div>
 	</div>
 
 	<div class="col-md-3">
 		<div class="seller-details">
-			<div class="seller-head"><br> Provided By<br></div>
+			<div class="seller-head">Provided By<br></div>
 			<div class="seller-brand">{{seller.bs_name}}<br></div>	
 			{{seller.bs_category}}
 		</div>
 
 		<div class="cart-container">
 			<div class="cart-order">
-				<img src="#" alt="Cart Icon">
-					<a href="#" class="cart-btn">
-						<div id="cart-btn">Add to Cart</div>
-					</a>
-					<a href="#" class="cart-btn">
-						<div id="cart-btn">Buy Now</div>
-					</a>
+				<img src="#" alt="Cart Icon" id="cart-icon">
+				<a href="#" class="cart-btn">
+					<div id="cart-btn">Add to Cart</div>
+				</a>
+				<a href="#" class="cart-btn">
+					<div id="cart-btn">Buy Now</div>
+				</a>
 			</div>
 		</div>
 	</div>
