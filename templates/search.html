@@ -5,13 +5,24 @@
     Product Search        
 {%endblock title%}
 {%block link%}
-	<link rel='stylesheet' href='{%static "stylesheet/search.css"%}?v=1.1'>
+	<link rel='stylesheet' href='{%static "stylesheet/search.css"%}?v=1.2'>
 
 {%endblock link%}
 {%block content%}
 <div class="row">
-    <div class="col-md-2">
-
+    <div class="col-md-2 filter-pane">
+        <h4>The filter-pane</h4>
+        <div class="filter-section-container">
+            <div class="filter-section">
+                This is a filter section
+            </div>
+            <div class="filter-section">
+                This is a filter section
+            </div>
+            <div class="filter-section">
+                This is a filter section
+            </div>
+        </div>
     </div>
     <div class="col-md-10">
         <div class="row search-container">
@@ -24,10 +35,12 @@
                         <h4 class="card-title">{{i.name|trim}}</h4>
                         <h6 class="card-title">{{i.brand|trim}}</h6>
                         <p class="card-text">{{i.description|dtrim}}</p>
-                        {{i.additional|author}}
-                        {{i.additional|pages}}
-                        {{i.additional|language}}
-                        <a href="#" class="btn btn-primary">Add to Cart</a>
+                        {{i.additional|author}}<br>
+                        {{i.additional|pages}} Pages | 
+                        {{i.additional|language}}<br>
+                    </div>
+                    <div class="cart-btn">
+                        <a href="#" id="cart-btn">Add to Cart</a>
                     </div>
                     </a>
                 </div>
@@ -41,10 +54,10 @@
     <nav aria-label="Page navigation conatiner"></nav>
     <ul class="pagination justify-content-center">
         {% if products.has_previous %}
-        <li><a href="?page={{ products.previous_page_number }}" class="page-link">&laquo; PREV </a></li>
+        <li><a href="?page={{ products.previous_page_number }}" class="page-link">&laquo; Previous </a></li>
         {% endif %}
         {% if products.has_next %}
-        <li><a href="?page={{ products.next_page_number }}" class="page-link"> NEXT &raquo;</a></li>
+        <li><a href="?page={{ products.next_page_number }}" class="page-link"> Next &raquo;</a></li>
     {% endif %}
     </ul>
     </nav>

@@ -1,10 +1,15 @@
 .card-container{
+    padding: 1vh;
     margin-top: 2vh;
     margin-bottom: 2vh;
 }
 
+.card{
+    padding: 1vh;
+}
+
 .card:hover{
-    background-color: #fff2f5;
+    background-color: #fff6f8;
     transition-duration: 0.4s;
 }
 
@@ -12,3 +17,72 @@
     text-align: center;
 }
 
+.card-img-top {
+    padding: 5vh;
+}
+
+.page-link{
+    color: rgba(200, 13, 56, 1);
+}
+
+.filter-pane{
+    margin-top: 3vh;
+    background-color: #eee;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-top: 2vh;
+    color: rgba(200, 13, 56, 1);
+}
+
+.filter-section{
+    color: black;
+}
+
+#cart-btn{
+    background-color:rgba(200, 13, 56, 0.9);
+    text-decoration: none;
+    padding: 10px;
+    color: whitesmoke;
+    border-radius: 15px;
+}
+
+#cart-btn:hover{
+    background-color: rgba(236, 20, 56, 0.95);
+    transition-duration: 0.3s;
+}
+
+.cart-btn{
+    padding-bottom: 2vh;
+}
+
+@media screen and (max-width: 768px) {
+    .card-container{
+        margin-left: 2vh;
+        margin-right: 2vh
+    }
+
+    .card-img-top {
+        padding: 50px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+
+    #cart-btn{
+        width: 250px;
+    }
+
+    .cart-btn{
+        margin-bottom: 2vh;
+    }
+
+    .filter-pane{
+        margin-top: 2vh;
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        padding-bottom: 2vh;
+    }
+
+    .filter-section-container{
+        display: flex;
+    }
+}
