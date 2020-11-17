@@ -6,6 +6,7 @@
 
 .card{
     padding: 1vh;
+    min-height: 75vh;
 }
 
 .card:hover{
@@ -55,10 +56,20 @@
     padding-bottom: 2vh;
 }
 
+.card-details{
+    padding: 1vh !important;
+    margin-bottom: 1vh;
+}
+
 @media screen and (max-width: 768px) {
     .card-container{
         margin-left: 2vh;
         margin-right: 2vh
+    }
+
+    .card{
+        padding: 1vh;
+        min-height: none;
     }
 
     .card-img-top {
