@@ -5,7 +5,7 @@
     Some description        
 {%endblock title%}
 {%block link%}
-<link rel='stylesheet' href='{%static "stylesheet/product_dscr.css"%}?v=1.4'>
+<link rel='stylesheet' href='{%static "stylesheet/product_dscr.css"%}?v=1.5'>
 
 {%endblock link%}
 {%block content%}
@@ -38,7 +38,9 @@
 
 		<div class="cart-container">
 			<div class="cart-order">
-				<img src="#" alt="Cart Icon" id="cart-icon">
+				<div class="icon-container">
+					<img src="../media/cart.svg" alt="Cart Icon" id="cart-icon">
+				</div>
 				<a href="#" class="cart-btn">
 					<div id="cart-btn">Add to Cart</div>
 				</a>

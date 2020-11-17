@@ -69,6 +69,15 @@
     padding: 2vh;
 }
 
+.icon-container{
+    width: 100%;
+}
+
+#cart-icon{
+    width: 50%;
+    padding-right: 3vh;
+}
+
 .cart-container{
     margin-top: 5vh;
     background-color: #eee;
