@@ -262,7 +262,8 @@ def Products(request):
         
         return render(request,
                     'search.html',
-                    {'page': page,
+                    {'found':True,
+                    'page': page,
                     'products': products,
                     'search':product,
                     'total': len(object_list),

@@ -1,6 +1,4 @@
 import pandas as pd
-data=pd.read_csv("/home/avishrant/Desktop/Search/Books.csv",encoding = "Latin-1", usecols=[0,1])
-
 from whoosh.index import create_in
 from whoosh.fields import *
 from whoosh.analysis import StandardAnalyzer
