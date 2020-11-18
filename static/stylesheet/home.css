@@ -3,7 +3,7 @@ body{
 }
 
 .main-box{
-    min-height: 52vh;
+    padding: 0;
 }
 
 .slide-head{
@@ -11,26 +11,36 @@ body{
 }
 
 #slide-image{
-    height: 50vh;
-    padding-left: 3vh;
+    height: 40vh;
+    padding-left: 10vh;
 }
 
 .image-box{
     width: 100%;
     height: 100%;
+    padding: 5vh;
 }
 
 .item-box{
     padding: 3vh;
 }
 
+.custom-indicator{
+    text-align: center;
+}
+
 .indicator{
-    color: rgba(0, 0, 0, 0.2);
+    border-radius: 5px;
+    background-color: rgba(200, 13, 56, 0.7)!important;
 }
 
 .carousel-container{
-    background-color: rgba(0, 0, 0, 0.1);
-    height: 50vh;
+    margin-top: 2vh;
+    margin-bottom: 2vh;
+    /*background-color: rgba(0, 0, 0, 0.1);*/
+    min-height: 50vh;
+    border-top: solid 2px rgba(200, 13, 56, 0.9);
+    border-bottom: solid 2px rgba(200, 13, 56, 0.9);
 }
 
 .carousel-text{
@@ -59,4 +69,24 @@ body{
 .banner-btn, .banner-btn:hover{
     text-align: center;
     text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+
+    .carousel-container{
+        min-height: 50vh;
+    }
+
+    .carousel-text{
+        padding: 2vh;
+        padding-left: 3vh;
+    }
+
+    .carousel-item{
+        min-height: 50vh;
+    }
+
+    .image-box{
+        display: none;
+    }
 }
