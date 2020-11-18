@@ -5,49 +5,66 @@
     Home Page
 {%endblock title%}
 {%block link%}
-    <link rel='stylesheet' href='{%static "stylesheet/home.css"%}?v=1.2'>
+    <link rel='stylesheet' href='{%static "stylesheet/home.css"%}?v=1.5'>
 
 {%endblock link%}
 {%block content%}
-	<div class ="main_box">
-		
-	<!-- Navigation -->
-
-
-	<!--- Image Slider -->
+<div class ="main_box">
+	<div class=" d-flex justify-content-center custom-indicators">
+		<a class="indicator" data-target="#slides" data-slide-to="0" class="active">1</a>
+		<a class="indicator" data-target="#slides" data-slide-to="1">2</a>
+		<a class="indicator" data-target="#slides" data-slide-to="2">3</a>
+	</div>
+	<div class="carousel-container">
 		<div id="slides" class="carousel slide" data-ride="carousel">
-			<ul class="carousel-indicators">
-				<li data-target="#slides" data-slide-to="0" class="active"></li>
-				<li data-target="#slides" data-slide-to="1"></li>
-				<li data-target="#slides" data-slide-to="2"></li>
-			</ul>
 
 			<div class="carousel-inner">
 				<div class="carousel-item active">
-					<img src="{%static 'assets/images/img_avatar6.png'%}" alt="img-1">
-					<div class="carousel-caption">
-						<h1 class="display-2">Caption 1</h1> 
+					<div class="row">
+						<div class="image-box col-md-4">
+							<img id="slide-image" src="{%static 'assets/images/img_avatar6.png'%}" alt="img-1">
+						</div>
+						<div class="carousel-text col-md-8">
+							<h1 class="slide-head">Introduction</h1> 
+							Some Text
+						</div>
 					</div>
 				</div>
 
 				<div class="carousel-item"> 
-					<img src="{%static 'assets/images/img_avatar6.png'%}" alt="img-2">
-					<div class="carousel-caption">
-						<h1 class="display-2">Caption 2</h1> 
+					<div class="row">
+						<div class="image-box col-md-4">
+							<img id="slide-image" src="{%static 'assets/images/img_avatar6.png'%}" alt="img-1">
+						</div>
+						<div class="carousel-text col-md-8">
+							<div class="slide-head-2">Featured Seller</div>
+							<h2 class="slide-head">Maple</h2>
+								Literature and Stationery 
+							<a href="#" class="banner-btn">
+								<div id="banner-btn">Visit</div>
+							</a>
+						</div>
 					</div>
 				</div>
 
 				<div class="carousel-item"> 
-					<img src="{%static 'assets/images/img_avatar6.png'%}" alt="img-3">
-					<div class="carousel-caption">
-						<h1 class="display-2">Caption 3 </h1> 
+					<div class="row">
+						<div class="image-box col-md-4">
+							<img id="slide-image" src="{%static 'assets/images/img_avatar6.png'%}" alt="img-1">
+						</div>
+						<div class="carousel-text col-md-8">
+							<h1 class="slide-head">Caption 3</h1> 
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
 
-	<!--- Footer -->
+
+	<div class="row">
 
 	</div>
+</div>
 
 {%endblock content%}
