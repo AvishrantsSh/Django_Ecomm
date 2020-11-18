@@ -266,6 +266,7 @@ def Products(request):
                     'page': page,
                     'products': products,
                     'search':product,
+                    'sid':seller_pk,
                     'total': len(object_list),
                     })
 

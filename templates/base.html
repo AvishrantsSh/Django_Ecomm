@@ -62,6 +62,7 @@
                     <form action="{%url 'search'%}" style="display: flex;">
                         <input type="text" style="border: none; outline: none; width: 50vw; justify-content: center; border-top-left-radius: 5px; border-bottom-left-radius: 5px; padding-left: 2vh;" name="product" placeholder="Search" id="search" value="{%block val%}{%endblock val%}"> 
                         <button id="search-icon" class="nav-link" type="submit"><i class="fa fa-search"></i></button>
+                        <input type="hidden" name="id" value="{%block sid%}{%endblock sid%}"/>
                     </form>
                 </div>
                 

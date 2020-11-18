@@ -14,6 +14,7 @@
 {%else%}
 {%endif%}
 {%endblock val%}
+{%block sid%}{{sid}}{%endblock sid%}
 {%block content%}
 {%if found%}
 <div class="result-head row">
@@ -67,12 +68,16 @@
 {% if products.has_other_pages %}
 <nav aria-label="Page navigation conatiner">
     <ul class="pagination justify-content-center">
-        {% if products.has_previous %}
-            <li><a href="?page={{ products.previous_page_number }}" class="page-link">&laquo; Previous </a></li>
-        {% endif %}
-        {% if products.has_next %}
-            <li><a href="?page={{ products.next_page_number }}" class="page-link"> Next &raquo;</a></li>
-        {% endif %}
+        <form>
+            <input type="hidden" name="id" value="{{sid}}"/>
+            <input type="hidden" name="product" value="{{search}}"/>
+            {% if products.has_previous %}
+                <button type="submit" name="page" value="{{ products.previous_page_number }}" class="page-link">&laquo; Previous </button>
+            {% endif %}
+            {% if products.has_next %}
+            <button type="submit" name="page" value="{{ products.next_page_number }}" class="page-link"> Next &raquo;</button>
+            {% endif %}
+        </form>
     </ul>
 </nav>
 {% endif %}
