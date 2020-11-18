@@ -228,22 +228,25 @@ def Products(request):
         except:
             product = None
         # Ah Snap...Here we go again
-        try:
-            if seller_pk:
-                object_list = list(Product_List.objects.filter(
-                                                                Q(seller=seller_pk) &
-                                                                Q(name__icontains = product if product else "")
-                                                            
-                                                        ).order_by('-rating' if sort is None else "-"+sort))
-            
+        if seller_pk:
+            # object_list = list(Product_List.objects.filter(
+            #                                                 Q(seller=seller_pk) &
+            #                                                 Q(name__icontains = product if product else "")
+                                                        
+            #                                         ).order_by('-rating' if sort is None else "-"+sort))
+            if product:
+                ret_list = search.index_search(product)
+                object_list = Product_List.objects.filter(id__in = ret_list, seller = seller_pk).order_by('-rating' if sort is None else "-"+sort)
             else:
-                # populate()
-                if product:
-                    ret_list = search.index_search(product)
-                    object_list = Product_List.objects.filter(id__in = ret_list).order_by('-rating' if sort is None else "-"+sort)
-                else:
-                    object_list = Product_List.objects.all().order_by('-rating' if sort is None else "-"+sort)
-        except:
+                object_list = Product_List.objects.filter(seller = seller_pk).order_by('-rating' if sort is None else "-"+sort)
+        else:
+            # populate()
+            if product:
+                ret_list = search.index_search(product)
+                object_list = Product_List.objects.filter(id__in = ret_list).order_by('-rating' if sort is None else "-"+sort)
+            else:
+                object_list = Product_List.objects.all().order_by('-rating' if sort is None else "-"+sort)
+        if not object_list:
             return render(request,
                     'search.html',
                     {'found':False})

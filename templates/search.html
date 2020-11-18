@@ -15,6 +15,7 @@
 {%endif%}
 {%endblock val%}
 {%block content%}
+{%if found%}
 <div class="result-head row">
     <div class="col-md-2"></div>
     {%if search != "None" and search%}
@@ -75,4 +76,5 @@
     </ul>
 </nav>
 {% endif %}
+{%else%}Oh Snap. No Product Found{%endif%}
 {%endblock content%}
