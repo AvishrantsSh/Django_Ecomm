@@ -38,7 +38,11 @@ def date(dic):
 @register.filter
 def language(dic):
     return json.loads(dic)["language"]
-       
+
+@register.filter
+def safe(dic):
+    return dic["Address1"]+", "+dic["Address2"]+", "+dic["District"]+", "+dic["State"]+", "+dic["Country"]+", "+dic["Pincode"]
+
 @register.filter
 def authtrim(value):
     if ',' in value:
