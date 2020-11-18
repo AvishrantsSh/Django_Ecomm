@@ -157,4 +157,8 @@ img{
     .flip-card{
         padding-top: 2vh;
     }
+
+    .flip-card-vertical{
+        height: 50vh;
+    }
 }
