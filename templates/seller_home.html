@@ -13,6 +13,8 @@
     {{seller.bs_name}}<br>
     {{seller.bs_category}}<br>
     {{seller.address|safe}}<br>
+    {{user.email}}<br>
+    {{user.phone}}<br>
     <label for="myInput">Your Personnel Link: </label>
     <input type="text" value="{{base}}{%url 'seller_shop' seller.bs_category seller.bs_name seller.id%}" id="myInput" class="w-50" readonly>
     <button onclick="myFunction()"><i class="fa fa-copy" aria-hidden="true"></i></button>
