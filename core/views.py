@@ -10,7 +10,19 @@ from pyexcel_xls import get_data as xls_get
 from pyexcel_xlsx import get_data as xlsx_get
 from django.core.paginator import Paginator, PageNotAnInteger, EmptyPage
 
+# Search wala scene
+from search.main import Indexer
+search = Indexer()
+# End of Search wala scene
+
 User = get_user_model()
+def populate():
+    lst = list(Product_List.objects.all())
+    lst2 = [['id','name']]
+    for i in lst:
+        tmp = str(i.id)
+        lst2.append([tmp, i.name])
+    search.populate_index("index", lst2)
 
 def to_dict(lst):
     key = lst[0]
@@ -40,6 +52,7 @@ def Seller_reg(request):
                 "Country":request.POST["country"],
                 "Pincode":request.POST["pincode"]
             }
+            address = json.dumps(address)
             newdoc = Seller(
                             id = request.user.id,
                             bs_name = request.POST['bs_name'],
@@ -47,7 +60,7 @@ def Seller_reg(request):
                             bank_ac = request.POST['bank_ac'],
                             gst_no = request.POST['gst_no'],
                             pan_no = request.POST['pan_no'],
-                            address = json.dumps(address),
+                            address = address,
                             pan_card = request.FILES['pan_card'],
                             )
             newdoc.save()
@@ -183,11 +196,11 @@ def Product_Dscr(request, pk):
 
 def Profile(request):
     try:
-        slr = Seller.objects.get(id = request.user.id)
+        seller = Seller.objects.get(id = request.user.id)
         return render(
                         request,
                         'seller_home.html',
-                        {'details': slr, 'base': "{0}://{1}".format(request.scheme, request.get_host())}
+                        {'seller': seller, 'base': "{0}://{1}".format(request.scheme, request.get_host())}
                         )
     except Seller.DoesNotExist:
         try:
@@ -215,18 +228,25 @@ def Products(request):
         except:
             product = None
         # Ah Snap...Here we go again
-        try:
-            if seller_pk:
-                object_list = list(Product_List.objects.filter(
-                                                                Q(seller=seller_pk) &
-                                                                Q(name__icontains = product if product else "")
-                                                          
-                                                        ).order_by('-rating' if sort is None else "-"+sort))
-            
+        if seller_pk:
+            # object_list = list(Product_List.objects.filter(
+            #                                                 Q(seller=seller_pk) &
+            #                                                 Q(name__icontains = product if product else "")
+                                                        
+            #                                         ).order_by('-rating' if sort is None else "-"+sort))
+            if product:
+                ret_list = search.index_search(product)
+                object_list = Product_List.objects.filter(id__in = ret_list, seller = seller_pk).order_by('-rating' if sort is None else "-"+sort)
             else:
-                object_list = list(Product_List.objects.filter(Q(name__icontains = product if product else "")).order_by('-rating' if sort is None else "-"+sort))
-            
-        except:
+                object_list = Product_List.objects.filter(seller = seller_pk).order_by('-rating' if sort is None else "-"+sort)
+        else:
+            # populate()
+            if product:
+                ret_list = search.index_search(product)
+                object_list = Product_List.objects.filter(id__in = ret_list).order_by('-rating' if sort is None else "-"+sort)
+            else:
+                object_list = Product_List.objects.all().order_by('-rating' if sort is None else "-"+sort)
+        if not object_list:
             return render(request,
                     'search.html',
                     {'found':False})
@@ -239,12 +259,13 @@ def Products(request):
             products = paginator.page(1)
         except EmptyPage:
             products = paginator.page(paginator.num_pages)
-                
+        
         return render(request,
                     'search.html',
                     {'page': page,
                     'products': products,
-                    'search':product
+                    'search':product,
+                    'total': len(object_list),
                     })
 
     return redirect('404')

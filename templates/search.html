@@ -9,12 +9,19 @@
 
 {%endblock link%}
 {%block val%}
+{%if search != "None" and search%}
 {{search}}
+{%else%}
+{%endif%}
 {%endblock val%}
 {%block content%}
+{%if found%}
 <div class="result-head row">
     <div class="col-md-2"></div>
+    {%if search != "None" and search%}
     <div class="col-md-10">Search results for: {{search}}</div>
+    {%endif%}
+    <div>{{total}} results found.</div>
 </div>
 <div class="row">
     <div class="col-md-2 filter-pane">
@@ -57,17 +64,17 @@
     </div>
 </div>
 
-    {% if products.has_other_pages %}
-    <nav aria-label="Page navigation conatiner"></nav>
+{% if products.has_other_pages %}
+<nav aria-label="Page navigation conatiner">
     <ul class="pagination justify-content-center">
         {% if products.has_previous %}
-        <li><a href="?page={{ products.previous_page_number }}" class="page-link">&laquo; Previous </a></li>
+            <li><a href="?page={{ products.previous_page_number }}" class="page-link">&laquo; Previous </a></li>
         {% endif %}
         {% if products.has_next %}
-        <li><a href="?page={{ products.next_page_number }}" class="page-link"> Next &raquo;</a></li>
-    {% endif %}
+            <li><a href="?page={{ products.next_page_number }}" class="page-link"> Next &raquo;</a></li>
+        {% endif %}
     </ul>
-    </nav>
-    </div>
-    {% endif %}
+</nav>
+{% endif %}
+{%else%}Oh Snap. No Product Found{%endif%}
 {%endblock content%}
