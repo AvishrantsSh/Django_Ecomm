@@ -5,22 +5,21 @@
     Product Search        
 {%endblock title%}
 {%block link%}
-	<link rel='stylesheet' href='{%static "stylesheet/search.css"%}?v=1.3'>
-
+    <link rel='stylesheet' href='{%static "stylesheet/search.css"%}?v=1.3'>
+    <link rel='stylesheet' href='{%static "stylesheet/snackbar.css"%}?v=1.4'>
 {%endblock link%}
-{%block val%}
-{%if search != "None" and search%}
-{{search}}
-{%else%}
-{%endif%}
-{%endblock val%}
-{%block sid%}{{sid}}{%endblock sid%}
+{%block val%}{%if search%}{{search}}{%endif%}{%endblock val%}
+{%if sid%}{%block sid%}<input type="hidden" name="id" value="{{sid}}"/>{%endblock sid%}{%endif%}
 {%block content%}
 {%if found%}
 <div class="result-head row">
     <div class="col-md-2"></div>
-    {%if search != "None" and search%}
-    <div class="col-md-10">Search results for: {{search}}</div>
+    {%if search%}<div class="col-md-10">Search results for: {{search}}</div>{%endif%}
+    {%if sid%}
+    <form>
+        {%if search%}<input type="hidden" name="product" value="{{search}}"/>{%endif%}
+        <button type="submit">Search Globally Instead</button>
+    </form>
     {%endif%}
     <div>{{total}} results found.</div>
 </div>
@@ -45,19 +44,20 @@
             <div class="card-container col-lg-3 col-md-6">
                 <div class="card">
                     <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
-                    <img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:100%">
-                    <div class="card-details">
-                        <h4 class="card-title">{{i.name|trim}}</h4>
-                        <h6 class="card-title">{{i.brand|trim}}</h6>
-                        <p class="card-text">{{i.description|dtrim}}</p>
-                        Authors: {{i.additional|author|authtrim}}<br>
-                        {{i.additional|pages}} Pages | 
-                        {{i.additional|language}}<br>
-                    </div>
-                    <div class="cart-btn">
-                        <a href="#" id="cart-btn">Add to Cart</a>
-                    </div>
+                        <img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:100%">
+                        <div class="card-details">
+                            <h4 class="card-title">{{i.name|trim}}</h4>
+                            <h6 class="card-title">{{i.brand|trim}}</h6>
+                            <p class="card-text">{{i.description|dtrim}}</p>
+                            Authors: {{i.additional|author|authtrim}}<br>
+                            {{i.additional|pages}} Pages | 
+                            {{i.additional|language}}<br>
+                        </div>
                     </a>
+                    <div class="cart-btn">
+                        <button onclick="snack()" id="cart-btn">Add to Cart</a>
+                        <!-- <a href="#" id="cart-btn">Add to Cart</a> -->
+                    </div>
                 </div>
             </div>
             {%endfor%}
@@ -69,8 +69,8 @@
 <nav aria-label="Page navigation conatiner">
     <ul class="pagination justify-content-center">
         <form>
-            <input type="hidden" name="id" value="{{sid}}"/>
-            <input type="hidden" name="product" value="{{search}}"/>
+            {%if sid%}<input type="hidden" name="id" value="{{sid}}"/>{%endif%}
+            {%if search%}<input type="hidden" name="product" value="{{search}}"/>{%endif%}
             {% if products.has_previous %}
                 <button type="submit" name="page" value="{{ products.previous_page_number }}" class="page-link">&laquo; Previous </button>
             {% endif %}
@@ -80,6 +80,14 @@
         </form>
     </ul>
 </nav>
+<div id="snackbar">Added to Cart</div>
+<script>
+    function snack() {
+      var x = document.getElementById("snackbar");
+      x.className = "show";
+      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+    }
+</script>
 {% endif %}
 {%else%}Oh Snap. No Product Found{%endif%}
 {%endblock content%}

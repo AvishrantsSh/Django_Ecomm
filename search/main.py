@@ -35,6 +35,8 @@ class Indexer(object):
             
     #creating index searcher
     def index_search(self, search_query):
+        if '/' in search_query:
+            return []
         search_query = [token.text for token in my_analyzer(search_query)]
         search_query = '~ '.join(search_query)
         search_query += '~'

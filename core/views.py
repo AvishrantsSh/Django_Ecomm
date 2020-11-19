@@ -216,7 +216,7 @@ def Profile(request):
 def Products(request):
     if request.method == "GET":
         try:
-            seller_pk = request.GET["id"]
+            seller_pk = request.GET["id"] if request.GET["id"] != "None" else None
         except:
             seller_pk = None
         try:

@@ -6,7 +6,7 @@
 {%endblock title%}
 {%block link%}
 	<link rel='stylesheet' href='{%static "stylesheet/product_list.css"%}?v=1.4'>
-    
+  <link rel='stylesheet' href='{%static "stylesheet/snackbar.css"%}?v=1.4'>
 {%endblock link%}
 {%block content%}
     {{user.username}}<br>
@@ -19,7 +19,7 @@
     <input type="text" value="{{base}}{%url 'seller_shop' seller.bs_category seller.bs_name seller.id%}" id="myInput" class="w-50" readonly>
     <button onclick="myFunction()"><i class="fa fa-copy" aria-hidden="true"></i></button>
     <a href="{%url 'sheet'%}">Add Products</a>
-    
+    <div id="snackbar">Link Copied</div>
        
     <script>
     function myFunction() {
@@ -27,7 +27,12 @@
       copyText.select();
       copyText.setSelectionRange(0, 99999)
       document.execCommand("copy");
-      alert("Copied");
+      snack();
+    }
+    function snack() {
+      var x = document.getElementById("snackbar");
+      x.className = "show";
+      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
     }
     </script>
 {%endblock content%}
