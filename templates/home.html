@@ -9,121 +9,117 @@
 
 {%endblock link%}
 {%block content%}
-<div class ="main_box">
-	<div class="carousel-container">
-		<div id="slides" class="carousel slide" data-ride="carousel">
-			<ul class="carousel-indicators">
-				<li class="indicator active" data-target="#slides" data-slide-to="0" class="active"></li>
-				<li class="indicator" data-target="#slides" data-slide-to="1"></li>
-				<li class="indicator" data-target="#slides" data-slide-to="2"></li>
-			</ul>
+<div class="carousel-container">
+	<div id="slides" class="carousel slide" data-ride="carousel">
+		<ul class="carousel-indicators">
+			<li class="indicator active" data-target="#slides" data-slide-to="0" class="active"></li>
+			<li class="indicator" data-target="#slides" data-slide-to="1"></li>
+			<li class="indicator" data-target="#slides" data-slide-to="2"></li>
+		</ul>
 
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					<div class="row">
-						<div class="image-box col-md-4">
-							<img id="slide-image" class="svg-container" src="../../static/assets/icons/idea-bulb.svg">
-						</div>
-						<div class="carousel-text col-md-8">
-							<h1 class="slide-head">Introduction</h1> 
-							Some Text
-						</div>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<div class="row">
+					<div class="image-box col-md-4">
+						<img id="slide-image" class="svg-container" src="../../static/assets/icons/idea-bulb.svg">
 					</div>
-				</div>
-
-				<div class="carousel-item"> 
-					<div class="row">
-						<div class="image-box col-md-4">
-							<img id="slide-image" class="svg-container" src="../../static/assets/icons/people.svg">
-						</div>
-						<div class="carousel-text col-md-8">
-							<div class="slide-head-2">Featured Seller</div>
-							<h2 class="slide-head">Maple</h2>
-								Literature and Stationery 
-							<a href="../shop/Literature%20and%20Stationary/Maple/997f8fbd-d073-4611-ac81-16ddf2f69f1f/" class="banner-btn">
-								<div id="banner-btn">Visit</div>
-							</a>
-						</div>
-					</div>
-				</div>
-
-				<div class="carousel-item"> 
-					<div class="row">
-						<div class="image-box col-md-4">
-							<img id="slide-image" class="svg-container" src="../../static/assets/icons/finance-analysis.svg">
-						</div>
-						<div class="carousel-text col-md-8">
-							<h1 class="slide-head">Caption 3</h1> 
-						</div>
+					<div class="carousel-text col-md-8">
+						<h1 class="slide-head">Introduction</h1> 
+						Some Text
 					</div>
 				</div>
 			</div>
-		</div>
-	</div>
 
+			<div class="carousel-item"> 
+				<div class="row">
+					<div class="image-box col-md-4">
+						<img id="slide-image" class="svg-container" src="../../static/assets/icons/people.svg">
+					</div>
+					<div class="carousel-text col-md-8">
+						<div class="slide-head-2">Featured Seller</div>
+						<h2 class="slide-head">Maple</h2>
+							Literature and Stationery 
+						<a href="../shop/Literature%20and%20Stationary/Maple/997f8fbd-d073-4611-ac81-16ddf2f69f1f/" class="banner-btn">
+							<div id="banner-btn">Visit</div>
+						</a>
+					</div>
+				</div>
+			</div>
 
-	<div class="row">
-		<h2>Best Sellers</h2><br>
-		<div class="row">
-			{%for i in best%}
-			<div class="card-container col-lg-3 col-md-6">
-				<div class="card">
-					<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
-						<img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:100%">
-						<div class="card-details">
-							<h4 class="card-title">{{i.name|trim}}</h4>
-							<h6 class="card-title">{{i.brand|trim}}</h6>
-							<p class="card-text">{{i.description|dtrim}}</p>
-							Authors: {{i.additional|author|authtrim}}<br>
-							{{i.additional|pages}} Pages | 
-							{{i.additional|language}}<br>
-						</div>
-					</a>
+			<div class="carousel-item"> 
+				<div class="row">
+					<div class="image-box col-md-4">
+						<img id="slide-image" class="svg-container" src="../../static/assets/icons/finance-analysis.svg">
+					</div>
+					<div class="carousel-text col-md-8">
+						<h1 class="slide-head">Caption 3</h1> 
+					</div>
 				</div>
 			</div>
-			{%endfor%}
-		</div>
-		<h2>Trending</h2><br>
-		<div class="row">
-			{%for i in trending%}
-			<div class="card-container col-lg-3 col-md-6">
-				<div class="card">
-					<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
-						<img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:100%">
-						<div class="card-details">
-							<h4 class="card-title">{{i.name|trim}}</h4>
-							<h6 class="card-title">{{i.brand|trim}}</h6>
-							<p class="card-text">{{i.description|dtrim}}</p>
-							Authors: {{i.additional|author|authtrim}}<br>
-							{{i.additional|pages}} Pages | 
-							{{i.additional|language}}<br>
-						</div>
-					</a>
-				</div>
-			</div>
-			{%endfor%}
-		</div>
-		<h2>Fresh Arrivals</h2><br>
-		<div class="row">
-			{%for i in latest%}
-			<div class="card-container col-lg-3 col-md-6">
-				<div class="card">
-					<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
-						<img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:100%">
-						<div class="card-details">
-							<h4 class="card-title">{{i.name|trim}}</h4>
-							<h6 class="card-title">{{i.brand|trim}}</h6>
-							<p class="card-text">{{i.description|dtrim}}</p>
-							Authors: {{i.additional|author|authtrim}}<br>
-							{{i.additional|pages}} Pages | 
-							{{i.additional|language}}<br>
-						</div>
-					</a>
-				</div>
-			</div>
-			{%endfor%}
 		</div>
 	</div>
 </div>
 
+<div class="row">
+	<h2>Best Sellers</h2><br>
+	<div class="row">
+		{%for i in best%}
+		<div class="card-container col-lg-3 col-md-6">
+			<div class="card">
+				<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
+					<img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:100%">
+					<div class="card-details">
+						<h4 class="card-title">{{i.name|trim}}</h4>
+						<h6 class="card-title">{{i.brand|trim}}</h6>
+						<p class="card-text">{{i.description|dtrim}}</p>
+						Authors: {{i.additional|author|authtrim}}<br>
+						{{i.additional|pages}} Pages | 
+						{{i.additional|language}}<br>
+					</div>
+				</a>
+			</div>
+		</div>
+		{%endfor%}
+	</div>
+	<h2>Trending</h2><br>
+	<div class="row">
+		{%for i in trending%}
+		<div class="card-container col-lg-3 col-md-6">
+			<div class="card">
+				<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
+					<img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:100%">
+					<div class="card-details">
+						<h4 class="card-title">{{i.name|trim}}</h4>
+						<h6 class="card-title">{{i.brand|trim}}</h6>
+						<p class="card-text">{{i.description|dtrim}}</p>
+						Authors: {{i.additional|author|authtrim}}<br>
+						{{i.additional|pages}} Pages | 
+						{{i.additional|language}}<br>
+					</div>
+				</a>
+			</div>
+		</div>
+		{%endfor%}
+	</div>
+	<h2>Fresh Arrivals</h2><br>
+	<div class="row">
+		{%for i in latest%}
+		<div class="card-container col-lg-3 col-md-6">
+			<div class="card">
+				<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
+					<img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:100%">
+					<div class="card-details">
+						<h4 class="card-title">{{i.name|trim}}</h4>
+						<h6 class="card-title">{{i.brand|trim}}</h6>
+						<p class="card-text">{{i.description|dtrim}}</p>
+						Authors: {{i.additional|author|authtrim}}<br>
+						{{i.additional|pages}} Pages | 
+						{{i.additional|language}}<br>
+					</div>
+				</a>
+			</div>
+		</div>
+		{%endfor%}
+	</div>
+</div>
 {%endblock content%}
