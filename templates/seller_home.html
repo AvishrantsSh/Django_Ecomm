@@ -5,23 +5,40 @@
     Product Search        
 {%endblock title%}
 {%block link%}
-	<link rel='stylesheet' href='{%static "stylesheet/product_list.css"%}?v=1.4'>
-  <link rel='stylesheet' href='{%static "stylesheet/snackbar.css"%}?v=1.4'>
+    <link rel='stylesheet' href='{%static "stylesheet/profile.css"%}?v=1.2'>
+    <link rel='stylesheet' href='{%static "stylesheet/snackbar.css"%}?v=1.4'>
 {%endblock link%}
 {%block content%}
-    {{user.username}}<br>
-    {{seller.bs_name}}<br>
-    {{seller.bs_category}}<br>
-    {{seller.address|safe}}<br>
-    {{user.email}}<br>
-    {{user.phone}}<br>
-    <label for="myInput">Your Personnel Link: </label>
-    <input type="text" value="{{base}}{%url 'seller_shop' seller.bs_category seller.bs_name seller.id%}" id="myInput" class="w-50" readonly>
-    <button onclick="myFunction()"><i class="fa fa-copy" aria-hidden="true"></i></button>
-    <a href="{%url 'sheet'%}">Add Products</a>
-    <div id="snackbar">Link Copied</div>
-       
-    <script>
+
+<div class="card-inner row">
+    <img class="seller-image col-md-4 svg-container" src="../../static/assets/icons/people.svg">
+    <div class="seller-details col-md-7">
+        <div class="seller-head">{{seller.bs_name}}<br><br></div>
+        <div class="seller-username">{{user.username}}<br></div>
+        <div class="seller-stock">{{seller.bs_category}}<br></div>
+        <div class="seller-address"><span class="add-head">Address: </span>{{seller.address|safe}}<br></div>
+        <span class="add-head">Email-ID: </span>{{user.email}}<br>
+        <span class="add-head">Phone No: </span>{{user.phone}}<br>
+    </div>
+</div>
+
+<div class="lower-home">
+        <label for="myInput"><span class="add-head">Your Personal Link: </span></label><br>
+        <div class="row link">
+            <input class="col-md-7" type="text" value="{{base}}{%url 'seller_shop' seller.bs_category seller.bs_name seller.id%}" id="myInput" readonly>
+            <button class="col-md-1" onclick="myFunction()"><i class="fa fa-copy" aria-hidden="true"></i></button>
+            <div class="col-md-1"></div>
+            <a href="{%url 'seller_shop' seller.bs_category seller.bs_name seller.id%}" class="banner-btn">
+                <div id="banner-btn">Visit Your Page</div>
+            </a>
+        </div>
+        <a href="{%url 'sheet'%}"class="banner-btn add-btn d-flex justify-content-center">
+            <div id="banner-btn">Add Products</div>
+        </a>
+</div>
+
+<div id="snackbar">Link Copied</div>
+<script>
     function myFunction() {
       var copyText = document.getElementById("myInput");
       copyText.select();
@@ -34,5 +51,5 @@
       x.className = "show";
       setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
     }
-    </script>
+</script>
 {%endblock content%}
