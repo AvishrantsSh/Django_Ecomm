@@ -16,6 +16,13 @@ search = Indexer()
 # End of Search wala scene
 
 User = get_user_model()
+def HomeView(request):
+    list_all = Product_List.objects.all()
+    product = [x for x in list_all.order_by("-rating") if x.total_ratings > 100][:5]
+    trending = [x for x in list_all.order_by("total_ratings") if x.rating > 4 and x.total_ratings > 10][:10]
+    latest = list(list_all.order_by("total_ratings"))[:10]
+    return render(request, 'home.html', {'best': product, 'trending': trending, 'latest': latest})
+
 def populate():
     lst = list(Product_List.objects.all())
     lst2 = [['id','name']]
@@ -181,10 +188,12 @@ def Seller_Landing(request, cat, store, pk):
             raise Exception
     except:
         return redirect('404')
-    
+    product = [x for x in Product_List.objects.filter(seller = pk).order_by("-rating") if x.total_ratings > 100][:10]
+    trending = [x for x in Product_List.objects.filter(seller = pk).order_by("total_ratings") if x.rating > 4 and x.total_ratings > 10][:10]
+    latest = [x for x in Product_List.objects.filter(seller = pk).order_by("total_ratings")][:10]
     return render(request,
                   'seller.html',
-                  {'seller': obj})   
+                  {'seller': obj, 'best': product, 'trending': trending, 'latest': latest})   
 
 def Product_Dscr(request, pk):
     record = Product_List.objects.get(id=pk)

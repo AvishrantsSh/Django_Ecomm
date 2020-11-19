@@ -9,4 +9,64 @@
 {%block content%}
     Seller Page (as seen be customer)
     <a href="{%url 'search'%}?id={{seller.id}}">View Products</a>
+    <h2>Best Sellers</h2><br>
+    <div class="row">
+        {%for i in best%}
+        <div class="card-container col-lg-3 col-md-6">
+            <div class="card">
+                <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
+                    <img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:100%">
+                    <div class="card-details">
+                        <h4 class="card-title">{{i.name|trim}}</h4>
+                        <h6 class="card-title">{{i.brand|trim}}</h6>
+                        <p class="card-text">{{i.description|dtrim}}</p>
+                        Authors: {{i.additional|author|authtrim}}<br>
+                        {{i.additional|pages}} Pages | 
+                        {{i.additional|language}}<br>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+    <h2>Trending</h2><br>
+    <div class="row">
+        {%for i in trending%}
+        <div class="card-container col-lg-3 col-md-6">
+            <div class="card">
+                <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
+                    <img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:100%">
+                    <div class="card-details">
+                        <h4 class="card-title">{{i.name|trim}}</h4>
+                        <h6 class="card-title">{{i.brand|trim}}</h6>
+                        <p class="card-text">{{i.description|dtrim}}</p>
+                        Authors: {{i.additional|author|authtrim}}<br>
+                        {{i.additional|pages}} Pages | 
+                        {{i.additional|language}}<br>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
+    <h2>Fresh Arrivals</h2><br>
+    <div class="row">
+        {%for i in latest%}
+        <div class="card-container col-lg-3 col-md-6">
+            <div class="card">
+                <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
+                    <img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:100%">
+                    <div class="card-details">
+                        <h4 class="card-title">{{i.name|trim}}</h4>
+                        <h6 class="card-title">{{i.brand|trim}}</h6>
+                        <p class="card-text">{{i.description|dtrim}}</p>
+                        Authors: {{i.additional|author|authtrim}}<br>
+                        {{i.additional|pages}} Pages | 
+                        {{i.additional|language}}<br>
+                    </div>
+                </a>
+            </div>
+        </div>
+        {%endfor%}
+    </div>
 {%endblock content%}
