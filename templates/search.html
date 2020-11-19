@@ -26,24 +26,43 @@
 <div class="row">
     <div class="col-md-2 filter-pane">
         <h4>The filter-pane</h4>
-        <div class="filter-section-container">
-            <div class="filter-section">
-                This is a filter section
+        <form>
+            {%if sid%}<input type="hidden" name="id" value="{{sid}}"/>{%endif%}
+            {%if search%}<input type="hidden" name="product" value="{{search}}"/>{%endif%}
+            <div class="filter-section-container">
+                <div class="filter-section">
+                    Sort By
+                    <select class="custom-select" name="sort">
+                        <optgroup label="Rating">
+                            <option value="rating" {%if sort_type == "price"%}selected{%endif%}>Customer Ratings</option>
+                            <option value="most" {%if sort_type == "most"%}selected{%endif%}>Maximum Reviews</option>
+                        </optgroup>
+                        <optgroup label="Prize">
+                            <option value="price_asc" {%if sort_type == "price_asc"%}selected{%endif%}>Price:Low to High</option>
+                            <option value="price_dsc" {%if sort_type == "price_dsc"%}selected{%endif%}>Price: High to Low</option>
+                        </optgroup>
+                        <optgroup label="Product">
+                            <option value="trend" {%if sort_type == "trend"%}selected{%endif%}>Trending</option>
+                            <option value="fresh" {%if sort_type == "fresh"%}selected{%endif%}>Latest Arrivals</option>
+                        </optgroup>
+                    </select>
+                </div>
+                <div class="filter-section">
+                    This is a filter section
+                </div>
+                <div class="filter-section">
+                    This is a filter section
+                </div>
             </div>
-            <div class="filter-section">
-                This is a filter section
-            </div>
-            <div class="filter-section">
-                This is a filter section
-            </div>
-        </div>
+            <input type="submit" value="Apply"/>
+        </form>
     </div>
     <div class="col-md-10">
         <div class="row search-container">
             {%for i in products%}
             <div class="card-container col-lg-3 col-md-6">
                 <div class="card">
-                    <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
+                    <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="blank">
                         <img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:100%">
                         <div class="card-details">
                             <h4 class="card-title">{{i.name|trim}}</h4>
@@ -71,6 +90,7 @@
         <form>
             {%if sid%}<input type="hidden" name="id" value="{{sid}}"/>{%endif%}
             {%if search%}<input type="hidden" name="product" value="{{search}}"/>{%endif%}
+            <input type="hidden" name="sort" value="{{sort_type}}"/>
             {% if products.has_previous %}
                 <button type="submit" name="page" value="{{ products.previous_page_number }}" class="page-link">&laquo; Previous </button>
             {% endif %}

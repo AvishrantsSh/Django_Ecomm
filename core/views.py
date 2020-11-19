@@ -230,8 +230,9 @@ def Products(request):
             seller_pk = None
         try:
             sort = request.GET["sort"]
+            sort = sort if sort in ["price_asc","price_dsc","rating", "trend", "fresh", "most"] else "rating"
         except:
-            sort = None
+            sort = "rating"
         try:
             product = request.GET["product"]
         except:
@@ -245,16 +246,31 @@ def Products(request):
             #                                         ).order_by('-rating' if sort is None else "-"+sort))
             if product:
                 ret_list = search.index_search(product)
-                object_list = Product_List.objects.filter(id__in = ret_list, seller = seller_pk).order_by('-rating' if sort is None else "-"+sort)
+                object_list = Product_List.objects.filter(id__in = ret_list, seller = seller_pk)
             else:
-                object_list = Product_List.objects.filter(seller = seller_pk).order_by('-rating' if sort is None else "-"+sort)
+                object_list = Product_List.objects.filter(seller = seller_pk)
         else:
             # populate()
             if product:
                 ret_list = search.index_search(product)
-                object_list = Product_List.objects.filter(id__in = ret_list).order_by('-rating' if sort is None else "-"+sort)
+                object_list = Product_List.objects.filter(id__in = ret_list)
             else:
-                object_list = Product_List.objects.all().order_by('-rating' if sort is None else "-"+sort)
+                object_list = Product_List.objects.all()
+        
+        # Sorter 
+        if sort == "price_asc":
+            object_list = object_list.order_by('base_price')
+        elif sort=="price_dsc":
+            object_list = object_list.order_by('-base_price')
+        elif sort=="rating":
+            object_list = object_list.order_by('-rating')
+        elif sort=="trend":
+            object_list = [x for x in object_list.order_by('total_ratings') if x.rating > 4 and x.total_ratings > 10]
+        elif sort=="fresh":
+            object_list = [x for x in object_list.order_by('total_ratings')]
+        elif sort=="most":
+            object_list = [x for x in object_list.order_by('-total_ratings')]
+
         if not object_list:
             return render(request,
                     'search.html',
@@ -277,6 +293,7 @@ def Products(request):
                     'search':product,
                     'sid':seller_pk,
                     'total': len(object_list),
+                    'sort_type': sort,
                     })
 
     return redirect('404')
