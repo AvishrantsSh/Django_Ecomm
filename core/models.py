@@ -72,7 +72,7 @@ class Seller(models.Model):
     pan_card = models.FileField(upload_to=change_name)
     bank_ac = models.CharField(max_length=20)
     address = jsonfield.JSONField()
-    rating = models.PositiveIntegerField(default=0)
+    rating = models.FloatField(default=0)
     total_ratings = models.PositiveIntegerField(default=0)
     status = models.CharField(max_length=20, choices=status, default="Reviewing")
     def __str__(self):

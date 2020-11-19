@@ -1,12 +1,12 @@
 .card-container{
     padding: 1vh;
     margin-top: 2vh;
-    margin-bottom: 2vh;
+    /* margin-bottom: 2vh; */
 }
 
 .card{
     padding: 1vh;
-    min-height: 75vh;
+    /* min-height: 75vh; */
 }
 
 .card:hover{

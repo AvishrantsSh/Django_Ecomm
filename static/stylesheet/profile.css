@@ -1,8 +1,3 @@
-.main-box{
-    padding: 4vh;
-    min-height: 51.5vh;
-}
-
 .product-details{
     margin-top: 4vh;
     margin-bottom: 4vh;
@@ -21,16 +16,13 @@
     font-size: 6vh;
     font-weight: bold;
 }
-
 .seller-username{
-    font-size: 5vh;
+    font-size: 4vh;
 }
-
-.seller-brand, .seller-brand{
+.seller-brand{
     font-size: 4vh;
     font-weight: bold;
 }
-
 .seller-address{
     padding: 2vh;
     margin: 2vh;
@@ -39,47 +31,28 @@
     border-radius: 5px;
     transform: translateX(-2vh);
 }
-
 .add-head{
     font-weight: bold;
 }
-
-.seller-head{
-    padding-top: 2vh;
-    font-size: 4.5vh;
-}
-
-#myInput{
-    width: 50%;
-}
 #banner-btn{
     background-color:rgba(200, 13, 56, 0.9);
-    padding: 10px;
     color: whitesmoke;
     border-radius: 15px;
-    width: 200px;
 }
-
 #banner-btn:hover{
     background-color: rgba(236, 20, 56, 0.95);
     transition-duration: 0.3s;
 }
-
-.banner-btn, .banner-btn:hover{
-    text-align: center;
-    text-decoration: none;
-}
-
 .link{
     padding-left: 2vh;
 }
-
 .lower-home{
     padding: 2vh;
     padding-bottom: 0;
 }
 
-.add-btn{
-    margin: 3vh;
-    margin-bottom: 1vh;
+@media screen and (max-width: 768px) {
+    #banner-btn{
+        width: 100%;
+    }
 }
