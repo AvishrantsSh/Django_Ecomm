@@ -48,8 +48,6 @@ class Indexer(object):
             qp.add_plugin(qparser.SequencePlugin())
             q = qp.parse(search_query)
             results = s.search(q, terms=True,limit=None)
-            print(q)
-            print(len(results))
             list=[]
             for res in results:
                 # list.append(res['name'])
@@ -60,5 +58,4 @@ class MyFuzzyTerm(FuzzyTerm):
         def __init__(self, fieldname, text, boost=1.0, maxdist=2, prefixlength=1, constantscore=True):
             super(MyFuzzyTerm, self).__init__(fieldname, text, boost, maxdist, prefixlength, constantscore)
 
-# ind = Indexer()
-# ind.populate_index("index", data)
+
