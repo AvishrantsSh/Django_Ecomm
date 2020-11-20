@@ -37,7 +37,7 @@ def date(dic):
 
 @register.filter
 def language(dic):
-    return json.loads(dic)["language"]
+    return str(json.loads(dic)["language"]).capitalize()
 
 @register.filter
 def safe(dic):
