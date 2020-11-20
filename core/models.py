@@ -3,6 +3,7 @@ from uuid import uuid4
 from django.core.validators import RegexValidator, ValidationError
 from accounts.models import CustomUser
 import jsonfield
+from random import randint
 
 def change_name(instance, filename):
     return "User_{0}/{1}".format(instance.id, filename)
@@ -13,25 +14,16 @@ def sheet_path(instance, filename):
 def img_path(instance, filename):
     return "Images/User_{0}/{1}".format(instance.id, filename)
 
+def random_cat():
+    lst = ["SciFy", "Adventure", "Mystery", "Infotainment"]
+    return lst[randint(0,3)]
+
 def validate_file_extension(value):
     import os
     ext = os.path.splitext(value.name)[1]
     valid_extensions = ['.pdf']
     if not ext in valid_extensions:
         raise ValidationError(u'File not supported!')
-
-class Sub_Category(models.Model):
-    choice = (
-        ("Electronics","Electronics"),
-        ("Literature and Stationary","Literature and Stationary"),
-        ("Groceries","Groceries"),
-    )
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    main_cat = models.CharField(max_length=30, unique=False, choices= choice)
-    sub_cat = models.CharField(max_length=30, unique=False)
-    # properties 
-    def __str__(self):
-        return self.main_cat + " - " + self.sub_cat
 
 class Product_List(models.Model):
     
@@ -49,14 +41,18 @@ class Product_List(models.Model):
     description = models.TextField(default="Some Product")
     additional = jsonfield.JSONField()
     
+    def save(self, *args, **kwargs):
+        self.category=random_cat()
+        super(Product_List, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.name
 
 class Seller(models.Model):
     choice = (
-        ("Electronics","Electronics"),
+        # ("Electronics","Electronics"),
         ("Literature and Stationary","Literature and Stationary"),
-        ("Groceries","Groceries"),
+        # ("Groceries","Groceries"),
     )
     status = (
         ("Active","Active"),

@@ -109,55 +109,25 @@ def Extract_dt(request):
             data = data[list(data.keys())[0]]    
             data = to_dict(data)
             cat = Seller.objects.get(id = request.user.id).bs_category
-
-            if cat == "Electronics":
-                Product_List.objects.all().delete()
-                for i in data:
-                    Product_List(
-                        name = i["product"],
-                        brand = i["author"],
-                        base_price = i["price"],
-                        stock = i["stock"],
-                        description = i["description"] if "description" in i.keys() 
-                                                        else "No description provided by Seller",
-                        additional = json.dumps({"warranty": i["warranty"]}),
-                        seller = request.user.id,
-                    ).save()
                     
-            elif cat == "Literature and Stationary":
+            if cat == "Literature and Stationary":
                 Product_List.objects.all().delete()
-                for i in data:
-                    Product_List(
-                        name = i["title"],
-                        brand = i["publisher"],
-                        base_price = i["price"],
-                        rating = i["rating"],
-                        total_ratings= i ["total ratings"],
-                        stock = i["stock"],
-                        description = i["description"] if "description" in i.keys() 
-                                                        else "No description provided by Seller",
-                        additional = json.dumps({"author": i["author"], "pages": i["pages"], "language":i["language"], "publication date":i["publication date"]}),
-                        seller = request.user.id,
-                    ).save()
-
-            elif cat == "Groceries":
-                for i in data:
-                    try:
-                        Product_List.objects.get(name=i["product"], brand=i["brand"], seller=request.user.id).delete()
-                        print("Updating Entry")
-                    except Product_List.DoesNotExist:
-                        print("Adding New Entry")
-
-                    Product_List(
-                        name = i["product"],
-                        brand = i["brand"],
-                        base_price = i["price"],
-                        stock = i["stock"],
-                        description = i["description"] if "description" in i.keys() 
-                                                        else "No description provided by Seller",
-                        additional = json.dumps({"manufactured":i["date of manufacture"], "expiry": i["date of expiry"]}),
-                        seller = request.user.id,
-                    ).save()
+                try:
+                    for i in data:
+                        Product_List(
+                            name = i["title"],
+                            brand = i["publisher"],
+                            base_price = i["price"],
+                            rating = i["rating"],
+                            total_ratings= i ["total ratings"],
+                            stock = i["stock"],
+                            description = i["description"] if "description" in i.keys() 
+                                                            else "No description provided by Seller",
+                            additional = json.dumps({"author": i["author"], "pages": i["pages"], "language":i["language"], "publication date":i["publication date"]}),
+                            seller = request.user.id,
+                        ).save()
+                except:
+                    return JsonResponse({"error":"Bad Request"})
             else:
                 return JsonResponse({"error":"Bad Request"})
                 

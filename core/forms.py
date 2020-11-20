@@ -3,9 +3,9 @@ from .models import Seller
 
 class DocumentForm(forms.Form):
     choice = (
-        ("Electronics","Electronics"),
+        # ("Electronics","Electronics"),
         ("Literature and Stationary","Literature and Stationary"),
-        ("Groceries","Groceries"),
+        # ("Groceries","Groceries"),
     )
 
     bs_name = forms.CharField(label="Business Name", widget=forms.TextInput(
