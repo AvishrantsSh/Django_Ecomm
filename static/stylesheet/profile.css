@@ -24,7 +24,7 @@
     font-weight: bold;
 }
 .seller-address{
-    padding: 2vh;
+    padding-left: 5vh;
     margin: 2vh;
     margin-left: 0;
     background-color: #eee;
@@ -34,10 +34,16 @@
 .add-head{
     font-weight: bold;
 }
+
+.banner-btn{
+    align-content: center;
+}
+
 #banner-btn{
     background-color:rgba(200, 13, 56, 0.9);
     color: whitesmoke;
     border-radius: 15px;
+    padding-left: 5vh;
 }
 #banner-btn:hover{
     background-color: rgba(236, 20, 56, 0.95);

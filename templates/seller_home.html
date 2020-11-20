@@ -5,7 +5,7 @@
     Product Search        
 {%endblock title%}
 {%block link%}
-    <link rel='stylesheet' href='{%static "stylesheet/profile.css"%}?v=1.3'>
+    <link rel='stylesheet' href='{%static "stylesheet/profile.css"%}?v=1.4'>
     <link rel='stylesheet' href='{%static "stylesheet/snackbar.css"%}?v=1.4'>
     <script src="{%static 'js/snack.js'%}"></script>
 {%endblock link%}
@@ -35,11 +35,13 @@
 <div class="lower-home">
         <label for="myInput"><span class="add-head">Your Personal Link: </span></label><br>
         <div class="row link">
-            <input class="col-md-7 w-50" type="text" value="{{base}}{%url 'seller_shop' seller.bs_category seller.bs_name seller.id%}" id="myInput" readonly>
-            <button class="col-md-1" onclick="myFunction()"><i class="fa fa-copy" aria-hidden="true"></i></button>
+            <div class="col-md-8">
+                <input class="col-md-9 w-60" type="text" value="{{base}}{%url 'seller_shop' seller.bs_category seller.bs_name seller.id%}" id="myInput" readonly>
+                <button class="col-md-2" onclick="myFunction()"><i class="fa fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
             <div class="col-md-1"></div>
             <a href="{%url 'seller_shop' seller.bs_category seller.bs_name seller.id%}" class="banner-btn">
-                <div class="w-100 p-3" id="banner-btn">Visit Your Page</div>
+                <div class="w-100 p-2" id="banner-btn">Visit Your Page</div>
             </a>
         </div>
         
