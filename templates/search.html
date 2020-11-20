@@ -44,15 +44,14 @@
 {%block content%}
 {%if found%}
 <div class="result-head row">
-    <div class="col-md-2"></div>
-    {%if search%}<div class="col-md-10">Search results for: {{search}}</div>{%endif%}
+    {%if search%}{%endif%}
     {%if sid%}
     <form>
         {%if search%}<input type="hidden" name="product" value="{{search}}"/>{%endif%}
         <button type="submit">Search Globally Instead</button>
     </form>
     {%endif%}
-    <div style="position: absolute; font-size: 20px; left: 2%;">{{total}} Results found.</div>
+    <div style="position: absolute; font-size: 20px; left: 1%;">{{total}} Results found for '{{search}}'</div>
 </div>
 <div class="row" style="margin-top: 4vh;">
     <div class="col-md-2 filter-pane">

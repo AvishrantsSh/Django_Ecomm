@@ -5,10 +5,54 @@
     Home Page
 {%endblock title%}
 {%block link%}
-    <link rel='stylesheet' href='{%static "stylesheet/about.css"%}?v=2.0'>
+    <link rel='stylesheet' href='{%static "stylesheet/about.css"%}?v=1.2'>
 
 {%endblock link%}
 {%block content%}
-    <a href="{%url 'home'%}">Home Link</a>
-    About Page
+
+	<div id="title_sec">
+		Yeaaah Boi
+	</div>
+
+    <div class="card">
+        <div class="row define-container container-fluid">
+            <p class="col-md-6 define-sec" id = "left_define">
+                For the seller :<br>
+                We at BBT bring to you the experience of personalising your business online in just 2 simple steps: <br>
+                Register & upload or scan your list of items and sell.
+                Creating a local network & helping the local shops of the city to increase their  customer base by helping them grow according to their own pace. 
+            </p>
+            <p class="col-md-6 define-sec" id = "right_define">
+                For the user: <br>
+                Get your results based on the fastest delivery possible, different products at the particular online stores and much more.
+                A virtual market experience brought to you by BBT.
+                Experience visiting your market online from the safe comfort of your home. 	
+            </p>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="row work-sec container-fluid">
+            <b>How it Works</b>
+        </div>
+    </div>
+
+    <div class="card">
+        <div class="row about-us container-fluid">
+            <b>About Us</b><br>
+            Yeah we kool
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center ">
+        <a href="{%url 'home'%}" class="cart-btn">
+            <div id="cart-btn">Go To Home</div>
+        </a>
+    </div>
+
+	<div class="d-flex justify-content-center end-sec">
+		Reliable. 
+        Efficient. 
+        Quick. 
+        Personalised.
+    </div>
 {%endblock content%}

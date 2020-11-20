@@ -5,7 +5,7 @@
     Product Search        
 {%endblock title%}
 {%block link%}
-    <link rel='stylesheet' href='{%static "stylesheet/profile.css"%}?v=1.3'>
+    <link rel='stylesheet' href='{%static "stylesheet/profile.css"%}?v=1.4'>
     <link rel='stylesheet' href='{%static "stylesheet/snackbar.css"%}?v=1.4'>
     <script src="{%static 'js/snack.js'%}"></script>
 {%endblock link%}
@@ -13,7 +13,8 @@
 
 <div class="px-4 card-inner row">
     <img class="seller-image col-md-4 svg-container" src="../../static/assets/icons/people.svg">
-    <div class="seller-details col-md-7">
+    <div class="user-details col-md-7">
+        <div class="user-head">My Account</div>
         <div class="seller-username">{{user.username}}<br></div>
         <span class="add-head">Email-ID: </span>{{user.email}}<br>
         <span class="add-head">Phone No: </span>{{user.phone}}<br>
@@ -23,6 +24,32 @@
         Currently no addresses are stored. <a href="#">Add Address</a>
         {%endif%}
     </div>
+
+    <h3 class="row-title">Recommended For You</h3><br>
+	<div class="testimonial-group">
+		<div class="row text-center">
+			{%for i in best%}
+			<div class="card-container row-card col-lg-3 col-md-6" style="margin-bottom: 5vh;">
+				<div class="card">
+					<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
+						<img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:60%">
+						<div class="card-details">
+							<h4 class="card-title" style="font-size: 20px; margin-top: 2vh;">{{i.name|trim}}</h4>
+							<h6 class="card-title">{{i.brand|trim}}</h6>
+							<h4><b>Rs {{i.base_price}}</b></h4>
+
+							<p class="card-text">{{i.description|dtrim}}</p>
+							Authors: {{i.additional|author|authtrim}}<br>
+							{{i.additional|pages}} Pages | 
+							{{i.additional|language}}<br>
+						</div>
+					</a>
+				</div>
+			</div>
+			{%endfor%}
+		</div>
+    </div>
+    
 </div>
 
 {%endblock content%}
