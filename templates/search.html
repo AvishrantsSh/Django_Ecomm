@@ -38,7 +38,7 @@
                             <option value="rating" {%if sort_type == "price"%}selected{%endif%}>Customer Ratings</option>
                             <option value="most" {%if sort_type == "most"%}selected{%endif%}>Maximum Reviews</option>
                         </optgroup>
-                        <optgroup label="Prize">
+                        <optgroup label="Price">
                             <option value="price_asc" {%if sort_type == "price_asc"%}selected{%endif%}>Price:Low to High</option>
                             <option value="price_dsc" {%if sort_type == "price_dsc"%}selected{%endif%}>Price: High to Low</option>
                         </optgroup>
@@ -49,11 +49,23 @@
                     </select>
                 </div>
                 <div class="filter-section">
-                    This is a filter section
+                    Categories
+                    {%for i in valid_cat%}
+                        <div class="checkbox">
+                            <label><input type="checkbox" class="mx-3" name="{{i}}" {%if i in category%}checked{%endif%}/>{{i}}</label>
+                        </div>
+                    {%endfor%}
+                    
                 </div>
-                <!-- <div class="filter-section">
-                    This is a filter section
-                </div> -->
+                <div class="filter-section">
+                    Language Code
+                    <select class="custom-select" name="lang">
+                        <option value="all" selected style="font-weight: bold;">All</option>
+                        {%for i in valid_lang%}
+                        <option value="{{i}}" {%if lang == i%}selected{%endif%}>{{i|lang}}</option>
+                        {%endfor%}
+                    </select>
+                </div>
             </div>
             <input id="apply-btn" type="submit" value="Apply"/>
         </form>
@@ -94,6 +106,10 @@
         <form>
             {%if sid%}<input type="hidden" name="id" value="{{sid}}"/>{%endif%}
             {%if search%}<input type="hidden" name="product" value="{{search}}"/>{%endif%}
+            <input type="hidden" name="lang" value="{{lang}}"/>
+            {%for i in category%}
+            <input type="hidden" name="{{i}}" value="on"/>
+            {%endfor%}
             <input type="hidden" name="sort" value="{{sort_type}}"/>
             {% if products.has_previous %}
                 <button type="submit" name="page" value="{{ products.previous_page_number }}" class="page-link">&laquo; Previous </button>

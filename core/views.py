@@ -207,25 +207,46 @@ def Products(request):
             product = request.GET["product"]
         except:
             product = None
+        try:
+            lang = request.GET["lang"]
+            lang = None if lang == "all" else lang
+        except:
+            lang = None
+
+        lst = ["Scify", "Adventure", "Mystery", "Infotainment"]
+        res = []
+        for i in lst:
+            try:
+                if request.GET[i]:
+                    res.append(i)
+            except:
+                continue
+        # populate()
+
         # Ah Snap...Here we go again
         if seller_pk:
-            # object_list = list(Product_List.objects.filter(
-            #                                                 Q(seller=seller_pk) &
-            #                                                 Q(name__icontains = product if product else "")
-                                                        
-            #                                         ).order_by('-rating' if sort is None else "-"+sort))
             if product:
                 ret_list = search.index_search(product)
                 object_list = Product_List.objects.filter(id__in = ret_list, seller = seller_pk)
             else:
                 object_list = Product_List.objects.filter(seller = seller_pk)
         else:
-            # populate()
             if product:
                 ret_list = search.index_search(product)
                 object_list = Product_List.objects.filter(id__in = ret_list)
             else:
                 object_list = Product_List.objects.all()
+        
+        lang_list = []
+        cat_list = []
+        for x in object_list:
+            lang_list.append(json.loads(x.additional)['language'])
+            cat_list.append(x.category)
+        
+        lang_list = list(set(lang_list))
+        cat_list = list(set(cat_list))
+        cat_list.sort()
+        lang_list.sort()
         
         # Sorter 
         if sort == "price_asc":
@@ -240,12 +261,21 @@ def Products(request):
             object_list = [x for x in object_list.order_by('total_ratings')]
         elif sort=="most":
             object_list = [x for x in object_list.order_by('-total_ratings')]
+        
+        #Cat-Filter
+        if res:
+            object_list = list(object_list.filter(category__in = res))
+        
+        #Lang-Filter
+        if lang:
+            object_list = [x for x in object_list if json.loads(x.additional)['language'] == lang]
 
+        # tmp = object_list.all()
         if not object_list:
             return render(request,
                     'search.html',
                     {'found':False})
-
+        
         paginator = Paginator(object_list, 20)
         page = request.GET.get('page')
         try:
@@ -264,6 +294,10 @@ def Products(request):
                     'sid':seller_pk,
                     'total': len(object_list),
                     'sort_type': sort,
+                    'valid_cat': cat_list,
+                    'valid_lang': lang_list,
+                    'category': res,
+                    'lang':lang,
                     })
 
     return redirect('404')

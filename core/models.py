@@ -15,7 +15,7 @@ def img_path(instance, filename):
     return "Images/User_{0}/{1}".format(instance.id, filename)
 
 def random_cat():
-    lst = ["SciFy", "Adventure", "Mystery", "Infotainment"]
+    lst = ["Scify", "Adventure", "Mystery", "Infotainment"]
     return lst[randint(0,3)]
 
 def validate_file_extension(value):

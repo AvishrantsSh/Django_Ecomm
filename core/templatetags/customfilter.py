@@ -3,7 +3,13 @@ from django.contrib.auth import get_user_model
 from core.models import Seller
 import json
 register = template.Library()
-
+lang_dict = {'en-GB': 'English (UK)',
+            'en-US': 'English (US)',
+            'fre': 'French',
+            'ger': 'German',
+            'jpn': 'Japanese',
+            'spa': 'Spanish',
+            }
 @register.filter
 def active(s_id):
     resp = False
@@ -37,7 +43,7 @@ def date(dic):
 
 @register.filter
 def language(dic):
-    return str(json.loads(dic)["language"]).capitalize()
+    return lang(str(json.loads(dic)["language"]))
 
 @register.filter
 def safe(dic):
@@ -55,3 +61,7 @@ def authtrim(value):
         value = [value]
     x = "" if len(value) == 1 else " and more"
     return value[0] + x
+
+@register.filter
+def lang(value):
+    return lang_dict[value]
