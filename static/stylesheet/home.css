@@ -75,7 +75,7 @@ body{
     text-decoration: none;
 }
 
-/* The heart of the matter */
+/* Horizontal stuff */
 .testimonial-group > .row {
     display: flex;
     flex-wrap: nowrap;
