@@ -75,7 +75,33 @@ body{
     text-decoration: none;
 }
 
+/* The heart of the matter */
+.testimonial-group > .row {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin: 0;
+
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.row-card{
+    align-self: center;
+    min-width: 45vh;
+}
+
+.row-title{
+    margin-top: 5vh;
+    padding-left:3%;
+    padding-right:3%;
+}
+
 @media screen and (max-width: 768px) {
+    .row-card{
+        min-width: 50vh;
+    }
 
     .carousel-container{
         min-height: 50vh;
