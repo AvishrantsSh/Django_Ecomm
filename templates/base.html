@@ -10,6 +10,9 @@
         <link rel="apple-touch-icon" href="/static/assets/icons/avatar.png" sizes="512x512">
         <link rel="manifest" href="/manifest.json">
         
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap" rel="stylesheet">
+
         <meta charset="UTF-8">
         <meta name="description" content="To Infinity and Beyond with ProjectY">
         <meta name="keywords" content="E-Commerce, Bazaar">
@@ -56,8 +59,8 @@
 
     <body>
         <nav class="navbar navbar-expand-md navbar-fixed-top">
-            <div class="container-fluid">
-                <a class="navbar-brand cherry" href="{%url 'home'%}" id = "head_start">Hola</a>
+            <div class="container-fluid" style="margin-top: 2vh; margin-bottom: 2vh;">
+                <a class="navbar-brand cherry" href="{%url 'home'%}" id = "head_start">Enigma</a>
                 <div style="display: flex;">
                     <form action="{%url 'search'%}" style="display: flex;">
                         <input type="text" style="border: none; outline: none; width: 50vw; justify-content: center; border-top-left-radius: 5px; border-bottom-left-radius: 5px; padding-left: 2vh;" name="product" placeholder="Search" id="search" value="{%block val%}{%endblock val%}"> 
@@ -70,14 +73,15 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <div class="navbar-nav ml-md-auto d-md-flex flex-row">
+                    <div class="navbar-nav ml-md-auto d-md-flex flex-row" style="justify-content: space-between;">
                     {%if user.is_authenticated%}
                         <a class="nav-item nav-link nav_link" href="{%url 'profile'%}"><i class="fas fa-user"></i> {{user.username}}</a>
                         <a class="nav-item nav-link nav_link" href="{%url 'logout'%}">Logout <i class="fas fa-sign-out-alt"></i></a>
                     {%else%}
                         <a class="nav-item nav-link nav_link" href="{%url 'login'%}">Login <i class="fas fa-sign-in-alt"></i></a>
                     {%endif%}
-                        <a class="nav-item nav-link nav_link" href="{%url 'selling_info'%}"> Become a Seller</a>
+                        <a class="nav-item nav-link nav_link" href="{%url 'selling_info'%}">Seller <i class="fas fa-briefcase"></i></a>
+                        <a href="#" class="nav-item nav-link nav_link">Cart <i class="fas fa-shopping-cart"></i></a>
                     </div>
                 </div>
             </div>
@@ -95,7 +99,7 @@
                     <div class="col-md-6 col-lg-4">
                         <h2 class="widget-title">About</h2>
                         <div class="footer-list-div">
-                            We, at <b>Engima</b>, aim at providing you the easiest platform where you can sell your Products with minimal efforts as that's why we are here, to reduce all the work of selling Products online and make your Bussiness grow more.</p><br>
+                            We at <b>Engima</b> aim at providing you the easiest platform where you can sell your Products with minimal efforts as that's why we are here, to reduce all the work of selling Products online and make your Bussiness grow more.</p><br>
                         </div>
                     </div>
                     <div class="col-md-6 col-lg-2">
