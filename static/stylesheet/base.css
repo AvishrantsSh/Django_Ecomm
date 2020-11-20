@@ -4,6 +4,12 @@
 *{
 	padding: 0;
 }
+#head_start{
+	font-family: 'Pacifico', cursive;
+}
+#head_start:hover{
+	color: black;
+}
 .nav_link{
 	text-decoration: none;
 	color: black;
@@ -42,7 +48,8 @@ footer{
 	padding: 1vh;
 }
 .widget-title{
-	font-size: 20px;
+	text-transform: uppercase;
+	font-size: 15px;
 }
 .footer-list{
 	list-style-type: none;
@@ -63,10 +70,11 @@ footer{
 }
 
 #fb, #insta, #twit, #link{
+	margin-right: 6px;
 	margin-top: 6px;
 	color: #515151;
-	height: 30px;
-	width: 30px;
+	height: 20px;
+	width: 20px;
 }
 #fb:hover, #insta:hover, #twit:hover, #link:hover{
 	color:#C22025;
