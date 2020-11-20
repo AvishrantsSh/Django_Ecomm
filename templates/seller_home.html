@@ -6,7 +6,8 @@
 {%endblock title%}
 {%block link%}
     <link rel='stylesheet' href='{%static "stylesheet/profile.css"%}?v=1.3'>
-    <link rel='stylesheet' href='{%static "stylesheet/snackbar.css"%}?v=1.1'>
+    <link rel='stylesheet' href='{%static "stylesheet/snackbar.css"%}?v=1.4'>
+    <script src="{%static 'js/snack.js'%}"></script>
 {%endblock link%}
 {%block content%}
 
@@ -52,11 +53,6 @@
       copyText.setSelectionRange(0, 99999)
       document.execCommand("copy");
       snack();
-    }
-    function snack() {
-      var x = document.getElementById("snackbar");
-      x.className = "show";
-      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
     }
 </script>
 {%endblock content%}

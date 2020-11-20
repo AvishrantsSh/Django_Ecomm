@@ -23,7 +23,7 @@
    text-align: center;
    border-radius: 10px;
    box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.7);
-   transition-duration: 0.3s;
+   transition: background-color 0.3s linear;
 }
 
 .brand_box:hover{
@@ -41,7 +41,7 @@
    width: 100%;
    border: 0;
    color: white;
-   transition-duration: 0.4s;
+   transition: background-color 0.4s linear;
 }
 
 .submit_btn:hover{
@@ -86,12 +86,12 @@ label{
    border-bottom: 1px solid #777;
    background: transparent;
    padding-left: 1vh;
-   transition: 1s;
+   transition: border 0.3s linear;
    width: 100%;
 }
 
 .text-box:focus{
-   border-bottom: 1.5px solid rgba(138, 20, 44, 0.5);
+   border-bottom: 2px solid rgba(238, 19, 63, 0.746);
    color:black;
 }
 
@@ -101,12 +101,12 @@ label{
    padding: 10px;
    border-radius: 15px;
    width: 100%;
-   transition-duration: 0.5s;
+   transition: background-color 0.5s linear;
 }
 
 a{
    color:  rgba(236, 20, 56, 0.95);
-   transition-duration: 0.1s;
+   transition: color 0.1s linear;
 }
 
 a:hover{
