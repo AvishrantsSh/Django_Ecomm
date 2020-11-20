@@ -1,5 +1,6 @@
 .main-box{
     width: 100%;
+    min-height: 50.5vh;
 }
 
 .info-head{
@@ -162,6 +163,11 @@ img{
 }
 
 @media screen and (max-width: 768px) {
+    #right-text{
+        text-align: left;
+        padding-left: 1vh;
+    }
+
     .working-list{
         margin: 0vh;
     }

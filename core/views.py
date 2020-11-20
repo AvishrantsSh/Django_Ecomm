@@ -320,7 +320,7 @@ def Add_Cart(request):
     return JsonResponse({'error': True})
 
 def CartView(request):
-    cart = Cart.objects.filter(customer_id = request.user.id, status="Cart")
+    cart = Cart.objects.filter(customer_id = request.user.id, status="Cart").order_by('-date')
     tmp = []
     for x in cart:
         tmp.append([Product_List.objects.get(id = x.product_id), x.nos]) 

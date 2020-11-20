@@ -114,6 +114,27 @@
     }
 
     .filter-section-container{
+        width: 100%;
+    }
+
+    /* Horizontal stuff */
+    .testimonial-group > .row {
         display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        margin: 0;
+
+        width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .row-card{
+        min-width: 45vh;
+        align-content: left;
+    }
+
+    #check-filter{
+        width: 100vh;
     }
 }

@@ -5,31 +5,60 @@
     Cart
 {%endblock title%}
 {%block link%}
-    <link rel='stylesheet' href='{%static "stylesheet/home.css"%}?v=2.0'>
+    <link rel='stylesheet' href='{%static "stylesheet/cart.css"%}?v=1.0'>
+
 
 {%endblock link%}
 {%block content%}
-Cart Bawa
+
+<h1 class="p-2">My Cart</h1>
+
+<div class="cart-box">
+
 {%for i, nos in items%}
-<div class="card-container col-lg-3 col-md-6">
-    <div class="card">
-        <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="blank">
-            <img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:90%;">
+
+    <div class="row working-list" id="row1">
+        <div class="col-md-3 cart-image">
+            <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="blank">
+                <img class="cart-img svg-container" src="{{i.img.url}}">
+            </a>
+        </div>
+        <div class="col-md-5 cart-text">
+            <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="blank">
+                <div class="row-head"><h4 class="card-title" style="font-size: 25px;">{{i.name|trim}}</h4></div>
+            </a>
             <div class="card-details">
-                <h4 class="card-title" style="font-size: 20px; margin-top: 2vh;">{{i.name|trim}}</h4>
                 <h6 class="card-title">{{i.brand|trim}}</h6>
                 <h4><b>Rs {{i.base_price}}</b></h4>
 
-                <p class="card-text">{{i.description|dtrim}}</p>
+                <p class="card-text"></p>
                 Authors: {{i.additional|author|authtrim}}<br>
                 {{i.additional|pages}} Pages | 
                 {{i.additional|language}} |
-                {{i.category}}|
+                {{i.category}}
+            </div>
+        </div>
+        <div class="col-md-4 quantity row">
+            <div class="col-6">
+                <div class="row-head"><h4 class="card-title" style="font-size: 15px;"><br>Amount In Cart:</h4></div>
                 <h3>{{nos}}</h3>
             </div>
-        </a>
-        
+            <div class="col-6" style="align-self: center;">
+                <div class="row-head"></div>
+                <div class="container d-flex">
+                    <a href="{%url 'home'%}" class="cart-btn">
+                        <div id="cart-btn">Button 1</div>
+                    </a>
+                </div>
+                <div class="container d-flex">
+                    <a href="{%url 'home'%}" class="cart-btn">
+                        <div id="cart-btn">Button 2</div>
+                    </a>
+                </div>
+            </div>
+        </div>
     </div>
-</div>
 {%endfor%}
+
+</div>
 {%endblock content%}
