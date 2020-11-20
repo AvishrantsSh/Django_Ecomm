@@ -1,0 +1,14 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load customfilter%}
+{%block title%}
+    Home Page
+{%endblock title%}
+{%block link%}
+    <link rel='stylesheet' href='{%static "stylesheet/about.css"%}?v=2.0'>
+
+{%endblock link%}
+{%block content%}
+    <a href="{%url 'home'%}">Home Link</a>
+    About Page
+{%endblock content%}
