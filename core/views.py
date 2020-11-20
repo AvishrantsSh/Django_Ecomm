@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Product_List, Seller
+from .models import Product_List, Seller, Cart
 from django.http import JsonResponse, HttpResponse
 from django.core import serializers
 from django.db.models import Q
@@ -193,113 +193,136 @@ def Profile(request):
         #     return redirect('404')
 
 def Products(request):
-    if request.method == "GET":
-        try:
-            seller_pk = request.GET["id"] if request.GET["id"] != "None" else None
-        except:
-            seller_pk = None
-        try:
-            sort = request.GET["sort"]
-            sort = sort if sort in ["price_asc","price_dsc","rating", "trend", "fresh", "most"] else "rating"
-        except:
-            sort = "rating"
-        try:
-            product = request.GET["product"]
-        except:
-            product = None
-        try:
-            lang = request.GET["lang"]
-            lang = None if lang == "all" else lang
-        except:
-            lang = None
+    try:
+        seller_pk = request.GET["id"] if request.GET["id"] != "None" else None
+    except:
+        seller_pk = None
+    try:
+        sort = request.GET["sort"]
+        sort = sort if sort in ["price_asc","price_dsc","rating", "trend", "fresh", "most"] else "rating"
+    except:
+        sort = "rating"
+    try:
+        product = request.GET["product"]
+    except:
+        product = None
+    try:
+        lang = request.GET["lang"]
+        lang = None if lang == "all" else lang
+    except:
+        lang = None
 
-        lst = ["Scify", "Adventure", "Mystery", "Infotainment"]
-        res = []
-        for i in lst:
-            try:
-                if request.GET[i]:
-                    res.append(i)
-            except:
-                continue
-        # populate()
+    lst = ["Scify", "Adventure", "Mystery", "Infotainment"]
+    res = []
+    for i in lst:
+        try:
+            if request.GET[i]:
+                res.append(i)
+        except:
+            pass
+    # populate()
 
-        # Ah Snap...Here we go again
-        if seller_pk:
-            if product:
-                ret_list = search.index_search(product)
-                object_list = Product_List.objects.filter(id__in = ret_list, seller = seller_pk)
-            else:
-                object_list = Product_List.objects.filter(seller = seller_pk)
+    # Ah Snap...Here we go again
+    if seller_pk:
+        if product:
+            ret_list = search.index_search(product)
+            object_list = Product_List.objects.filter(id__in = ret_list, seller = seller_pk)
         else:
-            if product:
-                ret_list = search.index_search(product)
-                object_list = Product_List.objects.filter(id__in = ret_list)
-            else:
-                object_list = Product_List.objects.all()
-        
-        lang_list = []
-        cat_list = []
-        for x in object_list:
-            lang_list.append(json.loads(x.additional)['language'])
-            cat_list.append(x.category)
-        
-        lang_list = list(set(lang_list))
-        cat_list = list(set(cat_list))
-        cat_list.sort()
-        lang_list.sort()
-        
-        # Sorter 
-        if sort == "price_asc":
-            object_list = object_list.order_by('base_price')
-        elif sort=="price_dsc":
-            object_list = object_list.order_by('-base_price')
-        elif sort=="rating":
-            object_list = object_list.order_by('-rating')
-        elif sort=="trend":
-            object_list = [x for x in object_list.order_by('total_ratings') if x.rating > 4 and x.total_ratings > 10]
-        elif sort=="fresh":
-            object_list = [x for x in object_list.order_by('total_ratings')]
-        elif sort=="most":
-            object_list = [x for x in object_list.order_by('-total_ratings')]
-        
-        #Cat-Filter
-        if res:
-            object_list = list(object_list.filter(category__in = res))
-        
-        #Lang-Filter
-        if lang:
-            object_list = [x for x in object_list if json.loads(x.additional)['language'] == lang]
+            object_list = Product_List.objects.filter(seller = seller_pk)
+    else:
+        if product:
+            ret_list = search.index_search(product)
+            object_list = Product_List.objects.filter(id__in = ret_list)
+        else:
+            object_list = Product_List.objects.all()
+    
+    lang_list = []
+    cat_list = []
+    for x in object_list:
+        lang_list.append(json.loads(x.additional)['language'])
+        cat_list.append(x.category)
+    
+    lang_list = list(set(lang_list))
+    cat_list = list(set(cat_list))
+    cat_list.sort()
+    lang_list.sort()
+    
+    # Sorter 
+    if sort == "price_asc":
+        object_list = object_list.order_by('base_price')
+    elif sort=="price_dsc":
+        object_list = object_list.order_by('-base_price')
+    elif sort=="rating":
+        object_list = object_list.order_by('-rating')
+    elif sort=="trend":
+        object_list = [x for x in object_list.order_by('total_ratings') if x.rating > 4 and x.total_ratings > 10]
+    elif sort=="fresh":
+        object_list = [x for x in object_list.order_by('total_ratings')]
+    elif sort=="most":
+        object_list = [x for x in object_list.order_by('-total_ratings')]
+    
+    #Cat-Filter
+    if res:
+        object_list = list(object_list.filter(category__in = res))
+    
+    #Lang-Filter
+    if lang:
+        object_list = [x for x in object_list if json.loads(x.additional)['language'] == lang]
 
-        # tmp = object_list.all()
-        if not object_list:
-            return render(request,
-                    'search.html',
-                    {'found':False})
-        
-        paginator = Paginator(object_list, 20)
-        page = request.GET.get('page')
-        try:
-            products = paginator.page(page)
-        except PageNotAnInteger:
-            products = paginator.page(1)
-        except EmptyPage:
-            products = paginator.page(paginator.num_pages)
-        
+    # tmp = object_list.all()
+    if not object_list:
         return render(request,
-                    'search.html',
-                    {'found':True,
-                    'page': page,
-                    'products': products,
-                    'search':product,
-                    'sid':seller_pk,
-                    'total': len(object_list),
-                    'sort_type': sort,
-                    'valid_cat': cat_list,
-                    'valid_lang': lang_list,
-                    'category': res,
-                    'lang':lang,
-                    })
+                'search.html',
+                {'found':False})
+    
+    paginator = Paginator(object_list, 20)
+    page = request.GET.get('page')
+    try:
+        products = paginator.page(page)
+    except PageNotAnInteger:
+        products = paginator.page(1)
+    except EmptyPage:
+        products = paginator.page(paginator.num_pages)
+    
+    return render(request,
+                'search.html',
+                {'found':True,
+                'page': page,
+                'products': products,
+                'search':product,
+                'sid':seller_pk,
+                'total': len(object_list),
+                'sort_type': sort,
+                'valid_cat': cat_list,
+                'valid_lang': lang_list,
+                'category': res,
+                'lang':lang,
+                })
 
-    return redirect('404')
 
+def Add_Cart(request):
+    if request.method == 'POST':
+        pk = None
+        try:
+            pk = request.POST["add"]
+        except:
+            pass
+
+        if pk is not None:
+            try:
+                item = Cart.objects.get(customer_id=request.user.id, product_id=pk, status="Cart")
+                item.nos += 1
+                item.save()
+            except:
+                Cart(customer_id=request.user.id, product_id=pk, status="Cart").save()
+            return JsonResponse({'success': "True"})
+        
+    return JsonResponse({'error': True})
+
+def CartView(request):
+    cart = Cart.objects.filter(customer_id = request.user.id, status="Cart")
+    tmp = []
+    for x in cart:
+        tmp.append([Product_List.objects.get(id = x.product_id), x.nos]) 
+    return render(request, 'cart.html',{'items': tmp})
 # Create your views here.

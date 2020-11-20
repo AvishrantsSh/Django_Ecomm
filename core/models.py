@@ -4,7 +4,7 @@ from django.core.validators import RegexValidator, ValidationError
 from accounts.models import CustomUser
 import jsonfield
 from random import randint
-
+from django.utils.timezone import now
 def change_name(instance, filename):
     return "User_{0}/{1}".format(instance.id, filename)
 
@@ -74,15 +74,20 @@ class Seller(models.Model):
     def __str__(self):
         return self.bs_name
 
-class Orders(models.Model):
+class Cart(models.Model):
+    choice=(
+        ("Cart", "Cart"),
+        ("Purchased", "Purchased"),
+        ("Delivered", "Delivered"),
+    )
     id = models.UUIDField(default=uuid4, primary_key=True)
     customer_id = models.UUIDField()
-    seller_id = models.UUIDField()
     product_id = models.UUIDField()
-    date = models.DateTimeField()
-    order_type = models.CharField(max_length=15)
-    status = models.CharField(max_length=15)
-    user_xp = models.PositiveIntegerField(default=8)
+    nos = models.PositiveIntegerField(default = 1)
+    date = models.DateTimeField(default=now, editable=False)
+    status = models.CharField(max_length=15, choices=choice)
 
+    def __str__(self):
+        return str(self.customer_id) + "-" + str(self.product_id)
 
 # Create your models here.

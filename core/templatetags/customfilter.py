@@ -1,6 +1,6 @@
 from django import template
 from django.contrib.auth import get_user_model
-from core.models import Seller
+from core.models import Seller, Cart
 import json
 register = template.Library()
 lang_dict = {'en-GB': 'English (UK)',
@@ -65,3 +65,4 @@ def authtrim(value):
 @register.filter
 def lang(value):
     return lang_dict[value]
+

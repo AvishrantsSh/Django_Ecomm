@@ -13,5 +13,7 @@ urlpatterns=[
     path('search/', views.Products, name='search'),
     path('shop/<cat>/<store>/<pk>/', views.Seller_Landing, name='seller_shop'),
     path('product/<pk>', views.Product_Dscr, name='product'),
+    path('additem/cart/', views.Add_Cart, name='add_to_cart'),
+    path('cart/', views.CartView, name='cart'),
     # path('data/', views.get_dt, name='dt'),
    ]
