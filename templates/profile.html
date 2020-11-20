@@ -1,0 +1,28 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load customfilter%}
+{%block title%}
+    Product Search        
+{%endblock title%}
+{%block link%}
+    <link rel='stylesheet' href='{%static "stylesheet/profile.css"%}?v=1.3'>
+    <link rel='stylesheet' href='{%static "stylesheet/snackbar.css"%}?v=1.4'>
+    <script src="{%static 'js/snack.js'%}"></script>
+{%endblock link%}
+{%block content%}
+
+<div class="px-4 card-inner row">
+    <img class="seller-image col-md-4 svg-container" src="../../static/assets/icons/people.svg">
+    <div class="seller-details col-md-7">
+        <div class="seller-username">{{user.username}}<br></div>
+        <span class="add-head">Email-ID: </span>{{user.email}}<br>
+        <span class="add-head">Phone No: </span>{{user.phone}}<br>
+        {%if user.address%}
+        <div class="seller-address"><span class="add-head">Address: </span>{{user.address|safe}}<br></div>
+        {%else%}
+        Currently no addresses are stored. <a href="#">Add Address</a>
+        {%endif%}
+    </div>
+</div>
+
+{%endblock content%}
