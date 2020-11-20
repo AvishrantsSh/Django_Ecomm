@@ -140,6 +140,10 @@ img{
     text-align: left;
 }
 
+.card-text{
+    font-size: 2.5vh;
+}
+
 .flip-card-back-vertical{
     transform: rotateX(180deg);
 }
@@ -151,6 +155,10 @@ img{
 
 .svg-container{
     max-height: 23vh;
+}
+
+#row4{
+    margin-bottom: 0;
 }
 
 @media screen and (max-width: 768px) {
