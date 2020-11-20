@@ -21,9 +21,9 @@
         <button type="submit">Search Globally Instead</button>
     </form>
     {%endif%}
-    <div>{{total}} results found.</div>
+    <div style="position: absolute; font-size: 20px; left: 2%;">{{total}} Results found.</div>
 </div>
-<div class="row">
+<div class="row" style="margin-top: 4vh;">
     <div class="col-md-2 filter-pane">
         <h4>The filter-pane</h4>
         <form>
@@ -50,11 +50,11 @@
                 <div class="filter-section">
                     This is a filter section
                 </div>
-                <div class="filter-section">
+                <!-- <div class="filter-section">
                     This is a filter section
-                </div>
+                </div> -->
             </div>
-            <input type="submit" value="Apply"/>
+            <input id="apply-btn" type="submit" value="Apply"/>
         </form>
     </div>
     <div class="col-md-10">
@@ -65,7 +65,7 @@
                     <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="blank">
                         <img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:90%;">
                         <div class="card-details">
-                            <h4 class="card-title">{{i.name|trim}}</h4>
+                            <h4 class="card-title" style="font-size: 20px; margin-top: 2vh;">{{i.name|trim}}</h4>
                             <h6 class="card-title">{{i.brand|trim}}</h6>
                             <h4><b>Rs {{i.base_price}}</b></h4>
 
