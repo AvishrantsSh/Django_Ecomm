@@ -16,6 +16,11 @@
     font-size: 6vh;
     font-weight: bold;
 }
+
+.user-head{
+    font-size: 5vh;
+}
+
 .seller-username{
     font-size: 4vh;
 }
@@ -39,6 +44,10 @@
     align-content: center;
 }
 
+.user-details{
+    align-self: center;
+}
+
 #banner-btn{
     background-color:rgba(200, 13, 56, 0.9);
     color: whitesmoke;
@@ -55,6 +64,29 @@
 .lower-home{
     padding: 2vh;
     padding-bottom: 0;
+}
+
+/* Horizontal stuff */
+.testimonial-group > .row {
+    display: flex;
+    flex-wrap: nowrap;
+    overflow-x: auto;
+    margin: 0;
+
+    width: 100%;
+    padding-right: 0;
+    padding-left: 0;
+}
+
+.row-card{
+    align-self: center;
+    min-width: 45vh;
+}
+
+.row-title{
+    margin-top: 5vh;
+    padding-left:3%;
+    padding-right:3%;
 }
 
 @media screen and (max-width: 768px) {
