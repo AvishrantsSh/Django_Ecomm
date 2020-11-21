@@ -51,62 +51,64 @@
         <button type="submit">Search Globally Instead</button>
     </form>
     {%endif%}
-    <div style="position: absolute; font-size: 20px; left: 1%;">{{total}} Results found for '{{search}}'</div>
 </div>
 
-<div class="row" style="margin-top: 4vh;">
-    <div class="col-md-2 filter-pane">
-        <h4>Filters</h4>
-        <form>
-            {%if sid%}<input type="hidden" name="id" value="{{sid}}"/>{%endif%}
-            {%if search%}<input type="hidden" name="product" value="{{search}}"/>{%endif%}
-            <div class="filter-section-container">
-                <div class="testimonial-group">
-                    <div class="row">
-                        <div class="col-10">
-                            <div class="filter-section">
-                                Sort By
-                                <select class="custom-select" name="sort">
-                                    <optgroup label="Rating">
-                                        <option value="rating" {%if sort_type == "price"%}selected{%endif%}>Customer Ratings</option>
-                                        <option value="most" {%if sort_type == "most"%}selected{%endif%}>Maximum Reviews</option>
-                                    </optgroup>
-                                    <optgroup label="Price">
-                                        <option value="price_asc" {%if sort_type == "price_asc"%}selected{%endif%}>Price:Low to High</option>
-                                        <option value="price_dsc" {%if sort_type == "price_dsc"%}selected{%endif%}>Price: High to Low</option>
-                                    </optgroup>
-                                    <optgroup label="Product">
-                                        <option value="trend" {%if sort_type == "trend"%}selected{%endif%}>Trending</option>
-                                        <option value="fresh" {%if sort_type == "fresh"%}selected{%endif%}>Latest Arrivals</option>
-                                    </optgroup>
-                                </select>
-                            </div>
-                            <div class="filter-section pt-2">
-                                Language Code
-                                <select class="custom-select" name="lang">
-                                    <option value="all" selected style="font-weight: bold;">All</option>
-                                    {%for i in valid_lang%}
-                                    <option value="{{i}}" {%if lang == i%}selected{%endif%}>{{i|lang}}</option>
-                                    {%endfor%}
-                                </select>
-                            </div>
-                        </div>
-
-                        <div class="filter-section col-8">
-                            Categories
-                            {%for i in valid_cat%}
-                                <div class="checkbox">
-                                    <label><input type="checkbox" class="mx-3" name="{{i}}" {%if i in category%}checked{%endif%}/>{{i}}</label>
+<div class="row" style="margin-top: 1vh; width: 100vw;">
+    <div class="col-md-2 row">
+        <div class="col-12 order-md-1" style="font-size: 20px; left: 1%;">{{total}} Results found.</div>
+        <div class="filter-pane order-md-2 h-100 col-12">
+            <h4>Filters</h4>
+            <form>
+                {%if sid%}<input type="hidden" name="id" value="{{sid}}"/>{%endif%}
+                {%if search%}<input type="hidden" name="product" value="{{search}}"/>{%endif%}
+                <div class="filter-section-container">
+                    <div class="testimonial-group">
+                        <div class="row">
+                            <div class="col-10">
+                                <div class="filter-section">
+                                    Sort By
+                                    <select class="custom-select" name="sort">
+                                        <optgroup label="Rating">
+                                            <option value="rating" {%if sort_type == "price"%}selected{%endif%}>Customer Ratings</option>
+                                            <option value="most" {%if sort_type == "most"%}selected{%endif%}>Maximum Reviews</option>
+                                        </optgroup>
+                                        <optgroup label="Price">
+                                            <option value="price_asc" {%if sort_type == "price_asc"%}selected{%endif%}>Price:Low to High</option>
+                                            <option value="price_dsc" {%if sort_type == "price_dsc"%}selected{%endif%}>Price: High to Low</option>
+                                        </optgroup>
+                                        <optgroup label="Product">
+                                            <option value="trend" {%if sort_type == "trend"%}selected{%endif%}>Trending</option>
+                                            <option value="fresh" {%if sort_type == "fresh"%}selected{%endif%}>Latest Arrivals</option>
+                                        </optgroup>
+                                    </select>
                                 </div>
-                            {%endfor%}   
-                        </div>
+                                <div class="filter-section pt-2">
+                                    Language Code
+                                    <select class="custom-select" name="lang">
+                                        <option value="all" selected style="font-weight: bold;">All</option>
+                                        {%for i in valid_lang%}
+                                        <option value="{{i}}" {%if lang == i%}selected{%endif%}>{{i|lang}}</option>
+                                        {%endfor%}
+                                    </select>
+                                </div>
+                            </div>
 
-                    </div>
-                </div>    
-            
-            </div>
-            <input id="apply-btn" type="submit" value="Apply"/>
-        </form>
+                            <div class="filter-section col-8">
+                                Categories
+                                {%for i in valid_cat%}
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" class="mx-3" name="{{i}}" {%if i in category%}checked{%endif%}/>{{i}}</label>
+                                    </div>
+                                {%endfor%}   
+                            </div>
+
+                        </div>
+                    </div>    
+                
+                </div>
+                <input id="apply-btn" type="submit" value="Apply"/>
+            </form>
+        </div>
     </div>
     <!-- Product Panel -->
     <div class="col-md-10">

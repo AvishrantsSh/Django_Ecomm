@@ -5,7 +5,7 @@
     Home Page
 {%endblock title%}
 {%block link%}
-	<link rel='stylesheet' href='{%static "stylesheet/home.css"%}?v=2.1'>
+	<link rel='stylesheet' href='{%static "stylesheet/home.css"%}?v=2.2'>
 	<link rel='stylesheet' href='{%static "stylesheet/product_dscr.css"%}?v=1.5'>
 
 {%endblock link%}
@@ -26,8 +26,9 @@
 					</div>
 					<div class="carousel-text col-md-8">
 						<h1 class="slide-head">Join us Today!</h1> 
-						Get your own Personalised store on BBT <br>
-						No Charges, setup is free, and always will be.
+						Get your own Personalised store on Enigma! <br>
+						<br>Get started with Enigma, and join the several local markets that have benfitted and grown with our help.
+						<br>No Charges, setup is free, and always will be.
 						<a href="{%url 'selling_info'%}" class="banner-btn">
 							<div id="banner-btn">Become a Seller</div>
 						</a>
@@ -43,7 +44,10 @@
 					<div class="carousel-text col-md-8">
 						<div class="slide-head-2">Featured Seller</div>
 						<h2 class="slide-head">Maple</h2>
-							Literature and Stationery 
+						Literature and Stationery <br>
+						<br>
+						Just coming in hot from New Delhi, Maple assures same day local deliveries, and pickup options based on your location. <br>
+						Contact for library related, and bulk order schemes.
 						<a href="../shop/Literature%20and%20Stationary/Maple/997f8fbd-d073-4611-ac81-16ddf2f69f1f/" class="banner-btn">
 							<div id="banner-btn">Visit</div>
 						</a>
@@ -60,6 +64,7 @@
 						<h1 class="slide-head">In-built Data Analysis</h1>
 						<h2 class="slide-head">Featured, for the next major update</h2>
 						<br>Get Ready for Enigma Plugins and Extensions!<br>
+						<br>Perform the complete analysis of your webpage data to develop an understanding of the requirements of the user, and hence take smart and well planned steps to grow your business.
 					</div>
 				</div>
 			</div>
@@ -72,24 +77,22 @@
 	<div class = "row" style=" width: 100%;">
 		<div class="card col-md-10 p-2 top-item">
 			<div class="card-inner row">
-				<img class="prod-image col-md-4" src="{{bestproduct.img.url}}">
+				<img class="prod-image col-md-4" src="../../static/assets/images/calvin.jpg">
 				<div class="product-details col-md-8">
 					<div class="prod-head">{{bestproduct.name}}<br></div>
-					<div class="prod-brand">{{bestproduct.brand|trim}}<br></div>
+					<div class="prod-brand">{{bestproduct.brand|trim}} | Humour<br></div>
 					<div class="prod-price">Rs {{bestproduct.base_price}}<br></div>
 					<div class="my-3">
 						<span class="add-head">Author: </span>{{bestproduct.additional|author|authtrim}}<br>
 						<span class="add-head">Pages: </span>{{bestproduct.additional|pages}}<br>
 						<span class="add-head">Language: </span>{{bestproduct.additional|language}}<br>
 					</div>
+					<div class="w-50">
+						<a class="cart-btn" href="{%url 'product' bestproduct.id%}">
+							<div id="cart-btn" style="text-align: center;" onclick="buy()">Shop Now</div>
+						</a>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="col-lg-2" style="align-self: center;">
-			<div>
-				<a class="cart-btn" href="{%url 'product' bestproduct.id%}">
-					<div id="cart-btn" style="text-align: center;" onclick="buy()">Shop Now</div>
-				</a>
 			</div>
 		</div>
 	</div>
@@ -121,24 +124,24 @@
 	<div class = "row">
 		<div class="card col-md-10 p-2 top-item">
 			<div class="card-inner row" id="top-item-row">
-				<img class="prod-image col-md-4" src="{{trendingproduct.img.url}}">
+				<div class="col-md-4">
+					<img class="prod-image" src="../../static/assets/images/thehobbit.jpg" style="max-height: 50vh; padding:0; padding-left: 30%;">
+				</div>
 				<div class="product-details col-md-8">
 					<div class="prod-head">{{trendingproduct.name}}<br></div>
-					<div class="prod-brand">{{trendingproduct.brand|trim}}<br></div>
+					<div class="prod-brand">{{trendingproduct.brand|trim}} | {{trendingproduct.category}}<br></div>
 					<div class="prod-price">Rs {{trendingproduct.base_price}}<br></div>
 					<div class="my-3">
 						<span class="add-head">Author: </span>{{trendingproduct.additional|author|authtrim}}<br>
 						<span class="add-head">Pages: </span>{{trendingproduct.additional|pages}}<br>
 						<span class="add-head">Language: </span>{{trendingproduct.additional|language}}
 					</div>
+					<div class="w-50">
+						<a class="cart-btn" href="{%url 'product' trendingproduct.id%}">
+							<div id="cart-btn" style="text-align: center;" onclick="buy()">Shop Now</div>
+						</a>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="col-lg-2" style="align-self: center;">
-			<div>
-				<a class="cart-btn" href="{%url 'product' trendingproduct.id%}">
-					<div id="cart-btn" style="text-align: center;" onclick="buy()">Shop Now</div>
-				</a>
 			</div>
 		</div>
 	</div>
@@ -170,24 +173,24 @@
 	<div class = "row">
 		<div class="card col-md-10 p-2 top-item">
 			<div class="card-inner row" id="top-item-row">
-				<img class="prod-image col-md-4" src="{{latestproduct.img.url}}">
+				<div class="col-md-4">
+					<img class="prod-image" src="../../static/assets/images/glamorous.jpg" style="max-height: 50vh; padding:0; padding-left: 30%;">
+				</div>
 				<div class="product-details col-md-8">
 					<div class="prod-head">{{latestproduct.name}}<br></div>
-					<div class="prod-brand">{{latestproduct.brand|trim}}<br></div>
+					<div class="prod-brand">{{latestproduct.brand|trim}} | {{latestproduct.category}}<br></div>
 					<div class="prod-price">Rs {{latestproduct.base_price}}<br></div>
 					<div class="my-3">
 						<span class="add-head">Author: </span>{{latestproduct.additional|author|authtrim}}<br>
 						<span class="add-head">Pages: </span>{{latestproduct.additional|pages}}<br>
 						<span class="add-head">Language: </span>{{latestproduct.additional|language}}
 					</div>
+					<div class="w-50">
+						<a class="cart-btn" href="{%url 'product' latestproduct.id%}">
+							<div id="cart-btn" style="text-align: center;" onclick="buy()">Shop Now</div>
+						</a>
+					</div>
 				</div>
-			</div>
-		</div>
-		<div class="col-lg-2" style="align-self: center;">
-			<div>
-				<a class="cart-btn" href="{%url 'product' latestproduct.id%}">
-					<div id="cart-btn" style="text-align: center;" onclick="buy()">Shop Now</div>
-				</a>
 			</div>
 		</div>
 	</div>
