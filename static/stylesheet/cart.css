@@ -15,13 +15,16 @@
 }
 
 .svg-container{
-    max-height: 14vw;
+    max-height: 10vw;
 }
 .card-title{
     font-size: min(2vw, 30px);
 }
 .sub{
     font-size: min(1.5vw, 20px);
+}
+.amount{
+    margin-top: 50px;
 }
 .row-card{
     align-self: center;
@@ -62,5 +65,8 @@
     }
     .sub{
         font-size:18px;
+    }
+    .amount{
+        margin-top: 0;
     }
 }

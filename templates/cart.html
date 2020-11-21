@@ -21,7 +21,7 @@
                     <img class="cart-img svg-container" src="{{i.img.url}}">
                 </a>
             </div>
-            <div class="col-md-5 cart-text">
+            <div class="col-md-4 cart-text my-4">
                 <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="blank">
                     <div class="row-head"><h4 class="card-title">{{i.name|trim}}</h4></div>
                 </a>
@@ -37,9 +37,9 @@
                     </span>
                 </div>
             </div>
-            <div class="col-md-4 row">
-                <div class="col-6" style="align-self: center;">
-                    <div class="row-head"><h4 class="card-title" style="font-size: 15px;"><br>Amount In Cart:</h4></div>
+            <div class="col-md-5 row">
+                <div class="col-6 amount">
+                    <div class="row-head"><h4 class="card-title sub"><br>Amount In Cart:</h4></div>
                     <table style="width:20px; align-self: center;">
                     <tr>
                         <td class="p-1" rowspan="2"><h3>{{nos}}</h3></td>
@@ -56,7 +56,7 @@
                         <button class="w-100" id="cart-btn" name="remove" value="{{i.id}}" onclick="send(this)">Remove Item</button>
                     </div>
                     <div class="container-fluid my-2"style="padding: 0;">
-                        <button class="w-100" id="cart-btn">Button 2</button>
+                        <button class="w-100" id="cart-btn">Gift Wrap</button>
                     </div>
                 </div>
             </div>
