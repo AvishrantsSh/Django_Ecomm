@@ -303,23 +303,52 @@ def Products(request):
 def Add_Cart(request):
     if request.method == 'POST':
         pk = None
-        try:
+        if "add" in request.POST.keys():
             pk = request.POST["add"]
-        except:
-            pass
-
-        if pk is not None:
-            try:
-                item = Cart.objects.get(customer_id=request.user.id, product_id=pk, status="Cart")
-                item.nos += 1
-                item.save()
-            except:
-                Cart(customer_id=request.user.id, product_id=pk, status="Cart").save()
-            return JsonResponse({'success': "True"})
-        
+            if pk is not None:
+                try:
+                    item = Cart.objects.get(customer_id=request.user.id, product_id=pk, status="Cart")
+                    item.nos += 1
+                    item.save()
+                except:
+                    Cart(customer_id=request.user.id, product_id=pk, status="Cart").save()
+                return JsonResponse({'success': "True"})
+       
     return JsonResponse({'error': True})
 
 def CartView(request):
+    if request.method == "POST":
+        if "remove" in request.POST.keys():
+            pk = request.POST["remove"]
+            if pk is not None:
+                try:
+                    Cart.objects.get(customer_id=request.user.id, product_id=pk, status="Cart").delete()
+                except:
+                    return redirect("404")
+                
+        elif "up" in request.POST.keys():
+            pk = request.POST["up"]
+            if pk is not None:
+                try:
+                    item = Cart.objects.get(customer_id=request.user.id, product_id=pk, status="Cart")
+                    item.nos += 1
+                    item.save()
+                except:
+                    return redirect("404")
+
+        elif "down" in request.POST.keys():
+            pk = request.POST["down"]
+            if pk is not None:
+                try:
+                    item = Cart.objects.get(customer_id=request.user.id, product_id=pk, status="Cart")
+                    if item.nos == 1:
+                        item.delete()
+                    else:
+                        item.nos -= 1
+                        item.save()
+                except:
+                    return redirect("404")
+
     cart = Cart.objects.filter(customer_id = request.user.id, status="Cart").order_by('-date')
     tmp = []
     for x in cart:

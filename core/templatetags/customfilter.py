@@ -66,3 +66,17 @@ def authtrim(value):
 def lang(value):
     return lang_dict[value]
 
+@register.filter
+def nos(value):
+    nos = 0
+    for i,j in value:
+        nos += j 
+    return nos
+
+@register.filter
+def total(value):
+    total = 0
+    for i,j in value:
+        total += int(i.base_price) 
+    return total
+
