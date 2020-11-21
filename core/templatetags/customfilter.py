@@ -77,6 +77,6 @@ def nos(value):
 def total(value):
     total = 0
     for i,j in value:
-        total += int(i.base_price) 
+        total += int(i.base_price)*j 
     return total
 
