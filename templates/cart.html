@@ -6,6 +6,18 @@
 {%endblock title%}
 {%block link%}
     <link rel='stylesheet' href='{%static "stylesheet/cart.css"%}?v=1.0'>
+    <link rel='stylesheet' href='{%static "stylesheet/snackbar.css"%}?v=1.4'>
+    <script src="{%static 'js/snack.js'%}"></script>
+    <script>
+        function gift(){
+            document.getElementById('snackbar').innerHTML = "Gift Wrapped";
+            snack();
+        }
+        function buy(){
+            document.getElementById('snackbar').innerHTML = "Comming Soon!";
+            snack();
+        }
+    </script>
 {%endblock link%}
 {%block content%}
 
@@ -21,7 +33,7 @@
                     <img class="cart-img svg-container" src="{{i.img.url}}">
                 </a>
             </div>
-            <div class="col-md-4 cart-text my-4">
+            <div class="col-md-5 cart-text my-4">
                 <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="blank">
                     <div class="row-head"><h4 class="card-title">{{i.name|trim}}</h4></div>
                 </a>
@@ -37,9 +49,9 @@
                     </span>
                 </div>
             </div>
-            <div class="col-md-5 row">
+            <div class="col-md-4 row">
                 <div class="col-6 amount">
-                    <div class="row-head"><h4 class="card-title sub"><br>Amount In Cart:</h4></div>
+                    <div class="row-head"><h4 class="card-title sub"><br>Quantity:</h4></div>
                     <table style="width:20px; align-self: center;">
                     <tr>
                         <td class="p-1" rowspan="2"><h3>{{nos}}</h3></td>
@@ -56,7 +68,7 @@
                         <button class="w-100" id="cart-btn" name="remove" value="{{i.id}}" onclick="send(this)">Remove Item</button>
                     </div>
                     <div class="container-fluid my-2"style="padding: 0;">
-                        <button class="w-100" id="cart-btn">Gift Wrap</button>
+                        <div class="w-100" id="cart-btn" onclick="gift()" style="text-align: center;">Gift Wrap</div>
                     </div>
                 </div>
             </div>
@@ -68,8 +80,9 @@
         <div class="card sticky-top p-4">
             <div class="card-details"><h2>Subtotal ({{items|nos}} items)</h2></div>
             <h3>Rs. {{items|total}}</h3>
-            <div id="cart-btn" style="text-align: center;">Buy Now</div>
+            <div id="cart-btn" style="text-align: center;" onclick="buy()">Buy Now</div>
         </div>
     </div>
 </div>
+<div id="snackbar"></div>
 {%endblock content%}
