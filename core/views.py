@@ -21,7 +21,12 @@ def HomeView(request):
     product = [x for x in list_all.order_by("-rating") if x.total_ratings > 100][:10]
     trending = [x for x in list_all.order_by("total_ratings") if x.rating > 4 and x.total_ratings > 10][:10]
     latest = list(list_all.order_by("total_ratings"))[:10]
-    return render(request, 'home.html', {'best': product, 'trending': trending, 'latest': latest})
+    return render(request, 'home.html', {'best': product[1:],
+                                         'trending': trending[1:],
+                                         'latest': latest[1:],
+                                         'bestproduct': product[0],
+                                         'trendingproduct': trending[0],
+                                         'latestproduct': latest[0]})
 
 def populate():
     lst = list(Product_List.objects.all())

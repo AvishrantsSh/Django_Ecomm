@@ -23,9 +23,6 @@
 .sub{
     font-size: min(1.5vw, 20px);
 }
-.amount{
-    margin-top: 50px;
-}
 .row-card{
     align-self: center;
     min-width: 45vh;

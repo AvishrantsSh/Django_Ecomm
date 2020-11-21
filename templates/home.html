@@ -67,7 +67,24 @@
 </div>
 
 <div style=" width: 100%;">
-	<h2 class="row-title">Best Sellers</h2><br>
+	<h2 class="row-title">Top Rated</h2><br>
+	<div class="card-container row-card col-lg-3 col-md-6" style="margin-bottom: 5vh;">
+		<div class="card">
+			<a href="{%url 'product' bestproduct.pk%}" class="btn" style="padding: 0;">
+				<img class="card-img-top" src="{{bestproduct.img.url}}" alt="Card image" style="width:60%">
+				<div class="card-details">
+					<h4 class="card-title" style="font-size: 20px; margin-top: 2vh;">{{bestproduct.name|trim}}</h4>
+					<h6 class="card-title">{{bestproduct.brand|trim}}</h6>
+					<h4><b>Rs {{bestproduct.base_price}}</b></h4>
+
+					<p class="card-text">{{bestproduct.description|dtrim}}</p>
+					Authors: {{bestproduct.additional|author|authtrim}}<br>
+					{{bestproduct.additional|pages}} Pages | 
+					{{bestproduct.additional|language}}<br>
+				</div>
+			</a>
+		</div>
+	</div>
 	<div class="testimonial-group">
 		<div class="row text-center">
 			{%for i in best%}
@@ -93,6 +110,23 @@
 	</div>
 
 	<h2 class="row-title">Trending</h2><br>
+	<div class="card-container row-card col-lg-3 col-md-6" style="margin-bottom: 5vh;">
+		<div class="card">
+			<a href="{%url 'product' trendingproduct.pk%}" class="btn" style="padding: 0;">
+				<img class="card-img-top" src="{{trendingproduct.img.url}}" alt="Card image" style="width:60%">
+				<div class="card-details">
+					<h4 class="card-title" style="font-size: 20px; margin-top: 2vh;">{{trendingproduct.name|trim}}</h4>
+					<h6 class="card-title">{{trendingproduct.brand|trim}}</h6>
+					<h4><b>Rs {{trendingproduct.base_price}}</b></h4>
+
+					<p class="card-text">{{trendingproduct.description|dtrim}}</p>
+					Authors: {{trendingproduct.additional|author|authtrim}}<br>
+					{{trendingproduct.additional|pages}} Pages | 
+					{{trendingproduct.additional|language}}<br>
+				</div>
+			</a>
+		</div>
+	</div>
 	<div class="testimonial-group">
 		<div class="row text-center">
 			{%for i in trending%}
@@ -118,6 +152,23 @@
 	</div>
 
 	<h2 class="row-title">Fresh Arrivals</h2><br>
+	<div class="card-container row-card col-lg-3 col-md-6" style="margin-bottom: 5vh;">
+		<div class="card">
+			<a href="{%url 'product' latestproduct.pk%}" class="btn" style="padding: 0;">
+				<img class="card-img-top" src="{{latestproduct.img.url}}" alt="Card image" style="width:60%">
+				<div class="card-details">
+					<h4 class="card-title" style="font-size: 20px; margin-top: 2vh;">{{latestproduct.name|trim}}</h4>
+					<h6 class="card-title">{{latestproduct.brand|trim}}</h6>
+					<h4><b>Rs {{latestproduct.base_price}}</b></h4>
+
+					<p class="card-text">{{latestproduct.description|dtrim}}</p>
+					Authors: {{latestproduct.additional|author|authtrim}}<br>
+					{{latestproduct.additional|pages}} Pages | 
+					{{bestproduct.additional|language}}<br>
+				</div>
+			</a>
+		</div>
+	</div>
 	<div class="testimonial-group">
 		<div class="row text-center">
 			{%for i in latest%}
