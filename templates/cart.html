@@ -18,13 +18,73 @@
             snack();
         }
     </script>
+    <script>
+        function sendup(element){
+            var form = document.getElementById('cart_form');
+            $()
+            $.ajax({
+                url: '',
+                data: {
+                    "csrfmiddlewaretoken": form.csrfmiddlewaretoken.value,
+                    "up": $(element).val()
+                },
+                cache: false,
+                method: 'POST',
+                dataType : "json",
+                success : function (data) {
+                    // console.log(data);
+                    if (data.error) {
+                        $("#snackbar").html("Snap. Something went wrong");
+                        snack();
+                    } else if (data.success) {
+                        $("#snackbar").html("Quantity Updated");
+                        document.getElementById($(element).val()).innerHTML = data.val;
+                        snack();
+                    }
+                },
+                error: function() {
+                   $("#snackbar").html("Connection Error");
+                   snack();
+                 }
+            }).responseJSON;
+        }
+        function senddown(element){
+            var form = document.getElementById('cart_form');
+            $()
+            $.ajax({
+                url: '',
+                data: {
+                    "csrfmiddlewaretoken": form.csrfmiddlewaretoken.value,
+                    "down": $(element).val()
+                },
+                cache: false,
+                method: 'POST',
+                dataType : "json",
+                success : function (data) {
+                    // console.log(data);
+                    if (data.error) {
+                        $("#snackbar").html("Snap. Something went wrong");
+                        snack();
+                    } else if (data.success) {
+                        $("#snackbar").html("Quantity Updated");
+                        document.getElementById($(element).val()).innerHTML = data.val;
+                        snack();
+                    }
+                },
+                error: function() {
+                   $("#snackbar").html("Connection Error");
+                   snack();
+                 }
+            }).responseJSON;
+        }
+    </script>
 {%endblock link%}
 {%block content%}
 
 <h1 class="p-2">My Cart</h1>
 <div class="row">
     <div class="cart-box order-last col-lg-9 order-lg-1 order-md-12 order-sm-12">
-    <form method="POST" >
+    <form method="POST" id="cart_form">
     {%csrf_token%}
     {%for i, nos in items%}
         <div class="row working-list" id="row1">
@@ -54,18 +114,18 @@
                     <div class="row-head"><h4 class="card-title sub"><br>Quantity:</h4></div>
                     <table style="width:20px; align-self: center;">
                     <tr>
-                        <td class="p-1" rowspan="2"><h3>{{nos}}</h3></td>
+                        <td class="p-1" rowspan="2"><h3 id="{{i.id}}">{{nos}}</h3></td>
                     
-                        <td class="p-1"><button style="border: 0; outline: none; background-color: transparent;" name="up" value="{{i.id}}"><i class="fa fa-angle-up"></i></button></td>
+                        <td class="p-1"><button style="border: 0; outline: none; background-color: transparent;" name="up" value="{{i.id}}" type="button" onclick="sendup(this)"><i class="fa fa-angle-up"></i></button></td>
                     </tr>
                     <tr>
-                        <td class="p-1"><button style="border: 0; outline: none; background-color: transparent;" name="down" value="{{i.id}}"><i class="fa fa-angle-down"></i></button></td>
+                        <td class="p-1">{%if nos > 1%}<button style="border: 0; outline: none; background-color: transparent;" name="down" value="{{i.id}}" type="button" onclick="senddown(this)"><i class="fa fa-angle-down"></i></button>{%endif%}</td>
                     </tr>
                     </table>
                 </div>
                 <div class="col-6" style="padding: 0; align-self: center;">
                     <div class="container-fluid my-2" style="padding: 0;">
-                        <button class="w-100" id="cart-btn" name="remove" value="{{i.id}}" onclick="send(this)">Remove Item</button>
+                        <button class="w-100" id="cart-btn" name="remove" value="{{i.id}}">Remove Item</button>
                     </div>
                     <div class="container-fluid my-2"style="padding: 0;">
                         <div class="w-100" id="cart-btn" onclick="gift()" style="text-align: center;"><i class="fa fa-heart"></i> Gift Wrap</div>

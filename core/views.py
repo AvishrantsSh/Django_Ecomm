@@ -337,9 +337,11 @@ def CartView(request):
                 try:
                     item = Cart.objects.get(customer_id=request.user.id, product_id=pk, status="Cart")
                     item.nos += 1
+                    tmp = item.nos
                     item.save()
+                    return JsonResponse({'success':True, 'val': tmp})
                 except:
-                    return redirect("404")
+                    return JsonResponse({'error':True})
 
         elif "down" in request.POST.keys():
             pk = request.POST["down"]
@@ -348,11 +350,15 @@ def CartView(request):
                     item = Cart.objects.get(customer_id=request.user.id, product_id=pk, status="Cart")
                     if item.nos == 1:
                         item.delete()
+                        tmp = 0
                     else:
                         item.nos -= 1
+                        tmp = item.nos
                         item.save()
+                    return JsonResponse({'success':True, 'val': tmp})
                 except:
-                    return redirect("404")
+                    return JsonResponse({'error':True})
+        
 
     cart = Cart.objects.filter(customer_id = request.user.id, status="Cart").order_by('-date')
     tmp = []
