@@ -11,19 +11,20 @@
 {%block content%}
 
 	<div id="title_sec">
-		Yeaaah Boi
+		
 	</div>
 
     <div class="card">
+        <h3 id="card-head">What we have for you?</h3>
         <div class="row define-container container-fluid">
             <p class="col-md-6 define-sec" id = "left_define">
-                For the seller :<br>
+                <b>For the seller :</b><br>
                 We at BBT bring to you the experience of personalising your business online in just 2 simple steps: <br>
                 Register & upload or scan your list of items and sell.
                 Creating a local network & helping the local shops of the city to increase their  customer base by helping them grow according to their own pace. 
             </p>
             <p class="col-md-6 define-sec" id = "right_define">
-                For the user: <br>
+                <b>For the user :</b><br>
                 Get your results based on the fastest delivery possible, different products at the particular online stores and much more.
                 A virtual market experience brought to you by BBT.
                 Experience visiting your market online from the safe comfort of your home. 	
@@ -32,20 +33,25 @@
     </div>
 
     <div class="card">
+        <h3 id="card-head">How it Works</h3>
         <div class="row work-sec container-fluid">
-            <b>How it Works</b>
+            Connecting the seller with the customers clustered by location and preference through&nbsp;<b> E-Dukaan</b>We at E Dukaan are here to make you experience an easy, simple, comfortable, flexible and profitable way to take your business online.
+            Open another branch of your shop quick and fast, with negligible investments and better returns. 
+            Tell us what you wish to sell and we handle the rest.
+            From digital marketing to location based advertising, we bring the traffic to your products to help you grow.
+            Your growth is our growth.
         </div>
     </div>
 
     <div class="card">
+        <h3 id="card-head">About Us</h3><br>
         <div class="row about-us container-fluid">
-            <b>About Us</b><br>
             Yeah we kool
         </div>
     </div>
     <div class="container d-flex justify-content-center ">
         <a href="{%url 'home'%}" class="cart-btn">
-            <div id="cart-btn">Go To Home</div>
+            <div id="cart-btn">GO TO HOME</div>
         </a>
     </div>
 
@@ -55,4 +61,16 @@
         Quick. 
         Personalised.
     </div>
+<script>
+    var i=0;
+    var text = ['|','w','e','l','c','o','m','e',' ','p','e','o','p','l','e','|'];
+    function typing(){
+        if(i<text.length){
+            document.getElementById("title_sec").innerHTML+=text[i];
+            i++;
+            setTimeout(typing,200);
+        }
+    }
+    typing();
+</script>
 {%endblock content%}
