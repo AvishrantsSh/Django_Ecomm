@@ -26,7 +26,7 @@
                     <div class="row-head"><h4 class="card-title">{{i.name|trim}}</h4></div>
                 </a>
                 <div class="card-details">
-                    <h6 class="card-title sub">{{i.brand|trim}}</h6>
+                    <h6 class="card-title sub">{{i.brand}}</h6>
                     <h4><b>Rs {{i.base_price}}</b></h4>
 
                     <span class="card-text">
@@ -37,25 +37,27 @@
                     </span>
                 </div>
             </div>
-            <div class="col-md-2 quantity">
-                <div class="row-head"><h4 class="card-title" style="font-size: 15px;"><br>Amount In Cart:</h4></div>
-                <table style="width:20px; align-self: center;">
-                <tr>
-                    <td class="p-1" rowspan="2"><h3>{{nos}}</h3></td>
-                
-                    <td class="p-1"><button style="border: 0; outline: none; background-color: transparent;" name="up" value="{{i.id}}"><i class="fa fa-angle-up"></i></button></td>
-                </tr>
-                <tr>
-                    <td class="p-1"><button style="border: 0; outline: none; background-color: transparent;" name="down" value="{{i.id}}"><i class="fa fa-angle-down"></i></button></td>
-                </tr>
-                </table>
-            </div>
-            <div class="col-md-2" style="padding: 0; align-self: center;">
-                <div class="container-fluid my-2" style="padding: 0;">
-                    <button class="w-100" id="cart-btn" name="remove" value="{{i.id}}" onclick="send(this)">Remove Item</button>
+            <div class="col-md-4 row">
+                <div class="col-6" style="align-self: center;">
+                    <div class="row-head"><h4 class="card-title" style="font-size: 15px;"><br>Amount In Cart:</h4></div>
+                    <table style="width:20px; align-self: center;">
+                    <tr>
+                        <td class="p-1" rowspan="2"><h3>{{nos}}</h3></td>
+                    
+                        <td class="p-1"><button style="border: 0; outline: none; background-color: transparent;" name="up" value="{{i.id}}"><i class="fa fa-angle-up"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td class="p-1"><button style="border: 0; outline: none; background-color: transparent;" name="down" value="{{i.id}}"><i class="fa fa-angle-down"></i></button></td>
+                    </tr>
+                    </table>
                 </div>
-                <div class="container-fluid my-2"style="padding: 0;">
-                    <button class="w-100" id="cart-btn">Button 2</button>
+                <div class="col-6" style="padding: 0; align-self: center;">
+                    <div class="container-fluid my-2" style="padding: 0;">
+                        <button class="w-100" id="cart-btn" name="remove" value="{{i.id}}" onclick="send(this)">Remove Item</button>
+                    </div>
+                    <div class="container-fluid my-2"style="padding: 0;">
+                        <button class="w-100" id="cart-btn">Button 2</button>
+                    </div>
                 </div>
             </div>
         </div>
