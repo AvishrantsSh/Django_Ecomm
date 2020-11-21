@@ -1,3 +1,8 @@
+.main-box{
+    width: 100%;
+    min-height: 50.5vh;
+}
+
 .card-container{
     padding: 1vh;
     margin-top: 2vh;
@@ -81,6 +86,36 @@
     padding-right: 7px;
     border-radius: 5%;
 }
+
+.error-box{
+    text-align: center;
+    padding-bottom: 2vh;
+}
+
+.img-container{
+    width: 50%;
+    filter: hue-rotate(-30deg);
+}
+
+#cart-btn{
+    background-color:rgba(200, 13, 56, 0.9);
+    padding: 10px;
+    color: whitesmoke;
+    border-radius: 15px;
+    margin: 1vh;
+    width: 20vh;
+}
+
+#cart-btn:hover{
+    background-color: rgba(236, 20, 56, 0.95);
+    transition-duration: 0.3s;
+}
+
+.cart-btn, .cart-btn:hover{
+    text-align: center;
+    text-decoration: none;
+}
+
 @media screen and (max-width: 768px) {
     .card-container{
         margin-left: 2vh;
@@ -136,5 +171,9 @@
 
     #check-filter{
         width: 100vh;
+    }
+
+    .img-container{
+        width: 100%;
     }
 }
