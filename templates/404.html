@@ -5,9 +5,20 @@
     Home Page
 {%endblock title%}
 {%block link%}
-    <link rel='stylesheet' href='{%static "stylesheet/home.css"%}?v=1.2'>
+    <link rel='stylesheet' href='{%static "stylesheet/search.css"%}?v=1.2'>
 
 {%endblock link%}
 {%block content%}
-    Looks like your are lost. Don't worry, we got you covered. Try navigating to some other link.
+
+<div class="error-box container">
+    <img class="img-container" src="../../static/assets/images/page-not-found.png"><br>
+    Oops! We can't find the page you're looking for.<br> Something is clearly fishy in here.<br>
+    <br> Try visiting the <a href="{%url 'home'%}">home</a>, or find what you're looking for with our equally cool PWA.
+        
+    <div class="container d-flex justify-content-center">
+            <a href="{%url 'home'%}" class="cart-btn">
+                <div id="cart-btn">Download</div>
+            </a>
+        </div>
+</div>
 {%endblock content%}
