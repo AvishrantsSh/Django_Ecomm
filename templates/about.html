@@ -6,12 +6,14 @@
 {%endblock title%}
 {%block link%}
     <link rel='stylesheet' href='{%static "stylesheet/about.css"%}?v=1.2'>
-
+    <script src='{%static "js/animate.js"%}'></script>
 {%endblock link%}
 {%block content%}
-
+    
 	<div id="title_sec">
-		
+		<div id="welcome">
+
+        </div>
 	</div>
 
     <div id="cardid1" class="card">
@@ -61,25 +63,5 @@
         Quick. 
         Personalised.
     </div>
-<script>
-    var i=0;
-    var text = ['|','w','e','l','c','o','m','e',' ','p','e','o','p','l','e','|'];
-    function typing(){
-        if(i<text.length){
-            document.getElementById("title_sec").innerHTML+=text[i];
-            i++;
-            setTimeout(typing,150);
-        }
-    }
-    typing();
-    window.addEventListener('load',setTimeout(function(){
-        document.getElementById("title_sec").style.display='none';
-        document.getElementById("title_sec").style.textAlign='center';
-        document.getElementById("cardid1").style.display='inline-block';
-        document.getElementById("cardid2").style.display='inline-block';
-        document.getElementById("cardid3").style.display='inline-block';
-        document.getElementById("cart-btn").style.display='inline-block';
-    },3000)
-    );
-</script>
+
 {%endblock content%}

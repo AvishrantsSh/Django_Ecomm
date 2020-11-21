@@ -18,7 +18,7 @@
             snack();
         }
     </script>
-    <script>
+    <!-- <script>
         function sendup(element){
             var form = document.getElementById('cart_form');
             $()
@@ -77,7 +77,7 @@
                  }
             }).responseJSON;
         }
-    </script>
+    </script> -->
 {%endblock link%}
 {%block content%}
 
@@ -116,10 +116,10 @@
                     <tr>
                         <td class="p-1" rowspan="2"><h3 id="{{i.id}}">{{nos}}</h3></td>
                     
-                        <td class="p-1"><button style="border: 0; outline: none; background-color: transparent;" name="up" value="{{i.id}}" type="button" onclick="sendup(this)"><i class="fa fa-angle-up"></i></button></td>
+                        <td class="p-1"><button style="border: 0; outline: none; background-color: transparent;" name="up" value="{{i.id}}" onclick="sendup(this)"><i class="fa fa-angle-up"></i></button></td>
                     </tr>
                     <tr>
-                        <td class="p-1">{%if nos > 1%}<button style="border: 0; outline: none; background-color: transparent;" name="down" value="{{i.id}}" type="button" onclick="senddown(this)"><i class="fa fa-angle-down"></i></button>{%endif%}</td>
+                        <td class="p-1">{%if nos > 1%}<button style="border: 0; outline: none; background-color: transparent;" name="down" value="{{i.id}}" onclick="senddown(this)"><i class="fa fa-angle-down"></i></button>{%endif%}</td>
                     </tr>
                     </table>
                 </div>

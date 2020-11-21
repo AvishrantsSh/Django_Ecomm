@@ -18,9 +18,9 @@ search = Indexer()
 User = get_user_model()
 def HomeView(request):
     list_all = Product_List.objects.all()
-    product = [x for x in list_all.order_by("-rating") if x.total_ratings > 100][:10]
-    trending = [x for x in list_all.order_by("total_ratings") if x.rating > 4 and x.total_ratings > 10][:10]
-    latest = list(list_all.order_by("total_ratings"))[:10]
+    product = [x for x in list_all.order_by("-rating") if x.total_ratings > 10000][:10]
+    trending = [x for x in list_all.order_by("-total_ratings") if x.total_ratings > 1631200][:10]
+    latest = [x for x in list_all.order_by("-total_ratings") if x.total_ratings < 1500 and x.rating > 4][:10]
     return render(request, 'home.html', {'best': product[1:],
                                          'trending': trending[1:],
                                          'latest': latest[1:],
@@ -329,7 +329,7 @@ def CartView(request):
                 try:
                     Cart.objects.get(customer_id=request.user.id, product_id=pk, status="Cart").delete()
                 except:
-                    return redirect("404")
+                    return redirect('404')
                 
         elif "up" in request.POST.keys():
             pk = request.POST["up"]
@@ -337,9 +337,12 @@ def CartView(request):
                 try:
                     item = Cart.objects.get(customer_id=request.user.id, product_id=pk, status="Cart")
                     item.nos += 1
+                    tmp = item.nos
                     item.save()
+                    # return JsonResponse({'success':True, 'val': tmp})
                 except:
-                    return redirect("404")
+                    return redirect('404')
+                    # return JsonResponse({'error':True})
 
         elif "down" in request.POST.keys():
             pk = request.POST["down"]
@@ -348,11 +351,15 @@ def CartView(request):
                     item = Cart.objects.get(customer_id=request.user.id, product_id=pk, status="Cart")
                     if item.nos == 1:
                         item.delete()
+                        tmp = 0
                     else:
                         item.nos -= 1
+                        tmp = item.nos
                         item.save()
+                    # return JsonResponse({'success':True, 'val': tmp})
                 except:
-                    return redirect("404")
+                    return redirect('404')
+                    # return JsonResponse({'error':True})
 
     cart = Cart.objects.filter(customer_id = request.user.id, status="Cart").order_by('-date')
     tmp = []
