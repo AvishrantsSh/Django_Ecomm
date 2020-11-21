@@ -14,7 +14,7 @@
 		
 	</div>
 
-    <div class="card">
+    <div id="cardid1" class="card">
         <h3 id="card-head">What we have for you?</h3>
         <div class="row define-container container-fluid">
             <p class="col-md-6 define-sec" id = "left_define">
@@ -32,7 +32,7 @@
         </div>
     </div>
 
-    <div class="card">
+    <div id="cardid2" class="card">
         <h3 id="card-head">How it Works</h3>
         <div class="row work-sec container-fluid">
             Connecting the seller with the customers clustered by location and preference through&nbsp;<b> E-Dukaan</b>We at E Dukaan are here to make you experience an easy, simple, comfortable, flexible and profitable way to take your business online.
@@ -43,7 +43,7 @@
         </div>
     </div>
 
-    <div class="card">
+    <div id="cardid3" class="card">
         <h3 id="card-head">About Us</h3><br>
         <div class="row about-us container-fluid">
             Yeah we kool
@@ -68,9 +68,18 @@
         if(i<text.length){
             document.getElementById("title_sec").innerHTML+=text[i];
             i++;
-            setTimeout(typing,200);
+            setTimeout(typing,150);
         }
     }
     typing();
+    window.addEventListener('load',setTimeout(function(){
+        document.getElementById("title_sec").style.display='none';
+        document.getElementById("title_sec").style.textAlign='center';
+        document.getElementById("cardid1").style.display='inline-block';
+        document.getElementById("cardid2").style.display='inline-block';
+        document.getElementById("cardid3").style.display='inline-block';
+        document.getElementById("cart-btn").style.display='inline-block';
+    },3000)
+    );
 </script>
 {%endblock content%}
