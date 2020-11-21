@@ -3,7 +3,7 @@ body{
 }
 
 .main-box{
-    padding: 0;
+    width: 100%!important;
 }
 
 .slide-head{
@@ -90,12 +90,32 @@ body{
 .row-card{
     align-self: center;
     min-width: 45vh;
+    margin-top: 1vh;
+    margin-bottom: 1vh;
 }
 
 .row-title{
     margin-top: 5vh;
     padding-left:3%;
     padding-right:3%;
+}
+
+.top-item{
+    border: none;
+}
+
+.cart-btn, .cart-btn:hover{
+    text-align: center;
+    text-decoration: none;
+}
+
+.product-details{
+    margin: 0!important;
+    padding-bottom: 0!important;
+}
+
+#top-item-row{
+
 }
 
 @media screen and (max-width: 768px) {
