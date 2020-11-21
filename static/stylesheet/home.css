@@ -114,10 +114,6 @@ body{
     padding-bottom: 0!important;
 }
 
-#top-item-row{
-
-}
-
 @media screen and (max-width: 768px) {
     .row-card{
         min-width: 50vh;
