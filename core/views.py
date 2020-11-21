@@ -163,9 +163,9 @@ def Seller_Landing(request, cat, store, pk):
             raise Exception
     except:
         return redirect('404')
-    product = [x for x in Product_List.objects.filter(seller = pk).order_by("-rating") if x.total_ratings > 100][:10]
-    trending = [x for x in Product_List.objects.filter(seller = pk).order_by("total_ratings") if x.rating > 4 and x.total_ratings > 10][:10]
-    latest = [x for x in Product_List.objects.filter(seller = pk).order_by("total_ratings")][:10]
+    product = [x for x in Product_List.objects.filter(seller = pk).order_by("-rating") if x.total_ratings > 10000][:10]
+    trending = [x for x in Product_List.objects.filter(seller = pk).order_by("-total_ratings") if x.total_ratings > 1631200][:10]
+    latest = [x for x in Product_List.objects.filter(seller = pk).order_by("-total_ratings") if x.total_ratings < 1500 and x.rating > 4][:10]
     return render(request,
                   'seller.html',
                   {'seller': obj, 'best': product, 'trending': trending, 'latest': latest})   
@@ -189,10 +189,12 @@ def Profile(request):
     except Seller.DoesNotExist:
         # try:
         usr = User.objects.get(id = request.user.id)
+        product = [x for x in Product_List.objects.all().order_by("-rating") if x.total_ratings > 10000][:10]
         return render(
                         request,
                         'profile.html',
-                        {'base_user':usr}
+                        {'base_user':usr,
+                        'recommended': product}
                         )
         # except:
         #     return redirect('404')
