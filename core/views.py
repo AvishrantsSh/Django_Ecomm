@@ -304,7 +304,6 @@ def Products(request):
                 'lang':lang,
                 })
 
-
 def Add_Cart(request):
     if request.method == 'POST':
         pk = None
