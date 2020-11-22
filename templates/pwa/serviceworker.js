@@ -1,4 +1,4 @@
-const CACHE = 'cache_vol_2';
+const CACHE = 'cache_vol_44';
 const filestoCache = [
                       '/static/stylesheet/about.css',
                       '/static/stylesheet/home.css',

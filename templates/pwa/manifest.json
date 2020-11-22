@@ -6,7 +6,7 @@
     "display": "standalone",
     "background_color": "#FFF",
     "theme_color": "#493174",
-    "description": "Web-Application for ProjectY Site",
+    "description": "Web-Application for EnigmaCommerce Site",
     "dir": "ltr",
     "lang": "en-US",
     "orientation": "portrait-primary",
@@ -17,6 +17,6 @@
           "type": "image/png",
           "sizes": "512x512",
           "purpose": "maskable any"
-        }        
+        }         
       ]
 }
