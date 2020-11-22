@@ -146,6 +146,10 @@
 </div>
 <div id="snackbar"></div>
 {%else%}
-Saala Kuchh ni mila
+<div class="error-box container">
+    <img class="img-container" src="../../static/assets/images/page-not-found.png"><br>
+    Looks like the cart is empty. Click "<b>Add to cart</b>" on any item, to add it here.<br>
+    <br> Try visiting the <a href="{%url 'home'%}">home</a>, or just take a deep breath. Look out the window. It's a beautiful day.
+</div>
 {%endif%}
 {%endblock content%}
