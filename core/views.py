@@ -18,15 +18,23 @@ search = Indexer()
 User = get_user_model()
 def HomeView(request):
     list_all = Product_List.objects.all()
-    product = [x for x in list_all.order_by("-rating") if x.total_ratings > 10000][:10]
-    trending = [x for x in list_all.order_by("-total_ratings") if x.total_ratings > 1631200][:10]
-    latest = [x for x in list_all.order_by("-total_ratings") if x.total_ratings < 1500 and x.rating > 4][:10]
-    return render(request, 'home.html', {'best': product[1:],
+    if list_all:
+        product = [x for x in list_all.order_by("-rating") if x.total_ratings > 10000][:10]
+        trending = [x for x in list_all.order_by("-total_ratings") if x.total_ratings > 1631200][:10]
+        latest = [x for x in list_all.order_by("-total_ratings") if x.total_ratings < 1500 and x.rating > 4][:10]
+        return render(request, 'home.html', {'best': product[1:],
                                          'trending': trending[1:],
                                          'latest': latest[1:],
                                          'bestproduct': product[0],
                                          'trendingproduct': trending[0],
                                          'latestproduct': latest[0]})
+    else:
+        return render(request, 'home.html', {'best': None,
+                                         'trending': None,
+                                         'latest': None,
+                                         'bestproduct': None,
+                                         'trendingproduct': None,
+                                         'latestproduct': None})
 
 def populate():
     lst = list(Product_List.objects.all())

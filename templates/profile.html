@@ -24,7 +24,7 @@
         Currently no addresses are stored. <a href="#">Add Address</a>
         {%endif%}
     </div>
-
+	{%if recommended%}
     <h3 class="row-title">Recommended For You</h3><br>
 	<div class="testimonial-group">
 		<div class="row text-center">
@@ -49,7 +49,7 @@
 			{%endfor%}
 		</div>
     </div>
-    
+    {%endif%}
 </div>
 
 {%endblock content%}
