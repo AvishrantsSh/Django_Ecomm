@@ -37,11 +37,13 @@ class DocumentForm(forms.Form):
     addr1 = forms.CharField(label="Address Line 1", widget=forms.TextInput(
                                 attrs={
                                     'required':'True',
-                                    'class':'text-box'
+                                    'class':'text-box',
+                                    'autocomplete':'address-line1'
                                     }))
     addr2 = forms.CharField(label="Address Line 2", widget=forms.TextInput(
                                 attrs={
-                                    'class':'text-box'
+                                    'class':'text-box',
+                                    'autocomplete':'address-line2'
                                     }))
     district = forms.CharField(label="District", widget=forms.TextInput(
                                 attrs={
@@ -56,7 +58,8 @@ class DocumentForm(forms.Form):
     country = forms.CharField(label="Country", widget=forms.TextInput(
                                 attrs={
                                     'required':'True',
-                                    'class':'text-box'
+                                    'class':'text-box',
+                                    'autocomplete':'country'
                                     }))
     pincode = forms.CharField(label="Pincode", widget=forms.TextInput(
                                 attrs={
