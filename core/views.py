@@ -218,16 +218,16 @@ def Products(request):
     except:
         seller_pk = None
     try:
-        sort = request.GET["sort"]
+        sort = request.GET["sort"] if request.GET["sort"] != "None" else None
         sort = sort if sort in ["price_asc","price_dsc","rating", "trend", "fresh", "most"] else "rating"
     except:
         sort = "rating"
     try:
-        product = request.GET["product"]
+        product = request.GET["product"] if request.GET["product"] != "None" else None 
     except:
         product = None
     try:
-        lang = request.GET["lang"]
+        lang = request.GET["lang"] if request.GET["lang"] != "None" else None
         lang = None if lang == "all" else lang
     except:
         lang = None
