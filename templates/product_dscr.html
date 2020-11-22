@@ -48,7 +48,7 @@
 
 	<div class="card col-md-9">
 			<div class="card-inner row">
-				<img class="prod-image col-md-4" src="{{data.img.url}}">
+				<img class="prod-image col-md-4" src="{%static 'assets/icons/product.svg'%}">
 				<div class="product-details col-md-8">
 					<div class="prod-head">{{data.name}}<br></div>
 					<div class="prod-brand">{{data.brand}}<br></div>
@@ -75,7 +75,7 @@
 		<div class="cart-container">
 			<div class="cart-order">
 				<div class="icon-container">
-					<img src="../media/cart.svg" alt="Cart Icon" id="cart-icon">
+					<img src="{%static 'assets/icons/cart.svg'%}" alt="Cart Icon" id="cart-icon">
 				</div>
 				<form id="product_form" style="display: flex;">
 					{%csrf_token%}

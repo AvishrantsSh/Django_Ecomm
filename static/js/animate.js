@@ -30,10 +30,4 @@
         document.getElementById('welcome').innerHTML = "";
         document.getElementById('welcome').style.opacity = 1;
     }
-
-    setTimeout(typing, 500);
-    setTimeout(fade, 3000);
-    setTimeout(show, 4000);
-    setTimeout(typing2, 4500);
-    setTimeout(transition, 7500);
-      
+    

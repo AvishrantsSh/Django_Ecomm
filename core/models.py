@@ -28,7 +28,10 @@ def validate_file_extension(value):
 class Product_List(models.Model):
     
     id = models.UUIDField(default=uuid4, primary_key=True)
-    img = models.ImageField(default="/product.svg", upload_to = img_path)
+
+    # # Site supports the upload and storage of Files. However due to Platform limitation, this option is currently disabled.
+    # img = models.ImageField(default="/product.svg", upload_to = img_path)
+
     name = models.CharField(max_length=100)
     brand = models.CharField(max_length=50)
     seller = models.UUIDField(unique=False)
@@ -65,7 +68,10 @@ class Seller(models.Model):
     bs_category = models.CharField(max_length=30, choices=choice)
     gst_no = models.CharField(max_length=20)
     pan_no = models.CharField(max_length=20)
-    pan_card = models.FileField(upload_to=change_name)
+    
+    # # Site supports the upload and storage of Files. However due to Platform limitation, this option is currently disabled.
+    # pan_card = models.FileField(upload_to=change_name)
+    
     bank_ac = models.CharField(max_length=20)
     address = jsonfield.JSONField()
     rating = models.FloatField(default=0)

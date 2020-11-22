@@ -7,10 +7,11 @@
 {%block link%}
 	<link rel='stylesheet' href='{%static "stylesheet/home.css"%}?v=2.2'>
 	<link rel='stylesheet' href='{%static "stylesheet/product_dscr.css"%}?v=1.5'>
+	<script src='{%static "js/animate.js"%}'></script>
 
 {%endblock link%}
 {%block content%}
-<div class="carousel-container">
+<div class="carousel-container" id="carousel">
 	<div id="slides" class="carousel slide" data-ride="carousel">
 		<ul class="carousel-indicators">
 			<li class="indicator active" data-target="#slides" data-slide-to="0" class="active"></li>
@@ -72,8 +73,9 @@
 	</div>
 </div>
 
-<div style=" width: 100%;">
+<div style=" width: 100%;" id="main-content">
 	<h2 class="row-title">Top Rated</h2>
+	<br>
 	<div class = "row" style=" width: 100%;">
 		<div class="card col-md-10 p-2 top-item">
 			<div class="card-inner row">
@@ -88,7 +90,7 @@
 						<span class="add-head">Language: </span>{{bestproduct.additional|language}}<br>
 					</div>
 					<div class="w-50">
-						<a class="cart-btn" href="{%url 'product' bestproduct.id%}">
+						<a class="cart-btn" href="{%url 'product' bestproduct.id%}" target="blank">
 							<div id="cart-btn" style="text-align: center;" onclick="buy()">Shop Now</div>
 						</a>
 					</div>
@@ -96,13 +98,14 @@
 			</div>
 		</div>
 	</div>
+	<br>
 	<div class="testimonial-group">
 		<div class="row text-center">
 			{%for i in best%}
 			<div class="card-container row-card col-lg-3 col-md-6">
 				<div class="card">
-					<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
-						<img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:60%">
+					<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="blank">
+						<img class="card-img-top" src="{%static 'assets/icons/product.svg'%}" alt="Card image" style="width:60%">
 						<div class="card-details">
 							<h4 class="card-title" style="font-size: 20px; margin-top: 2vh;">{{i.name|trim}}</h4>
 							<h6 class="card-title">{{i.brand|trim}}</h6>
@@ -121,11 +124,12 @@
 	</div>
 
 	<h2 class="row-title">Trending</h2>
+	<br>
 	<div class = "row">
 		<div class="card col-md-10 p-2 top-item">
 			<div class="card-inner row" id="top-item-row">
 				<div class="col-md-4">
-					<img class="prod-image" src="../../static/assets/images/thehobbit.jpg" style="max-height: 50vh; padding:0; padding-left: 30%;">
+					<img class="prod-image" src="../../static/assets/images/thehobbit.jpg" style="max-height: 50vh; padding:0; margin: auto; display: block;">
 				</div>
 				<div class="product-details col-md-8">
 					<div class="prod-head">{{trendingproduct.name}}<br></div>
@@ -137,7 +141,7 @@
 						<span class="add-head">Language: </span>{{trendingproduct.additional|language}}
 					</div>
 					<div class="w-50">
-						<a class="cart-btn" href="{%url 'product' trendingproduct.id%}">
+						<a class="cart-btn" href="{%url 'product' trendingproduct.id%}" target="blank">
 							<div id="cart-btn" style="text-align: center;" onclick="buy()">Shop Now</div>
 						</a>
 					</div>
@@ -145,13 +149,14 @@
 			</div>
 		</div>
 	</div>
+	<br>
 	<div class="testimonial-group">
 		<div class="row text-center">
 			{%for i in trending%}
 			<div class="card-container  row-card col-lg-3 col-md-6">
 				<div class="card">
-					<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
-						<img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:60%">
+					<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="blank">
+						<img class="card-img-top" src="{%static 'assets/icons/product.svg'%}" alt="Card image" style="width:60%">
 						<div class="card-details">
 							<h4 class="card-title" style="font-size: 20px; margin-top: 2vh;">{{i.name|trim}}</h4>
 							<h6 class="card-title">{{i.brand|trim}}</h6>
@@ -170,11 +175,12 @@
 	</div>
 
 	<h2 class="row-title">Fresh Arrivals</h2>
+	<br>
 	<div class = "row">
 		<div class="card col-md-10 p-2 top-item">
 			<div class="card-inner row" id="top-item-row">
 				<div class="col-md-4">
-					<img class="prod-image" src="../../static/assets/images/glamorous.jpg" style="max-height: 50vh; padding:0; padding-left: 30%;">
+					<img class="prod-image" src="../../static/assets/images/glamorous.jpg" style="max-height: 50vh; padding:0; margin: auto; display: block;">
 				</div>
 				<div class="product-details col-md-8">
 					<div class="prod-head">{{latestproduct.name}}<br></div>
@@ -186,7 +192,7 @@
 						<span class="add-head">Language: </span>{{latestproduct.additional|language}}
 					</div>
 					<div class="w-50">
-						<a class="cart-btn" href="{%url 'product' latestproduct.id%}">
+						<a class="cart-btn" href="{%url 'product' latestproduct.id%}" target="blank">
 							<div id="cart-btn" style="text-align: center;" onclick="buy()">Shop Now</div>
 						</a>
 					</div>
@@ -194,14 +200,14 @@
 			</div>
 		</div>
 	</div>
-
+	<br>
 	<div class="testimonial-group">
 		<div class="row text-center">
 			{%for i in latest%}
 			<div class="card-container  row-card col-lg-3 col-md-6">
 				<div class="card">
-					<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
-						<img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:60%">
+					<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="blank">
+						<img class="card-img-top" src="{%static 'assets/icons/product.svg'%}" alt="Card image" style="width:60%">
 						<div class="card-details">
 							<h4 class="card-title" style="font-size: 20px; margin-top: 2vh;">{{i.name|trim}}</h4>
 							<h6 class="card-title">{{i.brand|trim}}</h6>
@@ -218,7 +224,31 @@
 			{%endfor%}
 		</div>
 	</div>
-
-
 </div>
+<div id="title_sec">
+	<div id="welcome">
+
+	</div>
+</div>
+<script>
+    function run(){
+		document.getElementById('carousel').style.display = 'none';
+		document.getElementById('main-content').style.display = 'none';
+		if(typeof(window.localStorage.getItem('welcomeShown')) != null && window.localStorage.getItem('welcomeShown') != 'true'){
+            setTimeout(typing, 500);
+            setTimeout(fade, 3000);
+            setTimeout(show, 4000);
+			setTimeout(typing2, 4500);
+            setTimeout(transition, 7500);
+            window.localStorage.setItem('welcomeShown','true');
+        }
+        else{
+           document.getElementById('title_sec').style.display = 'none';
+		}
+		document.getElementById('carousel').style.display = 'block';
+		document.getElementById('main-content').style.display = 'block';
+
+    }
+    run();
+</script>
 {%endblock content%}

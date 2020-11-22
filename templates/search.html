@@ -119,7 +119,7 @@
                 <div class="card-container col-lg-3 col-md-6">
                     <div class="card">
                         <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="blank">
-                            <img class="card-img-top" src="{{i.img.url}}" alt="Card image" style="width:90%;">
+                            <img class="card-img-top" src="{%static 'assets/icons/product.svg'%}" alt="Card image" style="width:90%;">
                             <div class="card-details">
                                 <h4 class="card-title" style="font-size: 20px; margin-top: 2vh;">{{i.name|trim}}</h4>
                                 <h6 class="card-title">{{i.brand|trim}}</h6>
