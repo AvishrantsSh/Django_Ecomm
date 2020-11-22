@@ -13,7 +13,7 @@
     
     "icons": [
         {
-          "src": "/static/assets/icons/avatar.png",
+          "src": "/static/images/icons/icon_colour.png",
           "type": "image/png",
           "sizes": "512x512",
           "purpose": "maskable any"
