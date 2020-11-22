@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Righteous&display=swap');
+
 .cherry{
 	color:  rgba(236, 20, 56, 0.95);
 }
@@ -5,7 +7,9 @@
 	padding: 0;
 }
 #head_start{
-	font-family: 'Pacifico', cursive;
+	font-family: 'Righteous', cursive;
+	font-size: 3.5vh;
+	padding:0;
 }
 #head_start:hover{
 	color: black;

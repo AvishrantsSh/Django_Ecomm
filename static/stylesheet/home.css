@@ -137,6 +137,10 @@ body{
     margin: 0!important;
     padding-bottom: 0!important;
 }
+
+.banner-txt{
+    font-size: 2.5vh;
+}
 @media screen and (max-width: 768px) {
     .row-card{
         min-width: 50vh;
