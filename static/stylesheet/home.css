@@ -105,7 +105,7 @@ body{
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient(#999, #fff);
+    background-image: linear-gradient( rgba(236, 20, 56, 0.95), #fff);
     color: #fff;
     text-align: center;
     font-size: 6vh;
@@ -117,9 +117,17 @@ body{
     justify-content: center;
 }
 #welcome{
+    letter-spacing: 7px;
+    color: #000;
     background: transparent;
     margin: auto;
     text-align: center;
+    background-image: linear-gradient( rgba(236, 20, 56, 0.95), #fff);
+    height: 100%;
+    width: 100%;
+    padding-top: 20%;
+    /* text-shadow: 2px 2px 5px #; */
+    /* -webkit-text-stroke: 2px #000; */
 }
 .top-item{
     border: none;
