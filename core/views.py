@@ -81,7 +81,6 @@ def Seller_reg(request):
                             gst_no = request.POST['gst_no'],
                             pan_no = request.POST['pan_no'],
                             address = address,
-                            pan_card = request.FILES['pan_card'],
                             )
             newdoc.save()
             return redirect('confirm')

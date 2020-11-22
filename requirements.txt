@@ -7,4 +7,3 @@ pyexcel_xlsx
 django-jsonfield
 pandas
 whoosh
-pillow
