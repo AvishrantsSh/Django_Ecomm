@@ -131,7 +131,7 @@ SESSION_COOKIE_SECURE = True
 CSRF_COOKIE_SECURE = True
 django_heroku.settings(locals())
 
-Static files (CSS, JavaScript, Images)
+# Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
