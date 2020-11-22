@@ -18,66 +18,7 @@
             snack();
         }
     </script>
-    <!-- <script>
-        function sendup(element){
-            var form = document.getElementById('cart_form');
-            $()
-            $.ajax({
-                url: '',
-                data: {
-                    "csrfmiddlewaretoken": form.csrfmiddlewaretoken.value,
-                    "up": $(element).val()
-                },
-                cache: false,
-                method: 'POST',
-                dataType : "json",
-                success : function (data) {
-                    // console.log(data);
-                    if (data.error) {
-                        $("#snackbar").html("Snap. Something went wrong");
-                        snack();
-                    } else if (data.success) {
-                        $("#snackbar").html("Quantity Updated");
-                        document.getElementById($(element).val()).innerHTML = data.val;
-                        snack();
-                    }
-                },
-                error: function() {
-                   $("#snackbar").html("Connection Error");
-                   snack();
-                 }
-            }).responseJSON;
-        }
-        function senddown(element){
-            var form = document.getElementById('cart_form');
-            $()
-            $.ajax({
-                url: '',
-                data: {
-                    "csrfmiddlewaretoken": form.csrfmiddlewaretoken.value,
-                    "down": $(element).val()
-                },
-                cache: false,
-                method: 'POST',
-                dataType : "json",
-                success : function (data) {
-                    // console.log(data);
-                    if (data.error) {
-                        $("#snackbar").html("Snap. Something went wrong");
-                        snack();
-                    } else if (data.success) {
-                        $("#snackbar").html("Quantity Updated");
-                        document.getElementById($(element).val()).innerHTML = data.val;
-                        snack();
-                    }
-                },
-                error: function() {
-                   $("#snackbar").html("Connection Error");
-                   snack();
-                 }
-            }).responseJSON;
-        }
-    </script> -->
+    
 {%endblock link%}
 {%block content%}
 {%if items%}
