@@ -27,6 +27,8 @@
                         $("#snackbar").html("Snap. Something went wrong");
                         snack();
                     } else if (data.success) {
+                        $(element).html("Added <i class='fa fa-check'></i>")
+                        $(element).css('background-color', 'green');
                         $("#snackbar").html("Added to Cart");
                         snack();
                     }
@@ -43,20 +45,10 @@
 {%if sid%}{%block sid%}<input type="hidden" name="id" value="{{sid}}"/>{%endblock sid%}{%endif%}
 {%block content%}
 {%if found%}
-<div class="result-head row">
-    {%if search%}{%endif%}
-    {%if sid%}
-    <form>
-        {%if search%}<input type="hidden" name="product" value="{{search}}"/>{%endif%}
-        <button type="submit">Search Globally Instead</button>
-    </form>
-    {%endif%}
-</div>
-
-<div class="row" style="margin-top: 1vh; width: 100vw;">
-    <div class="col-md-2 row">
-        <div class="col-12 order-md-1" style="font-size: 20px; left: 1%;">{{total}} Results found.</div>
-        <div class="filter-pane order-md-2 h-100 col-12">
+<div class="row">
+    <div class="col-md-2 row" style="margin:0; padding:0;">
+        <div class="col-12 order-2 order-lg-1" style="font-size: 20px; left: 1%;">{{total}} results found</div>
+        <div class="filter-pane order-1 order-lg-2 h-100 col-12">
             <h4>Filters</h4>
             <form>
                 {%if sid%}<input type="hidden" name="id" value="{{sid}}"/>{%endif%}
@@ -65,7 +57,7 @@
                     <div class="testimonial-group">
                         <div class="row">
                             <div class="col-10">
-                                <div class="filter-section">
+                                <div class="filter-section m-2">
                                     Sort By
                                     <select class="custom-select" name="sort">
                                         <optgroup label="Rating">
@@ -82,7 +74,7 @@
                                         </optgroup>
                                     </select>
                                 </div>
-                                <div class="filter-section pt-2">
+                                <div class="filter-section pt-2 m-2">
                                     Language Code
                                     <select class="custom-select" name="lang">
                                         <option value="all" selected style="font-weight: bold;">All</option>
@@ -93,7 +85,7 @@
                                 </div>
                             </div>
 
-                            <div class="filter-section col-8">
+                            <div class="filter-section col-8 m-2">
                                 Categories
                                 {%for i in valid_cat%}
                                     <div class="checkbox">
@@ -111,7 +103,7 @@
         </div>
     </div>
     <!-- Product Panel -->
-    <div class="col-md-10">
+    <div class="col-md-10 tmp">
         <form id="product_form" style="display: flex;">
             <div class="row search-container">
                 {%csrf_token%}
@@ -133,8 +125,11 @@
                             </div>
                         </a>
                         <div class="cart-btn">
+                            {%if user.is_authenticated%}
                             <button type="button" name="add_cart" value="{{i.id}}" onclick="send(this)" id="cart-btn">Add to Cart</button>
-                            <!-- <a href="#" id="cart-btn">Add to Cart</a> -->
+                            {%else%}
+                            <a href="{%url 'login'%}" style="text-decoration: none;"><button type="button" name="add_cart" value="{{i.id}}" id="cart-btn">Add to Cart</button></a>
+                            {%endif%}
                         </div>
                     </div>
                 </div>
@@ -166,13 +161,7 @@
     </ul>
 </nav>
 <div id="snackbar">Added to Cart</div>
-<!-- <script>
-    function snack() {
-      var x = document.getElementById("snackbar");
-      x.className = "show";
-      setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
-    }
-</script> -->
+
 {% endif %}
 {%else%}
 <div class="error-box container">

@@ -105,29 +105,24 @@ body{
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: linear-gradient( rgba(236, 20, 56, 0.95), #fff);
-    color: #fff;
+    background-image: linear-gradient(rgba(236, 20, 56, 0.3), #fff );
+    color: rgba(236, 20, 56, 0.7);
     text-align: center;
     font-size: 6vh;
     font-weight: bold;
-    letter-spacing: 7px;
     overflow: hidden;
     z-index: 1;
     display: flex;
-    justify-content: center;
 }
 #welcome{
     letter-spacing: 7px;
-    color: #000;
+    height: 100%;
     background: transparent;
     margin: auto;
     text-align: center;
-    background-image: linear-gradient( rgba(236, 20, 56, 0.95), #fff);
-    height: 100%;
-    width: 100%;
-    padding-top: 20%;
-    /* text-shadow: 2px 2px 5px #; */
-    /* -webkit-text-stroke: 2px #000; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .top-item{
     border: none;

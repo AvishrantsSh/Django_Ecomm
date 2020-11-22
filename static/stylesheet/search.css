@@ -142,7 +142,6 @@
     }
 
     .filter-pane{
-        margin-top: 2vh;
         border-top-right-radius: 0;
         border-bottom-right-radius: 0;
         padding-bottom: 2vh;
@@ -175,5 +174,8 @@
 
     .img-container{
         width: 100%;
+    }
+    .tmp{
+        margin-top: 30px;
     }
 }

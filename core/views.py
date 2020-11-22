@@ -27,14 +27,16 @@ def HomeView(request):
                                          'latest': latest[1:],
                                          'bestproduct': product[0],
                                          'trendingproduct': trending[0],
-                                         'latestproduct': latest[0]})
+                                         'latestproduct': latest[0],
+                                         'seller': list(Seller.objects.all())[0]})
     else:
         return render(request, 'home.html', {'best': None,
                                          'trending': None,
                                          'latest': None,
                                          'bestproduct': None,
                                          'trendingproduct': None,
-                                         'latestproduct': None})
+                                         'latestproduct': None,
+                                         'seller': None})
 
 def populate():
     lst = list(Product_List.objects.all())
@@ -83,7 +85,7 @@ def Seller_reg(request):
                             address = address,
                             )
             newdoc.save()
-            return redirect('confirm')
+            return redirect('home')
     else:
         form = DocumentForm() # A empty, unbound form
     
@@ -101,53 +103,59 @@ def Seller_reg(request):
 
 def Extract_dt(request):
     # Handle file upload
-    if request.method == 'POST':
-        form = DocFileForm(request.POST, request.FILES)
-        if form.is_valid():
-            try:
-                excel_file = request.FILES['docfile']
-            except:
-                return JsonResponse({"error":"File not found"})
-
-            if(str(excel_file).split('.')[-1]=="xls"):
-                data = xls_get(excel_file, column_limit=10)
-
-            elif(str(excel_file).split('.')[-1]=="xlsx"):
-                data = xlsx_get(excel_file, column_limit=10)
-
-            else:
-                return JsonResponse({"error":"Invalid File Format"})
-
-            data = data[list(data.keys())[0]]    
-            data = to_dict(data)
-            cat = Seller.objects.get(id = request.user.id).bs_category
-                    
-            if cat == "Literature and Stationary":
-                Product_List.objects.filter(seller=request.user.id).delete()
+    if request.user.is_authenticated:
+        if request.method == 'POST':
+            form = DocFileForm(request.POST, request.FILES)
+            if form.is_valid():
                 try:
-                    for i in data:
-                        Product_List(
-                            name = i["title"],
-                            brand = i["publisher"],
-                            base_price = i["price"],
-                            rating = i["rating"],
-                            total_ratings= i ["total ratings"],
-                            stock = i["stock"],
-                            description = i["description"] if "description" in i.keys() 
-                                                            else "No description provided by Seller",
-                            additional = json.dumps({"author": i["author"], "pages": i["pages"], "language":i["language"], "publication date":i["publication date"]}),
-                            seller = request.user.id,
-                        ).save()
+                    excel_file = request.FILES['docfile']
                 except:
+                    return JsonResponse({"error":"File not found"})
+
+                if(str(excel_file).split('.')[-1]=="xls"):
+                    data = xls_get(excel_file, column_limit=10)
+
+                elif(str(excel_file).split('.')[-1]=="xlsx"):
+                    data = xlsx_get(excel_file, column_limit=10)
+
+                else:
+                    return JsonResponse({"error":"Invalid File Format"})
+
+                data = data[list(data.keys())[0]]    
+                data = to_dict(data)
+                try:
+                    cat = Seller.objects.get(id = request.user.id).bs_category
+                except:
+                    return redirect('404')
+
+                if cat == "Literature and Stationary":
+                    Product_List.objects.filter(seller=request.user.id).delete()
+                    try:
+                        for i in data:
+                            Product_List(
+                                name = i["title"],
+                                brand = i["publisher"],
+                                base_price = i["price"],
+                                rating = i["rating"],
+                                total_ratings= i ["total ratings"],
+                                stock = i["stock"],
+                                description = i["description"] if "description" in i.keys() 
+                                                                else "No description provided by Seller",
+                                additional = json.dumps({"author": i["author"], "pages": i["pages"], "language":i["language"], "publication date":i["publication date"]}),
+                                seller = request.user.id,
+                            ).save()
+                    except:
+                        return JsonResponse({"error":"Bad Request"})
+                else:
                     return JsonResponse({"error":"Bad Request"})
-            else:
-                return JsonResponse({"error":"Bad Request"})
-                
-            return JsonResponse({"success":True})
-    else:
-        form = DocFileForm() # A empty, unbound form
+                    
+                return JsonResponse({"success":True})
+        else:
+            form = DocFileForm() # A empty, unbound form
+        
+        return render(request,'sheet_upload.html',{'form': form})
     
-    return render(request,'sheet_upload.html',{'form': form})
+    return redirect('404')
 
 def get_dt(request):
     records = Product_List.objects.all()
@@ -194,15 +202,15 @@ def Profile(request):
                         {'seller': seller, 'base': "{0}://{1}".format(request.scheme, request.get_host())}
                         )
     except Seller.DoesNotExist:
-        # try:
-        usr = User.objects.get(id = request.user.id)
-        return render(
-                        request,
-                        'profile.html',
-                        {'base_user':usr}
-                        )
-        # except:
-        #     return redirect('404')
+        try:
+            usr = User.objects.get(id = request.user.id)
+            return render(
+                            request,
+                            'profile.html',
+                            {'base_user':usr}
+                            )
+        except:
+            return redirect('404')
 
 def Products(request):
     try:
@@ -313,16 +321,17 @@ def Products(request):
 def Add_Cart(request):
     if request.method == 'POST':
         pk = None
-        if "add" in request.POST.keys():
-            pk = request.POST["add"]
-            if pk is not None:
-                try:
-                    item = Cart.objects.get(customer_id=request.user.id, product_id=pk, status="Cart")
-                    item.nos += 1
-                    item.save()
-                except:
-                    Cart(customer_id=request.user.id, product_id=pk, status="Cart").save()
-                return JsonResponse({'success': "True"})
+        if request.user.is_authenticated:
+            if "add" in request.POST.keys():
+                pk = request.POST["add"]
+                if pk is not None:
+                    try:
+                        item = Cart.objects.get(customer_id=request.user.id, product_id=pk, status="Cart")
+                        item.nos += 1
+                        item.save()
+                    except:
+                        Cart(customer_id=request.user.id, product_id=pk, status="Cart").save()
+                    return JsonResponse({'success': "True"})
        
     return JsonResponse({'error': True})
 

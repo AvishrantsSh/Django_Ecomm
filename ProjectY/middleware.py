@@ -8,6 +8,8 @@ User=get_user_model()
 LOCK_URLS = (
             "/register/seller/",
             "/sheet/",
+            "/cart/",
+            "/profile/",
              )
 LOGIN_URL = ("/accounts/register/",)
 LOGOUT_URL = ("/accounts/logout/",)

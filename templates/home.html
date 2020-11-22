@@ -5,13 +5,13 @@
     Home Page
 {%endblock title%}
 {%block link%}
-	<link rel='stylesheet' href='{%static "stylesheet/home.css"%}?v=2.2'>
+	<link rel='stylesheet' href='{%static "stylesheet/home.css"%}'>
 	<link rel='stylesheet' href='{%static "stylesheet/product_dscr.css"%}?v=1.5'>
 	<script src='{%static "js/animate.js"%}'></script>
 
 {%endblock link%}
 {%block content%}
-<div class="carousel-container" id="carousel" style="display: none;">
+<div class="carousel-container" id="carousel">
 	<div id="slides" class="carousel slide" data-ride="carousel">
 		<ul class="carousel-indicators">
 			<li class="indicator active" data-target="#slides" data-slide-to="0" class="active"></li>
@@ -49,7 +49,7 @@
 						<br>
 						Just coming in hot from New Delhi, Maple assures same day local deliveries, and pickup options based on your location. <br>
 						Contact for library related, and bulk order schemes.
-						<a href="../shop/Literature%20and%20Stationary/Maple/997f8fbd-d073-4611-ac81-16ddf2f69f1f/" class="banner-btn">
+						<a href="{%url 'seller_shop' seller.bs_category seller.bs_name seller.id%}" class="banner-btn">
 							<div id="banner-btn">Visit</div>
 						</a>
 					</div>
@@ -73,7 +73,7 @@
 	</div>
 </div>
 
-<div style=" width: 100%;" id="main-content" style="display: none;">
+<div style=" width: 100%;" id="main-content">
 	{%if bestproduct%}
 	<h2 class="row-title">Top Rated</h2>
 	<br>
@@ -229,7 +229,7 @@
 	</div>
 </div>
 {%endif%}
-<div id="title_sec">
+<div id="title_sec" style="display: none;">
 	<div id="welcome">
 
 	</div>
@@ -237,26 +237,20 @@
 <script>
     function run(){
 		if(typeof(window.localStorage.getItem('welcomeShown')) != null && window.localStorage.getItem('welcomeShown') != 'true'){
-            setTimeout(typing, 500);
+			document.getElementById('title_sec').style.display = 'block';
+			setTimeout(typing, 500);
             setTimeout(fade, 3000);
             setTimeout(show, 4000);
 			setTimeout(typing2, 4500);
             setTimeout(transition, 7500);
 			window.localStorage.setItem('welcomeShown','true');
-			setTimeout(function() {document.getElementById('carousel').style.display = 'block';}, 7500);
-			setTimeout(function() {document.getElementById('main-content').style.display = 'block';}, 7500);
+			
         }
         else{
 		   	document.getElementById('title_sec').style.display = 'none';
-		   	document.getElementById('carousel').style.display = 'block';
-			document.getElementById('main-content').style.display = 'block';
+		   	
 		}
-		// setTimeout(typing, 500);
-        //     setTimeout(fade, 3000);
-        //     setTimeout(show, 4000);
-		// 	setTimeout(typing2, 4500);
-        //     setTimeout(transition, 7500);
-
+		
     }
     run();
 </script>
