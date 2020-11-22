@@ -11,7 +11,7 @@
 
 {%endblock link%}
 {%block content%}
-<div class="carousel-container" id="carousel">
+<div class="carousel-container" id="carousel" style="display: none;">
 	<div id="slides" class="carousel slide" data-ride="carousel">
 		<ul class="carousel-indicators">
 			<li class="indicator active" data-target="#slides" data-slide-to="0" class="active"></li>
@@ -73,7 +73,7 @@
 	</div>
 </div>
 
-<div style=" width: 100%;" id="main-content">
+<div style=" width: 100%;" id="main-content" style="display: none;">
 	<h2 class="row-title">Top Rated</h2>
 	<br>
 	<div class = "row" style=" width: 100%;">
@@ -232,21 +232,21 @@
 </div>
 <script>
     function run(){
-		document.getElementById('carousel').style.display = 'none';
-		document.getElementById('main-content').style.display = 'none';
 		if(typeof(window.localStorage.getItem('welcomeShown')) != null && window.localStorage.getItem('welcomeShown') != 'true'){
             setTimeout(typing, 500);
             setTimeout(fade, 3000);
             setTimeout(show, 4000);
 			setTimeout(typing2, 4500);
             setTimeout(transition, 7500);
-            window.localStorage.setItem('welcomeShown','true');
+			window.localStorage.setItem('welcomeShown','true');
+			setTimeout(function() {document.getElementById('carousel').style.display = 'block';}, 7500);
+			setTimeout(function() {document.getElementById('main-content').style.display = 'block';}, 7500);
         }
         else{
-           document.getElementById('title_sec').style.display = 'none';
+		   	document.getElementById('title_sec').style.display = 'none';
+		   	document.getElementById('carousel').style.display = 'block';
+			document.getElementById('main-content').style.display = 'block';
 		}
-		document.getElementById('carousel').style.display = 'block';
-		document.getElementById('main-content').style.display = 'block';
 
     }
     run();

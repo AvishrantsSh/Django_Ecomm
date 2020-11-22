@@ -29,4 +29,4 @@ urlpatterns = [
     path('<pth>', TemplateView.as_view(template_name='404.html')),
     # path('media/<path>', serve,{'document_root': settings.MEDIA_ROOT}),
     # path('static/<path>', serve,{'document_root': settings.STATIC_ROOT}),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+] 
