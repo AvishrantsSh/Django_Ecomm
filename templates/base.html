@@ -61,9 +61,9 @@
         <nav class="navbar navbar-expand-md navbar-fixed-top">
             <div class="container-fluid" style="margin-top: 2vh; margin-bottom: 2vh;">
                 <a class="navbar-brand cherry" href="{%url 'home'%}" id = "head_start">Enigma</a>
-                <div style="display: flex;">
+                <div style="display: flex; padding-left: 2vw;">
                     <form action="{%url 'search'%}" style="display: flex;">
-                        <input type="text" style="border: none; outline: none; width: 50vw; justify-content: center; border-top-left-radius: 5px; border-bottom-left-radius: 5px; padding-left: 2vh;" name="product" placeholder="Search" id="search" value="{%block val%}{%endblock val%}"> 
+                        <input type="text" style="border: none; outline: none; justify-content: center; border-top-left-radius: 5px; border-bottom-left-radius: 5px; padding-left: 2vh;" name="product" placeholder="Search" id="search" value="{%block val%}{%endblock val%}"> 
                         <button id="search-icon" class="nav-link" type="submit"><i class="fa fa-search"></i></button>
                         {%block sid%}{%endblock sid%}
                     </form>

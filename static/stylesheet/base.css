@@ -81,4 +81,18 @@ footer{
 	transition: var(--mainTransition);
 }
    
+#search{
+	/*width: 65vw;*//*For full length in desktop view*/
+	width: 20vw;/*Smaller Search Bar*/
+}
+
+@media screen and (max-width: 768px) {
+	#head_start{
+		margin-right: 0!important;
+	}
+
+	#search{
+		width: 40vw;
+	}
+}
 /******************* End Footer *****************/
