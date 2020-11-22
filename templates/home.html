@@ -53,9 +53,11 @@
 							Just coming in hot from New Delhi, Maple assures same day local deliveries, and pickup options based on your location. <br>
 							Contact for library related, and bulk order schemes.
 						</span>
+						{%if seller%}
 						<a href="{%url 'seller_shop' seller.bs_category seller.bs_name seller.id%}" class="banner-btn">
 							<div id="banner-btn">Visit</div>
 						</a>
+						{%endif%}
 					</div>
 				</div>
 			</div>
