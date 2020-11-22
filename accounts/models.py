@@ -5,7 +5,7 @@ from django.core.validators import RegexValidator
 import jsonfield
 
 class CustomUser(AbstractUser):
-    reg = RegexValidator(r'^[+]{0,1}[0-9]{10,12}','Only Numbers are Allowed')
+    reg = RegexValidator(r'^[+]{0,1}[0-9]{10,12}','Invalid Mobile Number')
     id = models.UUIDField(primary_key=True, default = uuid4)
     username = models.CharField(max_length=50, unique=False)
     phone = models.CharField(max_length=13, validators=[reg])

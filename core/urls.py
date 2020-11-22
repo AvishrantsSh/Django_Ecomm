@@ -15,5 +15,6 @@ urlpatterns=[
     path('product/<pk>', views.Product_Dscr, name='product'),
     path('additem/cart/', views.Add_Cart, name='add_to_cart'),
     path('cart/', views.CartView, name='cart'),
+    path('populate/', views.populate_db, name='populate_db'),
     # path('data/', views.get_dt, name='dt'),
    ]

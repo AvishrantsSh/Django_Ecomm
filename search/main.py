@@ -23,14 +23,11 @@ class Indexer(object):
             os.mkdir(dirname)
         ix = create_in(dirname, myschema)
         writer=ix.writer()
-        print(dataframe)
         data = pd.DataFrame(dataframe[1:], columns=dataframe[0])
-        # print(data)
         papers = [data]
         for paper_set in papers:
             for index, row in paper_set.iterrows():
                 writer.add_document(id = row['id'], name = row['name'])
-                # print(row['id'], row['name'])
         writer.commit()
             
     #creating index searcher

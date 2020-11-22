@@ -59,11 +59,11 @@
 
     <body>
         <nav class="navbar navbar-expand-md navbar-fixed-top">
-            <div class="container-fluid" style="margin-top: 2vh; margin-bottom: 2vh;">
+            <div class="container-fluid my-2">
                 <a class="navbar-brand cherry" href="{%url 'home'%}" id = "head_start">Enigma</a>
                 <div style="display: flex; padding-left: 2vw;">
                     <form action="{%url 'search'%}" style="display: flex;">
-                        <input type="text" style="border: none; outline: none; justify-content: center; border-top-left-radius: 5px; border-bottom-left-radius: 5px; padding-left: 2vh;" name="product" placeholder="Search" id="search" value="{%block val%}{%endblock val%}"> 
+                        <input type="text" name="product" placeholder="Search" id="search" value="{%block val%}{%endblock val%}"> 
                         <button id="search-icon" class="nav-link" type="submit"><i class="fa fa-search"></i></button>
                         {%block sid%}{%endblock sid%}
                     </form>
@@ -73,14 +73,13 @@
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
-                    <div class="navbar-nav ml-md-auto d-md-flex flex-row" style="justify-content: space-between;">
+                    <div class="navbar-nav ml-md-auto d-md-flex flex-row">
                     {%if user.is_authenticated%}
                         <a class="nav-item nav-link nav_link" href="{%url 'profile'%}"><i class="fas fa-user"></i> {{user.username}}</a>
                         <a class="nav-item nav-link nav_link" href="{%url 'logout'%}">Logout <i class="fas fa-sign-out-alt"></i></a>
                     {%else%}
                         <a class="nav-item nav-link nav_link" href="{%url 'login'%}">Login <i class="fas fa-sign-in-alt"></i></a>
                     {%endif%}
-                        <a class="nav-item nav-link nav_link" href="{%url 'selling_info'%}">Seller <i class="fas fa-briefcase"></i></a>
                         <a href="{%url 'cart' %}" class="nav-item nav-link nav_link">Cart <i class="fas fa-shopping-cart"></i></a>
                     </div>
                 </div>

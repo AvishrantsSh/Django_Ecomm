@@ -123,7 +123,7 @@ def Extract_dt(request):
             cat = Seller.objects.get(id = request.user.id).bs_category
                     
             if cat == "Literature and Stationary":
-                Product_List.objects.all().delete()
+                Product_List.objects.filter(seller=request.user.id).delete()
                 try:
                     for i in data:
                         Product_List(

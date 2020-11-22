@@ -43,7 +43,14 @@
 footer{
 	background-color: #eee;
 }
-
+#search{
+	border: none;
+	outline: none;
+	border-top-left-radius: 5px;
+	border-bottom-left-radius: 5px;
+	padding-left: 2vh;
+	width: 300px;
+}
 .footer-widget{
 	padding: 1vh;
 }
