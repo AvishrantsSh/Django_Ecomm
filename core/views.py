@@ -232,7 +232,6 @@ def Products(request):
                 res.append(i)
         except:
             pass
-    # populate()
 
     # Ah Snap...Here we go again
     if seller_pk:
@@ -372,4 +371,8 @@ def CartView(request):
     for x in cart:
         tmp.append([Product_List.objects.get(id = x.product_id), x.nos]) 
     return render(request, 'cart.html',{'items': tmp})
+
+def populate_db(request):
+    populate()
+    return redirect('home')
 # Create your views here.
