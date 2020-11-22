@@ -47,7 +47,10 @@ def language(dic):
 
 @register.filter
 def safe(dic):
-    dic = json.loads(dic)
+    try:
+        dic = json.loads(dic)
+    except:
+        pass
     return dic["Address1"]+", "+dic["Address2"]+", "+dic["District"]+", "+dic["State"]+", "+dic["Country"]+", "+dic["Pincode"]
 
 @register.filter
