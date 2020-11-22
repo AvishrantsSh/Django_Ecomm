@@ -1,4 +1,4 @@
-const CACHE = 'cache_version_123';
+const CACHE = 'cache_vers_12';
 const filestoCache = [
                       '/static/stylesheet/about.css',
                       '/static/stylesheet/home.css',
