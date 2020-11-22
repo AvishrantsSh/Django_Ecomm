@@ -5,7 +5,7 @@
     Add Products
 {%endblock title%}
 {%block link%}
-    <link rel='stylesheet' href='{%static "stylesheet/sheet.css"%}?v=1.4'>
+    <link rel='stylesheet' href='{%static "stylesheet/sheet.css"%}'>
     <script>
         function send(){
             var form = document.getElementById('form');
@@ -45,11 +45,12 @@
 {%endblock link%}
 {%block content%}
     <div id="loading" class="hide">
-        <div class="spinner-grow text-danger" role="status">
-            <span class="sr-only">Loading...</span>
+        <div style="margin: auto; height: 100%; text-align: center; display: flex; justify-content: center; align-items: center;">
+            <div class="spinner-grow text-danger mx-4" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            Your Request is being Processed. Please Wait.
         </div>
-        <br>
-        Your Request is being Processed. Please Wait.
     </div>
     {%if user.id|active%}
     <form method="POST" enctype="multipart/form-data" id="form" onsubmit="send();return false;">
