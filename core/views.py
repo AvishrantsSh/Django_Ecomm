@@ -202,15 +202,15 @@ def Profile(request):
                         {'seller': seller, 'base': "{0}://{1}".format(request.scheme, request.get_host())}
                         )
     except Seller.DoesNotExist:
-        try:
-            usr = User.objects.get(id = request.user.id)
-            return render(
-                            request,
-                            'profile.html',
-                            {'base_user':usr}
-                            )
-        except:
-            return redirect('404')
+        # try:
+        usr = User.objects.get(id = request.user.id)
+        return render(
+                        request,
+                        'profile.html',
+                        {'base_user':usr}
+                        )
+        # except:
+        #     return redirect('404')
 
 def Products(request):
     try:
