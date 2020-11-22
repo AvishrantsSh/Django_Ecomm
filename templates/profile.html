@@ -18,9 +18,6 @@
         <div class="seller-username">{{user.username}}<br></div>
         <span class="add-head">Email-ID: </span>{{user.email}}<br>
         <span class="add-head">Phone No: </span>{{user.phone}}<br>
-        {%if user.address%}
-        <div class="seller-address"><span class="add-head">Address: </span>{{user.address|safe}}<br></div>
-        {%else%}
         Currently no addresses are stored. <a href="#">Add Address</a>
         {%endif%}
     </div>
