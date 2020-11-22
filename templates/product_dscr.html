@@ -31,6 +31,8 @@
                         $("#snackbar").html("Snap. Something went wrong");
                         snack();
                     } else if (data.success) {
+						$(element).html("Added <i class='fa fa-check'></i>")
+                        $(element).css('background-color', 'green');
                         $("#snackbar").html("Added to Cart");
                         snack();
                     }
