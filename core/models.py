@@ -5,6 +5,9 @@ from accounts.models import CustomUser
 import jsonfield
 from random import randint
 from django.utils.timezone import now
+from django.db.models import JSONField
+
+
 def change_name(instance, filename):
     return "User_{0}/{1}".format(instance.id, filename)
 
@@ -32,8 +35,8 @@ class Product_List(models.Model):
     # # Site supports the upload and storage of Files. However due to Platform limitation, this option is currently disabled.
     # img = models.ImageField(default="/product.svg", upload_to = img_path)
 
-    name = models.CharField(max_length=100)
-    brand = models.CharField(max_length=50)
+    name = models.CharField(max_length=200)
+    brand = models.CharField(max_length=200)
     seller = models.UUIDField(unique=False)
     category = models.CharField(max_length=30, unique=False, null=True)
     rating = models.FloatField(default=0)
@@ -42,7 +45,7 @@ class Product_List(models.Model):
     base_price = models.PositiveIntegerField(blank=False)
     discount = models.FloatField(default = 0)
     description = models.TextField(default="Some Product")
-    additional = jsonfield.JSONField()
+    additional = JSONField(null=True)
     
     def save(self, *args, **kwargs):
         self.category=random_cat()
@@ -73,7 +76,7 @@ class Seller(models.Model):
     # pan_card = models.FileField(upload_to=change_name)
     
     bank_ac = models.CharField(max_length=20)
-    address = jsonfield.JSONField()
+    address = JSONField(null=True)
     rating = models.FloatField(default=0)
     total_ratings = models.PositiveIntegerField(default=0)
     status = models.CharField(max_length=20, choices=status, default="Reviewing")

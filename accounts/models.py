@@ -3,6 +3,7 @@ from django.contrib.auth.models import AbstractUser, BaseUserManager
 from uuid import uuid4
 from django.core.validators import RegexValidator
 import jsonfield
+from django.db.models import JSONField
 
 class CustomUser(AbstractUser):
     reg = RegexValidator(r'^[+]{0,1}[0-9]{10,12}','Invalid Mobile Number')
@@ -10,7 +11,7 @@ class CustomUser(AbstractUser):
     username = models.CharField(max_length=50, unique=False)
     phone = models.CharField(max_length=13, validators=[reg])
     email = models.EmailField(unique=True, blank=False)
-    address = jsonfield.JSONField()
+    address = JSONField(null=True)
     first_name = None
     last_name = None
     USERNAME_FIELD = 'email'

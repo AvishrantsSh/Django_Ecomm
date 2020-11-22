@@ -130,22 +130,22 @@ def Extract_dt(request):
 
                 if cat == "Literature and Stationary":
                     Product_List.objects.filter(seller=request.user.id).delete()
-                    try:
-                        for i in data:
-                            Product_List(
-                                name = i["title"],
-                                brand = i["publisher"],
-                                base_price = i["price"],
-                                rating = i["rating"],
-                                total_ratings= i ["total ratings"],
-                                stock = i["stock"],
-                                description = i["description"] if "description" in i.keys() 
-                                                                else "No description provided by Seller",
-                                additional = json.dumps({"author": i["author"], "pages": i["pages"], "language":i["language"], "publication date":i["publication date"]}),
-                                seller = request.user.id,
-                            ).save()
-                    except:
-                        return JsonResponse({"error":"Bad Request"})
+                    # try:
+                    for i in data:
+                        Product_List(
+                            name = i["title"],
+                            brand = i["publisher"],
+                            base_price = i["price"],
+                            rating = i["rating"],
+                            total_ratings= i ["total ratings"],
+                            stock = i["stock"],
+                            description = i["description"] if "description" in i.keys() 
+                                                            else "No description provided by Seller",
+                            additional = json.dumps({"author": i["author"], "pages": i["pages"], "language":i["language"], "publication date":i["publication date"]}),
+                            seller = request.user.id,
+                        ).save()
+                    # except:
+                    #     return JsonResponse({"error":"Bad Request"})
                 else:
                     return JsonResponse({"error":"Bad Request"})
                     
