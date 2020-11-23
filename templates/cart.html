@@ -30,12 +30,12 @@
     {%for i, nos in items%}
         <div class="row working-list" id="row1">
             <div class="col-md-3 cart-image">
-                <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="blank">
+                <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="_blank">
                     <img class="cart-img svg-container" src="{%static 'assets/icons/product.svg'%}">
                 </a>
             </div>
             <div class="col-md-5 cart-text my-4">
-                <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="blank">
+                <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="_blank">
                     <div class="row-head"><h4 class="card-title">{{i.name|trim}}</h4></div>
                 </a>
                 <div class="card-details">

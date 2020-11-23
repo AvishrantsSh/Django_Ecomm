@@ -110,7 +110,7 @@
                 {%for i in products%}
                 <div class="card-container col-lg-3 col-md-6">
                     <div class="card">
-                        <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="blank">
+                        <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="_blank">
                             <img class="card-img-top" src="{%static 'assets/icons/product.svg'%}" alt="Card image" style="width:90%;">
                             <div class="card-details">
                                 <h4 class="card-title" style="font-size: 20px; margin-top: 2vh;">{{i.name|trim}}</h4>

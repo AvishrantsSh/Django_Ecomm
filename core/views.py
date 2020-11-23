@@ -21,7 +21,7 @@ def HomeView(request):
     if list_all:
         product = [x for x in list_all.order_by("-rating") if x.total_ratings > 10000][:10]
         trending = [x for x in list_all.order_by("-total_ratings") if x.total_ratings > 1631200][:10]
-        latest = [x for x in list_all.order_by("-total_ratings") if x.total_ratings < 1500 and x.rating > 4][:10]
+        latest = [x for x in list_all.order_by("-total_ratings", '-rating') if x.total_ratings < 1500 and x.rating > 4][:10]
         return render(request, 'home.html', {'best': product[1:],
                                          'trending': trending[1:],
                                          'latest': latest[1:],
