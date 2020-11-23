@@ -162,6 +162,8 @@ def put(request):
         if request.user.is_authenticated:
             with open('core/tmp.json') as f:
                 data = json.loads(f.read())
+
+            Product_List.objects.filter(seller=request.user.id).delete()
             for i in data["Data"]:
                 Product_List(
                     id = i["id"],
