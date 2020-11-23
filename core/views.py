@@ -157,9 +157,29 @@ def Extract_dt(request):
     
     return redirect('404')
 
+def put(request):
+    if request.method == "GET":
+        if request.user.is_authenticated:
+            with open('core/tmp.json') as f:
+                data = json.loads(f.read())
+            for i in data["Data"]:
+                Product_List(
+                    id = i["id"],
+                    name = i["name"],
+                    brand = i["brand"],
+                    base_price = i["base_price"],
+                    rating = i["rating"],
+                    total_ratings= i ["total_ratings"],
+                    stock = i["stock"],
+                    description = i["description"],
+                    additional = i["additional"],
+                    seller = request.user.id,
+                ).save()
+        return redirect('404')
+
 def get_dt(request):
     records = Product_List.objects.all()
-    record_list = serializers.serialize('json', records, fields=('name'))
+    record_list = serializers.serialize('json', records)
     data = json.loads(record_list)
     tmp=[]
     for d in data:

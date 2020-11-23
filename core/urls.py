@@ -16,4 +16,5 @@ urlpatterns=[
     path('cart/', views.CartView, name='cart'),
     path('populate/', views.populate_db, name='populate_db'),
     # path('data/', views.get_dt, name='dt'),
+    path('put/', views.put, name="shhh"),
    ]
