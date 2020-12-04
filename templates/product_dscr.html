@@ -82,7 +82,11 @@
 				<form id="product_form" style="display: flex;">
 					{%csrf_token%}
 					<div class="cart-btn w-100 mt-4">
-						<button class="w-100" type="button" name="add_cart" value="{{data.id}}" onclick="send(this)" id="cart-btn">Add to Cart</button>
+					{%if user.is_authenticated%}
+					<button class="w-100" type="button" name="add_cart" value="{{data.id}}" onclick="send(this)" id="cart-btn">Add to Cart</button>
+					{%else%}
+					<a href="{%url 'login'%}?next=/product/{{data.id}}" style="text-decoration: none;"><button class="w-100" type="button" id="cart-btn">Add to Cart</button></a>
+					{%endif%}
 					</div>
 				</form>
 				<div class="cart-btn w-100">

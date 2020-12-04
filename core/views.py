@@ -314,7 +314,8 @@ def Products(request):
     if not object_list:
         return render(request,
                 'search.html',
-                {'found':False})
+                {'found':False,
+                'search': product})
     
     paginator = Paginator(object_list, 20)
     page = request.GET.get('page')
