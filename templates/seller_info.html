@@ -1,0 +1,192 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block title%}
+    Seller Info
+{%endblock title%}
+{%block link%}
+    <link rel='stylesheet' href='{%static "stylesheet/seller_info.css"%}'>
+{%endblock link%}
+{%block content%}
+
+<div class="tab-super-container">
+    <div class="row">
+        <div class="col-lg-10 info-head">
+            <h2>Become A Seller</h2>
+        </div>
+        <div class="d-flex col-lg-2 flex-row-reverse">
+            <a class="nav-link" style="width: 200px; text-decoration: none;" href="{%url 'seller_reg'%}"><div class="start-btn my-3 p-2">Start Selling</div></a>
+        </div>
+    </div>
+    <!-- Nav tabs -->
+    <ul class="nav nav-tabs" role="tablist">
+      <li class="nav-item">
+        <a class="nav-link tabs active" id="tab1" data-toggle="tab" href="#home">Benefits</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link tabs" data-toggle="tab" href="#menu1">How it Works</a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link tabs" data-toggle="tab" href="#menu2">FAQ</a>
+      </li>
+    </ul>
+  
+    <!-- Tab panes -->
+    <div class="tab-content">
+        <div id="home" class=" container col-md-10 tab-pane active"><br>
+            <div class="tab-box">
+                <h3>Not just a service, but a whole new platform, with several perks</h3>
+                <div class="row-head">Hover for some magic</div>
+                <div class="row working-list" id="row1">
+
+                    <div class="flip-card col-md-8 flip-card-vertical">
+                        <div class="flip-card-inner flip-card-inner-vertical">
+                            <div class="flip-card-front">
+                                <div class="card-head" id="covid">
+                                    <img class="svg-container" src="{%static 'assets/icons/people.svg'%}">
+                                    <div class="card-head" >Grow and expand your business</div><br>
+                                </div>
+                            </div>
+                            <div class="flip-card-back flip-card-back-vertical">
+                                <div class="card-text">
+                                    <p>Post covid, it is your golden chance to take your business online, increase your customers and expand exponentially with us.<br>
+                                        1. Your existing customers place their order online, and pick them up quickly while driving through. (Social Distancing)<br>
+                                        2. Build a reliable customer base within your comfortable delivery range and expand slowly.
+                                     </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card col-md-4">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="card-head" id="fast">
+                                    <img class="svg-container" src="{%static 'assets/icons/clipboard.svg'%}">
+                                    <div class="card-head">Get on-board without any hassle</div><br>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="card-text">
+                                    <p>No need to spend days and long, tiring hours on uploading the data. 
+                                    Just upload an excel sheet or a pdf, and we take it from there.
+                                    Fast, easy and reliable. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+                <div class="row working-list" id="row2">
+
+                    <div class="flip-card col-md-4">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="card-head" id="personalise">
+                                    <img class="svg-container" src="{%static 'assets/icons/idea-bulb.svg'%}">
+                                    <div class="card-head">Customise, personalise and expand as you like</div><br>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="card-text">
+                                    <p>Make it your own online shop. It’s your space and your comfort.<br>
+                                    We allow you to select the delivery range from 5km to 5000km. </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card col-md-4">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="card-head" id="grow">
+                                    <img class="svg-container" src="{%static 'assets/icons/rocket-startup.svg'%}">
+                                    <div class="card-head">You grow, we grow</div><br>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="card-text">
+                                    <p>We are there with you to get you through each and every step.
+                                    From digital marketing to setting up the products and payments, we are here to help.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="flip-card col-md-4">
+                        <div class="flip-card-inner">
+                            <div class="flip-card-front">
+                                <div class="card-head" id="secure">
+                                    <img class="svg-container" src="{%static 'assets/icons/security.svg'%}">
+                                    <div class="card-head">Secure payments</div><br>
+                                </div>
+                            </div>
+                            <div class="flip-card-back">
+                                <div class="card-text">
+                                    <p>Funds will safely be deposited directly to your bank account. We also offer payments through Patym and Google Pay. Choose according to your comfort.</p>                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                
+            </div>
+
+
+        </div>
+        <div id="menu1" class="container tab-pane fade"><br>
+            <div class="tab-box">
+                <h3>Convenience at its Max</h3>
+                Selling products online has never been easier. We bring to you the easiest and the most effective way to reach millions of potential buyers. We customise according to you and irrespective of how much you have to sell, we provide you all the tools to sell online successfully.<br>
+                <br>We ensure the best journey of the seller from registering with us, uploading products and finally receiving payments with no hassle or stress in between in just three steps:
+
+                <div class="row working-list" id="row1">
+                    <div class="col-md-4 point-image">
+                        <img class="point-img svg-container" src="{%static 'assets/icons/id-card.svg'%}">
+                    </div>
+                    <div class="col-md-8 point-text">
+                        <div class="row-head">Register your seller account</div><br>
+                        <p>All we need is your valid ID verification proof, registration number of the shop and your active bank account to receive your payments and you are all ready to upload your products.</p>
+                    </div>
+                </div>
+
+                <div class="row working-list" id="row2">
+                    <div class="col-md-4 order-md-2 point-image">
+                        <img class="point-img svg-container" src="{%static 'assets/icons/checklist.svg'%}">
+                    </div>
+                    <div class="col-md-8 order-md-1 point-text" id="right-text">
+                        <div class="row-head" >Upload your products</div><br>
+                        <p id="right-text"> Whether it be an excel sheet with the product name, description and pricing or a word/pdf you create for listing your products, we accept it all in one go.<br> No need to spend long, tiring hours on uploading your data.<br> It’s that simple.</p>
+                    </div>
+                </div>
+
+                <div class="row working-list" id="row3">
+                    <div class="col-md-4 point-image">
+                        <img class="point-img svg-container" src="{%static 'assets/icons/truck.svg'%}">
+                    </div>
+                    <div class="col-md-8 point-text">
+                        <div class="row-head" >Deliver the products and receive your payment</div><br>
+                        <p>It’s that simple. Deliver according to your range and comfort and receive the payments directly in your bank account.</p>
+                    </div>
+                </div>
+
+                <div class="working-list end-text" id="row4">
+                    <p><span id="end1">Leave the rest to us.</span><br>
+                    <span id="end2">We handle your marketing, make sure the customers see your products and help your business expand.</span><br>
+                    <span id="end3"><br>So what are you waiting for?</span></p>
+                    
+                </div>
+            </div>
+        </div>
+        <div id="menu2" class="container tab-pane fade"><br>
+            <div class="tab-box">
+                <h3>FAQ</h3>
+                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+{%endblock content%}

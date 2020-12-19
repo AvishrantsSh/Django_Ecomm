@@ -1,0 +1,68 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load customfilter%}
+{%block title%}
+    Add Products
+{%endblock title%}
+{%block link%}
+    <link rel='stylesheet' href='{%static "stylesheet/sheet.css"%}'>
+    <script>
+        function send(){
+            var form = document.getElementById('form');
+            var formData = new FormData(form);
+            $()
+            $.ajax({
+                url: '',
+                data: formData,
+                cache: false,
+                contentType: false,
+                processData: false,
+                method: 'POST',
+                type: 'POST', // For jQuery < 1.9
+                beforeSend: function(){
+                    $('#loading').removeClass("hide")
+                },
+                complete:function(){
+                    $('#loading').addClass("hide");
+                },
+                success : function (data) {
+                    // console.log(data);
+                    if (data.error) {
+                        $(".response").html(data.error);
+                    } else if (data.success) {
+                        $(".response").html("Your Products have been successfully registered. They will be added to your catalague upon successful validation by our team of Moderators.");
+                    }
+                    else{
+                        $(".response").html("Something went wrong");
+                    }
+                },
+                error: function() {
+                   console.log('Cannot retrieve data.');
+                 }
+            }).responseJSON;
+        }
+    </script>
+{%endblock link%}
+{%block content%}
+    <div id="loading" class="hide">
+        <div style="margin: auto; height: 100%; text-align: center; display: flex; justify-content: center; align-items: center;">
+            <div class="spinner-grow text-danger mx-4" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+            Your Request is being Processed. Please Wait.
+        </div>
+    </div>
+    {%if user.id|active%}
+    <form method="POST" enctype="multipart/form-data" id="form" onsubmit="send();return false;">
+        {%csrf_token%}
+        {{form}}
+        <input type="submit" value="Submit"/>
+
+    </form>
+    <div class="response">
+
+    </div>
+    {%else%}
+        You are not authorized to view this page.
+    {%endif%}
+{%endblock content%}

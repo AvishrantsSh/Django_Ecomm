@@ -1,52 +1,265 @@
 {%extends 'base.html'%}
 {%load static%}
-
+{%load customfilter%}
 {%block title%}
-    Home Page
+    Home|Enigma
 {%endblock title%}
 {%block link%}
-    <link rel='stylesheet' href='{%static "stylesheet/home.css"%}'>
+	<link rel='stylesheet' href='{%static "stylesheet/home.css"%}'>
+	<link rel='stylesheet' href='{%static "stylesheet/product_dscr.css"%}'>
+	<script src='{%static "js/animate.js"%}'></script>
 
 {%endblock link%}
 {%block content%}
-	<div class ="main_box">
-	<!-- Navigation -->
+<div class="carousel-container" id="carousel">
+	<div id="slides" class="carousel slide" data-ride="carousel">
+		<ul class="carousel-indicators">
+			<li class="indicator active" data-target="#slides" data-slide-to="0" class="active"></li>
+			<li class="indicator" data-target="#slides" data-slide-to="1"></li>
+			<li class="indicator" data-target="#slides" data-slide-to="2"></li>
+		</ul>
 
-
-	<!--- Image Slider -->
-		<div id="slides" class="carousel slide" data-ride="carousel">
-			<ul class="carousel-indicators">
-				<li data-target="#slides" data-slide-to="0" class="active"></li>
-				<li data-target="#slides" data-slide-to="1"></li>
-				<li data-target="#slides" data-slide-to="2"></li>
-			</ul>
-
-			<div class="carousel-inner">
-				<div class="carousel-item active">
-					Banner Image 1
-					<div class="carousel-caption">
-					<h1 class="display-2">Caption 1</h1> 
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<div class="row">
+					<div class="image-box col-md-4">
+						<img id="slide-image" class="svg-container" src="../../static/assets/icons/idea-bulb.svg">
+					</div>
+					<div class="carousel-text col-md-8">
+						<h1 class="slide-head">Join us Today!</h1> 
+						<span class="banner-txt">
+							Get your own Personalised store on Enigma! <br>
+							<br>Get started with Enigma, and join the several local markets that have benfitted and grown with our help.
+							<br>No Charges, setup is free, and always will be.
+						</span>
+						<a href="{%url 'selling_info'%}" class="banner-btn">
+							<div id="banner-btn">Become a Seller</div>
+						</a>
 					</div>
 				</div>
+			</div>
 
-				<div class="carousel-item"> 
-					Banner Image 2
-					<div class="carousel-caption">
-					<h1 class="display-2">Caption 2</h1> 
+			<div class="carousel-item"> 
+				<div class="row">
+					<div class="image-box col-md-4">
+						<img id="slide-image" class="svg-container" src="../../static/assets/icons/people.svg">
+					</div>
+					<div class="carousel-text col-md-8">
+						<div class="slide-head-2">Featured Seller</div>
+						<h2 class="slide-head">Maple</h2>
+						<span class="banner-txt">
+							Literature and Stationery <br>
+							<br>
+							Just coming in hot from New Delhi, Maple assures same day local deliveries, and pickup options based on your location. <br>
+							Contact for library related, and bulk order schemes.
+						</span>
+						{%if seller%}
+						<a href="{%url 'seller_shop' seller.bs_category seller.bs_name seller.id%}" class="banner-btn">
+							<div id="banner-btn">Visit</div>
+						</a>
+						{%endif%}
 					</div>
 				</div>
+			</div>
 
-				<div class="carousel-item"> 
-					Banner Image 3
-					<div class="carousel-caption">
-					<h1 class="display-2">Caption 3 </h1> 
+			<div class="carousel-item"> 
+				<div class="row">
+					<div class="image-box col-md-4">
+						<img id="slide-image" class="svg-container" src="../../static/assets/icons/finance-analysis.svg">
+					</div>
+					<div class="carousel-text col-md-8">
+						<h1 class="slide-head">In-built Data Analysis</h1>
+						<h2 class="slide-head">Featured, for the next major update</h2>
+						<span class="banner-txt">
+							<br>Get Ready for Enigma Plugins and Extensions!<br>
+							<br>Perform the complete analysis of your webpage data to develop an understanding of the requirements of the user, and hence take smart and well planned steps to grow your business.
+						</span>
 					</div>
 				</div>
 			</div>
 		</div>
+	</div>
+</div>
 
-	<!--- Footer -->
+<div style=" width: 100%;" id="main-content">
+	{%if bestproduct%}
+	<h2 class="row-title">Top Rated</h2>
+	<br>
+	<div class = "row" style=" width: 100%;">
+		<div class="card col-md-10 p-2 top-item">
+			<div class="card-inner row">
+				<img class="prod-image col-md-4" src="../../static/assets/images/calvin.jpg">
+				<div class="product-details col-md-8">
+					<div class="prod-head">{{bestproduct.name}}<br></div>
+					<div class="prod-brand">{{bestproduct.brand|trim}} | Humour<br></div>
+					<div class="prod-price">Rs {{bestproduct.base_price}}<br></div>
+					<div class="my-3">
+						<span class="add-head">Author: </span>{{bestproduct.additional|author|authtrim}}<br>
+						<span class="add-head">Pages: </span>{{bestproduct.additional|pages}}<br>
+						<span class="add-head">Language: </span>{{bestproduct.additional|language}}<br>
+					</div>
+					<div class="w-50">
+						<a class="cart-btn" href="{%url 'product' bestproduct.id%}" target="_blank">
+							<div id="cart-btn" style="text-align: center;" onclick="buy()">Shop Now</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="testimonial-group">
+		<div class="row text-center">
+			{%for i in best%}
+			<div class="card-container row-card col-lg-3 col-md-6">
+				<div class="card">
+					<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="_blank">
+						<img class="card-img-top" src="{%static 'assets/icons/product.svg'%}" alt="Card image" style="width:60%">
+						<div class="card-details">
+							<h4 class="card-title" style="font-size: 20px; margin-top: 2vh;">{{i.name|trim}}</h4>
+							<h6 class="card-title">{{i.brand|trim}}</h6>
+							<h4><b>Rs {{i.base_price}}</b></h4>
+
+							<p class="card-text">{{i.description|dtrim}}</p>
+							Authors: {{i.additional|author|authtrim}}<br>
+							{{i.additional|pages}} Pages | 
+							{{i.additional|language}}<br>
+						</div>
+					</a>
+				</div>
+			</div>
+			{%endfor%}
+		</div>
+	</div>
+	{%endif%}
+	{%if trendingproduct%}
+	<h2 class="row-title">Trending</h2>
+	<br>
+	<div class = "row">
+		<div class="card col-md-10 p-2 top-item">
+			<div class="card-inner row" id="top-item-row">
+				<div class="col-md-4">
+					<img class="prod-image" src="../../static/assets/images/thehobbit.jpg" style="max-height: 50vh; padding:0; margin: auto; display: block;">
+				</div>
+				<div class="product-details col-md-8">
+					<div class="prod-head">{{trendingproduct.name}}<br></div>
+					<div class="prod-brand">{{trendingproduct.brand|trim}} | {{trendingproduct.category}}<br></div>
+					<div class="prod-price">Rs {{trendingproduct.base_price}}<br></div>
+					<div class="my-3">
+						<span class="add-head">Author: </span>{{trendingproduct.additional|author|authtrim}}<br>
+						<span class="add-head">Pages: </span>{{trendingproduct.additional|pages}}<br>
+						<span class="add-head">Language: </span>{{trendingproduct.additional|language}}
+					</div>
+					<div class="w-50">
+						<a class="cart-btn" href="{%url 'product' trendingproduct.id%}" target="_blank">
+							<div id="cart-btn" style="text-align: center;" onclick="buy()">Shop Now</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="testimonial-group">
+		<div class="row text-center">
+			{%for i in trending%}
+			<div class="card-container  row-card col-lg-3 col-md-6">
+				<div class="card">
+					<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="_blank">
+						<img class="card-img-top" src="{%static 'assets/icons/product.svg'%}" alt="Card image" style="width:60%">
+						<div class="card-details">
+							<h4 class="card-title" style="font-size: 20px; margin-top: 2vh;">{{i.name|trim}}</h4>
+							<h6 class="card-title">{{i.brand|trim}}</h6>
+							<h4><b>Rs {{i.base_price}}</b></h4>
+
+							<p class="card-text">{{i.description|dtrim}}</p>
+							Authors: {{i.additional|author|authtrim}}<br>
+							{{i.additional|pages}} Pages | 
+							{{i.additional|language}}<br>
+						</div>
+					</a>
+				</div>
+			</div>
+			{%endfor%}
+		</div>
+	</div>
+	{%endif%}
+	{%if latestproduct%}
+	<h2 class="row-title">Fresh Arrivals</h2>
+	<br>
+	<div class = "row">
+		<div class="card col-md-10 p-2 top-item">
+			<div class="card-inner row" id="top-item-row">
+				<div class="col-md-4">
+					<img class="prod-image" src="../../static/assets/images/glamorous.jpg" style="max-height: 50vh; padding:0; margin: auto; display: block;">
+				</div>
+				<div class="product-details col-md-8">
+					<div class="prod-head">{{latestproduct.name}}<br></div>
+					<div class="prod-brand">{{latestproduct.brand|trim}} | {{latestproduct.category}}<br></div>
+					<div class="prod-price">Rs {{latestproduct.base_price}}<br></div>
+					<div class="my-3">
+						<span class="add-head">Author: </span>{{latestproduct.additional|author|authtrim}}<br>
+						<span class="add-head">Pages: </span>{{latestproduct.additional|pages}}<br>
+						<span class="add-head">Language: </span>{{latestproduct.additional|language}}
+					</div>
+					<div class="w-50">
+						<a class="cart-btn" href="{%url 'product' latestproduct.id%}" target="_blank">
+							<div id="cart-btn" style="text-align: center;" onclick="buy()">Shop Now</div>
+						</a>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<br>
+	<div class="testimonial-group">
+		<div class="row text-center">
+			{%for i in latest%}
+			<div class="card-container  row-card col-lg-3 col-md-6">
+				<div class="card">
+					<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="_blank">
+						<img class="card-img-top" src="{%static 'assets/icons/product.svg'%}" alt="Card image" style="width:60%">
+						<div class="card-details">
+							<h4 class="card-title" style="font-size: 20px; margin-top: 2vh;">{{i.name|trim}}</h4>
+							<h6 class="card-title">{{i.brand|trim}}</h6>
+							<h4><b>Rs {{i.base_price}}</b></h4>
+
+							<p class="card-text">{{i.description|dtrim}}</p>
+							Authors: {{i.additional|author|authtrim}}<br>
+							{{i.additional|pages}} Pages | 
+							{{i.additional|language}}<br>
+						</div>
+					</a>
+				</div>
+			</div>
+			{%endfor%}
+		</div>
+	</div>
+</div>
+{%endif%}
+<div id="title_sec" style="display: none;">
+	<div id="welcome">
 
 	</div>
-
+</div>
+<script>
+    function run(){
+		if(typeof(window.localStorage.getItem('welcomeShown')) != null && window.localStorage.getItem('welcomeShown') != 'true'){
+			document.getElementById('title_sec').style.display = 'block';
+			setTimeout(typing, 500);
+            setTimeout(fade, 3000);
+            setTimeout(show, 4000);
+			setTimeout(typing2, 4500);
+            setTimeout(transition, 7500);
+			window.localStorage.setItem('welcomeShown','true');
+			
+        }
+        else{
+		   	document.getElementById('title_sec').style.display = 'none';
+		   	
+		}
+		
+    }
+    run();
+</script>
 {%endblock content%}

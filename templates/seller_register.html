@@ -1,0 +1,120 @@
+{%extends 'base.html'%}
+{%load static%}
+{%block title%}
+    Seller Registration
+{%endblock title%}
+{%block link%}
+    <link href="{%static 'stylesheet/seller_reg.css'%}" rel="stylesheet" media="print" onload="this.media='all'">
+{%endblock link%}
+   
+{%block content%}
+    <div class="row reg_box">
+        <!-- Brand Box -->
+        <div class="col-md-7 left bg-image">
+            
+        </div>
+        <div class="col-md-5 slide-box right">
+            <div id="carousel_forms" class="carousel slide h-100" data-ride="carousel" data-interval="false">
+                <div class="carousel-inner h-100">
+                    {%if not complete%}
+                    <form method="post" enctype="multipart/form-data">
+                        {% csrf_token %}
+                        <div class="carousel-item h-100 active">
+                            <!-- Login Form -->
+                            <div class="row">
+                                <div class="col-lg-7">
+                                    <div class="w-100 form-box">
+                                        <!-- Div 1 -->
+                                        <div class="heading">Business Details</div>
+                                        <div>
+                                            <div class="seller_field">
+                                                <label for="{{form.bs_name.id_for_label}}">{{form.bs_name.label_tag}}</label><br>
+                                                {{ form.bs_name }}
+                                            </div>
+                                            <div class="seller_field">
+                                                <label for="{{form.bs_category.id_for_label}}">{{form.bs_category.label_tag}}</label><br>
+                                                {{ form.bs_category }}
+                                            </div>
+                                            <div class="seller_field">
+                                                <label for="{{form.gst_no.id_for_label}}">{{form.gst_no.label_tag}}</label><br>
+                                                {{ form.gst_no }}
+                                            </div>
+                                            <div class="seller_field">
+                                                <label for="{{form.pan_no.id_for_label}}">{{form.pan_no.label_tag}}</label><br>
+                                                {{ form.pan_no }}
+                                            </div>
+                                            <div class="seller_field">
+                                                <label for="{{form.bank_ac.id_for_label}}">{{form.bank_ac.label_tag}}</label><br>
+                                                {{ form.bank_ac }}
+                                            </div>
+                                            <div class="seller_field">
+                                                <label for="{{form.pan_card.id_for_label}}">{{form.pan_card.label_tag}}</label><br>
+                                                {{ form.pan_card }}
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                    <a data-target="#carousel_forms" data-slide-to="1" href="#" id="switch-link"><div class="switch my-3">Proceed</div></a>
+                                </div>
+                                <div class="col-lg-5 error-text">
+                                    
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="carousel-item h-100">
+                            <div class="row h-100">
+                                <div class="col-lg-7">
+                                    <div class="heading">Address Details</div>
+                                    <div>
+                                        <div class="seller_field">
+                                            <label for="{{form.addr1.id_for_label}}">{{form.addr1.label_tag}}</label><br>
+                                            {{ form.addr1 }}
+                                        </div>
+                                        <div class="seller_field">
+                                            <label for="{{form.addr2.id_for_label}}">{{form.addr2.label_tag}}</label><br>
+                                            {{ form.addr2 }}
+                                        </div>
+                                        <div class="seller_field">
+                                            <label for="{{form.district.id_for_label}}">{{form.district.label_tag}}</label><br>
+                                            {{ form.district }}
+                                        </div>
+                                        <div class="seller_field">
+                                            <label for="{{form.state.id_for_label}}">{{form.state.label_tag}}</label><br>
+                                            {{ form.state }}
+                                        </div>
+                                        <div class="seller_field">
+                                            <label for="{{form.country.id_for_label}}">{{form.country.label_tag}}</label><br>
+                                            {{ form.country }}
+                                        </div>
+                                        <div class="seller_field">
+                                            <label for="{{form.pincode.id_for_label}}">{{form.pincode.label_tag}}</label><br>
+                                            {{ form.pincode }}
+                                        </div>
+                                    </div>
+
+                                    <input class="switch my-3" id="switch-link" type="submit" value="Submit for Review" />
+                                    <a id="switch-link" data-target="#carousel_forms" data-slide-to="0" href="#"><div class="switch">Previous</div></a>
+                                </div>
+                                <div class="col-lg-5"></div>
+                            </div>
+                        </div> 
+                    </form>
+                    {%else%}
+                        {%if not review%}
+                            <div class="carousel-item h-100 active">
+                                Thank You for Choosing Our Services. We hope our service will be of some help to your business.<br>
+                                Status -> Active
+                            </div>
+                        {%else%}
+                            <div class="carousel-item h-100 active">
+                                Thank You for Choosing Our Services. Your Application is still under review. Please try again Later.<br>
+                                Status -> Review
+                            </div>
+                        {%endif%}
+                    {%endif%}
+                </div> 
+            </div>
+        </div>
+    </div>
+{%endblock content%}

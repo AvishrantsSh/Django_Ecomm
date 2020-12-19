@@ -1,0 +1,116 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load customfilter%}
+{%block title%}
+    Welcome
+{%endblock title%}
+{%block link%}
+<link rel='stylesheet' href='{%static "stylesheet/home.css"%}'>
+<link rel='stylesheet' href='{%static "stylesheet/seller.css"%}'>
+{%endblock link%}
+{%block content%}
+
+<div class="carousel-container">
+	<div id="slides" class="carousel slide" data-ride="carousel">
+		        
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<div class="row">
+					<div class="image-box col-md-4">
+						<img id="slide-image" class="svg-container" src="">
+					</div>
+					<div class="carousel-text col-md-8">
+						<h1 class="slide-head">Welcome!</h1> 
+                        This is the online store for Maple
+                        <a href="{%url 'search'%}?id={{seller.id}}" class="banner-btn">
+                            <div id="banner-btn">View Products</div>   
+						</a>
+                       
+					</div>
+				</div>
+            </div>    
+        </div>
+        
+	</div>
+</div>
+{%if best%}
+<div style=" width: 100%;">
+    <div class="horizontal-section">
+        <h2><br>Best Sellers</h2>
+        <div class="testimonial-group">
+            <div class="row text-center">
+                {%for i in best%}
+                <div class="card-container row-card col-lg-3 col-md-6">
+                    <div class="card">
+                        <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
+                            <img class="card-img-top svg-container" src="{%static 'assets/icons/product.svg'%}" alt="Card image" style="width:100%">
+                            <div class="card-details">
+                                <h4 class="card-title">{{i.name|trim}}</h4>
+                                <h6 class="card-title">{{i.brand|trim}}</h6>
+                                <p class="card-text">{{i.description|dtrim}}</p>
+                                Authors: {{i.additional|author|authtrim}}<br>
+                                {{i.additional|pages}} Pages | 
+                                {{i.additional|language}}<br>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+
+    <div class="horizontal-section">
+        <h2><br>Trending</h2>
+        <div class="testimonial-group">
+            <div class="row text-center">
+                {%for i in trending%}
+                <div class="card-container row-card col-lg-3 col-md-6">
+                    <div class="card">
+                        <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
+                            <img class="card-img-top svg-container" src="{%static 'assets/icons/product.svg'%}" alt="Card image" style="width:100%">
+                            <div class="card-details">
+                                <h4 class="card-title">{{i.name|trim}}</h4>
+                                <h6 class="card-title">{{i.brand|trim}}</h6>
+                                <p class="card-text">{{i.description|dtrim}}</p>
+                                Authors: {{i.additional|author|authtrim}}<br>
+                                {{i.additional|pages}} Pages | 
+                                {{i.additional|language}}<br>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+
+    <div class="horizontal-section">
+        <h2><br>Fresh Arrivals</h2>
+        <div class="testimonial-group">
+            <div class="row text-center">
+                {%for i in latest%}
+                <div class="card-container row-card col-lg-3 col-md-6">
+                    <div class="card">
+                        <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;">
+                            <img class="card-img-top svg-container" src="{%static 'assets/icons/product.svg'%}" alt="Card image" style="width:100%">
+                            <div class="card-details">
+                                <h4 class="card-title">{{i.name|trim}}</h4>
+                                <h6 class="card-title">{{i.brand|trim}}</h6>
+                                <h4><b>Rs {{i.base_price}}</b></h4>
+
+                                <p class="card-text">{{i.description|dtrim}}</p>
+                                Authors: {{i.additional|author|authtrim}}<br>
+                                {{i.additional|pages}} Pages | 
+                                {{i.additional|language}}<br>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </div>
+    </div>
+</div>
+{%endif%}
+{%endblock content%}

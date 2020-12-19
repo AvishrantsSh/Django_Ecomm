@@ -1,0 +1,101 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load customfilter%}
+{%block title%}
+    Product        
+{%endblock title%}
+{%block link%}
+<link rel='stylesheet' href='{%static "stylesheet/product_dscr.css"%}'>
+<link rel='stylesheet' href='{%static "stylesheet/snackbar.css"%}'>
+    <script src="{%static 'js/snack.js'%}"></script>
+    <script>
+		function buy(){
+            document.getElementById('snackbar').innerHTML = "Coming Soon!";
+            snack();
+        }
+        function send(element){
+            var form = document.getElementById('product_form');
+            $()
+            $.ajax({
+                url: '/additem/cart/',
+                data: {
+                    "csrfmiddlewaretoken": form.csrfmiddlewaretoken.value,
+                    "add": $(element).val()
+                },
+                cache: false,
+                method: 'POST',
+                dataType : "json",
+                success : function (data) {
+                    // console.log(data);
+                    if (data.error) {
+                        $("#snackbar").html("Snap. Something went wrong");
+                        snack();
+                    } else if (data.success) {
+						$(element).html("Added <i class='fa fa-check'></i>")
+                        $(element).css('background-color', 'green');
+                        $("#snackbar").html("Added to Cart");
+                        snack();
+                    }
+                },
+                error: function() {
+                   $("#snackbar").html("Connection Error");
+                   snack();
+                 }
+            }).responseJSON;
+        }
+    </script>
+{%endblock link%}
+{%block content%}
+<div class = "main_box row">
+
+	<div class="card col-md-9">
+			<div class="card-inner row">
+				<img class="prod-image col-md-4" src="{%static 'assets/icons/product.svg'%}">
+				<div class="product-details col-md-8">
+					<div class="prod-head">{{data.name}}<br></div>
+					<div class="prod-brand">{{data.brand}}<br></div>
+					<div class="prod-price">Rs.{{data.base_price}}<br></div>
+					<div class="prod-stock">In Stock: {{data.stock}}<br></div>
+					Rating: {{data.rating}} from {{data.total_ratings}} Total Ratings
+					<div class="prod-description">{{data.description}}<br></div>
+					<span class="add-head">Author: </span>{{data.additional|author}}<br>
+					<span class="add-head">Date of Publication: </span>{{data.additional|date}}<br>
+					<span class="add-head">Pages: </span>{{data.additional|pages}}<br>
+					<span class="add-head">Language: </span>{{data.additional|language}}<br>
+					<span class="add-head">Category: </span>{{data.category}}<br>
+			</div>
+			</div>
+	</div>
+
+	<div class="col-md-3">
+		<div class="seller-details">
+			<div class="seller-head">Provided By<br></div>
+			<div class="seller-brand">{{seller.bs_name}}<br></div>	
+			{{seller.bs_category}}
+		</div>
+
+		<div class="cart-container">
+			<div class="cart-order">
+				<div class="icon-container">
+					<img src="{%static 'assets/icons/cart.svg'%}" alt="Cart Icon" id="cart-icon">
+				</div>
+				<form id="product_form" style="display: flex;">
+					{%csrf_token%}
+					<div class="cart-btn w-100 mt-4">
+					{%if user.is_authenticated%}
+					<button class="w-100" type="button" name="add_cart" value="{{data.id}}" onclick="send(this)" id="cart-btn">Add to Cart</button>
+					{%else%}
+					<a href="{%url 'login'%}?next=/product/{{data.id}}" style="text-decoration: none;"><button class="w-100" type="button" id="cart-btn">Add to Cart</button></a>
+					{%endif%}
+					</div>
+				</form>
+				<div class="cart-btn w-100">
+					<button class="w-100" type="button" onclick="buy()" id="cart-btn">Buy Now</button>
+				</div>
+			</div>
+		</div>
+	</div>
+
+</div>
+<div id="snackbar"></div>
+{%endblock content%}

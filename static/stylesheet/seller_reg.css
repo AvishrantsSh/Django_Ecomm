@@ -1,0 +1,147 @@
+* {
+	outline: none;
+}
+
+body{
+   background-color: #eee;
+}
+
+.carousel-item{
+   padding: 3vh;
+   min-height: 77vh;
+}
+
+.col-md-6{
+   padding: 0;
+}
+
+.seller_field{
+    margin: 1vh;
+    margin-top: 0vh;
+    padding: 0.5vh;
+    font-family: sans-serif;
+}
+
+.submit_btn{
+   background-color: rgba(236, 20, 56, 0.95);
+   outline: none;
+   padding: 10px;
+   border-radius: 15px;
+   width: 100%;
+   border: 0;
+   color: white;
+   transition-duration: 0.4s;
+}
+
+.submit_btn:hover{
+   background-color: rgba(200, 13, 56, 0.9);
+}
+
+.heading{
+   font-size: 4vh;
+   font-weight: bold;
+   padding: 0.5vh;
+}
+
+.brand_text{
+   color: rgba(0, 0, 0, 0.85);
+}
+
+.error-text{
+   margin-top: 9vh;
+   padding: 2vh;
+   font-size: 1.8vh;
+   border-radius: 15px;
+   color: rgba(200, 13, 56, 0.9);
+   background-color: rgba(255, 255, 255, 0.6);
+   transition-duration: 0.4s;
+}
+
+.error-text:hover{
+   background-color: rgba(255, 255, 255, 0.8);
+
+}
+
+.slide-box{
+   background-color: rgba(255, 255, 255, 1);
+}
+
+label{
+   margin-bottom: 0px;
+}
+
+.text-box{
+   border: 0;
+   padding: 0;
+   border-bottom: 1px solid #777;
+   background: transparent;
+   padding-left: 1vh;
+   transition: 1s;
+   width: 100%;
+}
+
+.text-box:focus{
+   border-bottom: 1.5px solid rgba(138, 20, 44, 0.5);
+   color:black;
+}
+
+.switch{
+   background-color: whitesmoke;
+   text-align: center;
+   padding: 10px;
+   border-radius: 15px;
+   width: 100%;
+   transition-duration: 0.5s;
+}
+
+#switch-link{
+    text-decoration: none;
+    border: none;
+    color: rgba(236, 20, 56, 0.95);
+    transition-duration: 0.15s;
+}
+.bg-image{
+   background-image: url("/static/assets/images/work.jpg");
+   background-repeat: no-repeat;
+   background-size: cover;
+}
+#switch-link:hover{
+    text-decoration: none;
+    color: whitesmoke;
+}
+.switch:hover{
+   background-color:  rgba(236, 20, 56, 0.95);
+}
+.end-slide{
+    text-align: center;
+}
+.pt-2{
+   display: none;
+}
+.reg_box{
+   min-height: 77vh;
+}
+
+@media screen and (max-width: 768px) {
+   .left{
+      display: none;
+   }
+   footer{
+      display: none;
+      visibility: hidden;
+   }
+   .reg_box{
+      height: 90vh;
+   }
+   .signup_field{
+      margin: 2vh;
+   }
+   .error-text{
+      padding: 2vh;
+      margin-top: 0vh;
+   }
+
+   .errorlist{
+      margin-bottom: 0;
+   }
+}

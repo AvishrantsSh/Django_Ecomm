@@ -1,0 +1,96 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load customfilter%}
+{%block title%}
+    Cart
+{%endblock title%}
+{%block link%}
+    <link rel='stylesheet' href='{%static "stylesheet/cart.css"%}'>
+    <link rel='stylesheet' href='{%static "stylesheet/snackbar.css"%}'>
+    <script src="{%static 'js/snack.js'%}"></script>
+    <script>
+        function gift(){
+            document.getElementById('snackbar').innerHTML = "Gift Wrapped";
+            snack();
+        }
+        function buy(){
+            document.getElementById('snackbar').innerHTML = "Coming Soon!";
+            snack();
+        }
+    </script>
+    
+{%endblock link%}
+{%block content%}
+{%if items%}
+<h1 class="p-2">My Cart</h1>
+<div class="row">
+    <div class="cart-box order-last col-lg-9 order-lg-1 order-md-12 order-sm-12">
+    <form method="POST" id="cart_form">
+    {%csrf_token%}
+    {%for i, nos in items%}
+        <div class="row working-list" id="row1">
+            <div class="col-md-3 cart-image">
+                <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="_blank">
+                    <img class="cart-img svg-container" src="{%static 'assets/icons/product.svg'%}">
+                </a>
+            </div>
+            <div class="col-md-5 cart-text my-4">
+                <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="_blank">
+                    <div class="row-head"><h4 class="card-title">{{i.name|trim}}</h4></div>
+                </a>
+                <div class="card-details">
+                    <h6 class="card-title sub">{{i.brand}}</h6>
+                    <h4><b>Rs {{i.base_price}}</b></h4>
+
+                    <span class="card-text">
+                    Authors: {{i.additional|author|authtrim}}<br>
+                    {{i.additional|pages}} Pages | 
+                    {{i.additional|language}} |
+                    {{i.category}}
+                    </span>
+                </div>
+            </div>
+            <div class="col-md-4 row">
+                <div class="col-6" style="align-self: center;">
+                    <div class="row-head"><h4 class="card-title sub"><br>Quantity:</h4></div>
+                    <table style="width:20px; align-self: center;">
+                    <tr>
+                        <td class="p-1" rowspan="2"><h3 id="{{i.id}}">{{nos}}</h3></td>
+                    
+                        <td class="p-1"><button style="border: 0; outline: none; background-color: transparent;" name="up" value="{{i.id}}" onclick="sendup(this)"><i class="fa fa-angle-up"></i></button></td>
+                    </tr>
+                    <tr>
+                        <td class="p-1">{%if nos > 1%}<button style="border: 0; outline: none; background-color: transparent;" name="down" value="{{i.id}}" onclick="senddown(this)"><i class="fa fa-angle-down"></i></button>{%endif%}</td>
+                    </tr>
+                    </table>
+                </div>
+                <div class="col-6" style="padding: 0; align-self: center;">
+                    <div class="container-fluid my-2" style="padding: 0;">
+                        <button class="w-100" id="cart-btn" name="remove" value="{{i.id}}">Remove Item</button>
+                    </div>
+                    <div class="container-fluid my-2"style="padding: 0;">
+                        <div class="w-100" id="cart-btn" onclick="gift()" style="text-align: center;"><i class="fa fa-heart"></i> Gift Wrap</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {%endfor%}
+    </form>
+    </div>
+    <div class="col-lg-3 order-first order-lg-12 order-md-1 order-sm-1">
+        <div class="card sticky-top p-4">
+            <div class="card-details"><h2>Subtotal ({{items|nos}} items)</h2></div>
+            <h3>Rs. {{items|total}}</h3>
+            <div id="cart-btn" style="text-align: center;" onclick="buy()">Buy Now</div>
+        </div>
+    </div>
+</div>
+<div id="snackbar"></div>
+{%else%}
+<div class="error-box container">
+    <img class="img-container" src="../../static/assets/images/page-not-found.png"><br>
+    Looks like the cart is empty. Click "<b>Add to cart</b>" on any item, to add it here.<br>
+    <br> Try visiting the <a href="{%url 'home'%}">home</a>, or just take a deep breath. Look out the window. It's a beautiful day.
+</div>
+{%endif%}
+{%endblock content%}

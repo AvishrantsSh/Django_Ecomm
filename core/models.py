@@ -1,33 +1,102 @@
 from django.db import models
 from uuid import uuid4
+from django.core.validators import RegexValidator, ValidationError
+from accounts.models import CustomUser
+import jsonfield
+from random import randint
+from django.utils.timezone import now
+from django.db.models import JSONField
 
-class Category(models.Model):
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    name = models.TextField()
-    # properties 
-    def __str__(self):
-        return self.name
+
+def change_name(instance, filename):
+    return "User_{0}/{1}".format(instance.id, filename)
+
+def sheet_path(instance, filename):
+    return "Sheets/User_{0}/{1}".format(instance.id, filename)
+
+def img_path(instance, filename):
+    return "Images/User_{0}/{1}".format(instance.id, filename)
+
+def random_cat():
+    lst = ["Scify", "Adventure", "Mystery", "Infotainment"]
+    return lst[randint(0,3)]
+
+def validate_file_extension(value):
+    import os
+    ext = os.path.splitext(value.name)[1]
+    valid_extensions = ['.pdf']
+    if not ext in valid_extensions:
+        raise ValidationError(u'File not supported!')
 
 class Product_List(models.Model):
+    
     id = models.UUIDField(default=uuid4, primary_key=True)
-    name = models.TextField()
-    brand = models.CharField(max_length=50)
-    # category = models.ForeignKey(Category, on_delete=models.CASCADE, default=uuid4)
-    rating = models.PositiveIntegerField(default=5)
-    total_ratings = models.PositiveIntegerField(default=100)
+
+    # # Site supports the upload and storage of Files. However due to Platform limitation, this option is currently disabled.
+    # img = models.ImageField(default="/product.svg", upload_to = img_path)
+
+    name = models.CharField(max_length=200)
+    brand = models.CharField(max_length=200)
+    seller = models.UUIDField(unique=False)
+    category = models.CharField(max_length=30, unique=False, null=True)
+    rating = models.FloatField(default=0)
+    total_ratings = models.PositiveIntegerField(default=0)
     stock = models.PositiveIntegerField(default=10)
-    price_old = models.PositiveIntegerField(default = 100, blank=True)
-    price_new = models.PositiveIntegerField(default = 80)
-    discount = models.FloatField(default = 20)
-    description = models.TextField(max_length=500, default="Hola AMigo")
+    base_price = models.PositiveIntegerField(blank=False)
+    discount = models.FloatField(default = 0)
+    description = models.TextField(default="Some Product")
+    additional = JSONField(null=True)
+    
+    def save(self, *args, **kwargs):
+        self.category=random_cat()
+        super(Product_List, self).save(*args, **kwargs)
+
     def __str__(self):
         return self.name
 
-
 class Seller(models.Model):
-    id = models.UUIDField(default=uuid4, primary_key=True)
-    name = models.TextField()
-    rating = models.PositiveIntegerField()
+    choice = (
+        # ("Electronics","Electronics"),
+        ("Literature and Stationary","Literature and Stationary"),
+        # ("Groceries","Groceries"),
+    )
+    status = (
+        ("Active","Active"),
+        ("Reviewing","Reviewing"),
+        
+    )
+    reg = RegexValidator(r'^[0-9]*$','Only Numbers are Allowed')
+    id = models.UUIDField(primary_key=True)
+    bs_name = models.CharField(max_length=50)
+    bs_category = models.CharField(max_length=30, choices=choice)
+    gst_no = models.CharField(max_length=20)
+    pan_no = models.CharField(max_length=20)
     
+    # # Site supports the upload and storage of Files. However due to Platform limitation, this option is currently disabled.
+    # pan_card = models.FileField(upload_to=change_name)
+    
+    bank_ac = models.CharField(max_length=20)
+    address = JSONField(null=True)
+    rating = models.FloatField(default=0)
+    total_ratings = models.PositiveIntegerField(default=0)
+    status = models.CharField(max_length=20, choices=status, default="Reviewing")
+    def __str__(self):
+        return self.bs_name
+
+class Cart(models.Model):
+    choice=(
+        ("Cart", "Cart"),
+        ("Purchased", "Purchased"),
+        ("Delivered", "Delivered"),
+    )
+    id = models.UUIDField(default=uuid4, primary_key=True)
+    customer_id = models.UUIDField()
+    product_id = models.UUIDField()
+    nos = models.PositiveIntegerField(default = 1)
+    date = models.DateTimeField(default=now, editable=False)
+    status = models.CharField(max_length=15, choices=choice)
+
+    def __str__(self):
+        return str(self.customer_id) + "-" + str(self.product_id)
 
 # Create your models here.

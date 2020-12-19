@@ -1,0 +1,24 @@
+{%extends 'base.html'%}
+{%load static%}
+
+{%block title%}
+    Oh Snap
+{%endblock title%}
+{%block link%}
+    <link rel='stylesheet' href='{%static "stylesheet/search.css"%}'>
+
+{%endblock link%}
+{%block content%}
+
+<div class="error-box container">
+    <img class="img-container" src="../../static/assets/images/page-not-found.png"><br>
+    Oops! We can't find the page you're looking for.<br> Something is clearly fishy in here.<br>
+    <br> Try visiting the <a href="{%url 'home'%}">home</a>, or find what you're looking for with our equally cool PWA.
+        
+    <div class="container d-flex justify-content-center">
+            <a href="https://youtu.be/dQw4w9WgXcQ" class="cart-btn">
+                <div id="cart-btn">Download</div>
+            </a>
+        </div>
+</div>
+{%endblock content%}

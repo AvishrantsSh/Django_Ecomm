@@ -1,0 +1,22 @@
+.main-box{
+    height: 51.6vh;
+    padding: 4vh;
+}
+
+#loading {
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    position: fixed;
+    display: block;
+    opacity: 0.85;
+    background-color: #fff;
+    z-index: 99;
+    text-align: center;
+    border: none;
+}
+
+.hide{
+    display: none!important;
+}

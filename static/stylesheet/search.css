@@ -1,0 +1,181 @@
+.main-box{
+    width: 100%;
+    min-height: 50.5vh;
+}
+
+.card-container{
+    padding: 1vh;
+    margin-top: 2vh;
+    /* margin-bottom: 2vh; */
+}
+
+.card{
+    padding: 1vh;
+    /* min-height: 75vh; */
+}
+
+.card:hover{
+    background-color: #fff6f8;
+    transition-duration: 0.4s;
+}
+
+.search-container{
+    text-align: center;
+}
+
+.card-img-top {
+    padding: 5vh;
+}
+
+.page-link{
+    color: rgba(200, 13, 56, 1);
+}
+
+.result-head{
+    padding: 1vh;
+    font-size: 2.5vh;
+}
+
+.filter-pane{
+    background-color: #eee;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    padding-top: 2vh;
+    color: rgba(200, 13, 56, 1);
+}
+
+.filter-section{
+    color: black;
+}
+
+#cart-btn{
+    background-color:rgba(200, 13, 56, 0.9);
+    text-decoration: none;
+    outline: none;
+    border: none;
+    padding: 10px;
+    color: whitesmoke;
+    border-radius: 15px;
+}
+
+#cart-btn:hover{
+    background-color: rgba(236, 20, 56, 0.95);
+    transition-duration: 0.3s;
+}
+
+.cart-btn{
+    padding-bottom: 2vh;
+}
+
+.card-details{
+    padding: 1vh !important;
+    margin-bottom: 1vh;
+}
+.page-link{
+    display: inline-block;
+}
+.page-link:hover{
+    color: black;
+}
+#apply-btn{
+    background-color:rgba(236, 20, 56, 1);
+    border: none;
+    color: white;
+    padding: 4px;
+    padding-left: 7px;
+    padding-right: 7px;
+    border-radius: 5%;
+}
+
+.error-box{
+    text-align: center;
+    padding-bottom: 2vh;
+}
+
+.img-container{
+    width: 50%;
+    filter: hue-rotate(-30deg);
+}
+
+#cart-btn{
+    background-color:rgba(200, 13, 56, 0.9);
+    padding: 10px;
+    color: whitesmoke;
+    border-radius: 15px;
+    margin: 1vh;
+    width: 20vh;
+}
+
+#cart-btn:hover{
+    background-color: rgba(236, 20, 56, 0.95);
+    transition-duration: 0.3s;
+}
+
+.cart-btn, .cart-btn:hover{
+    text-align: center;
+    text-decoration: none;
+}
+
+@media screen and (max-width: 768px) {
+    .card-container{
+        margin-left: 2vh;
+        margin-right: 2vh
+    }
+
+    .card{
+        padding: 1vh;
+        min-height: none;
+    }
+
+    .card-img-top {
+        padding: 50px;
+        padding-bottom: 10px;
+        padding-top: 10px;
+    }
+
+    #cart-btn{
+        width: 250px;
+    }
+
+    .cart-btn{
+        margin-bottom: 2vh;
+    }
+
+    .filter-pane{
+        border-top-right-radius: 0;
+        border-bottom-right-radius: 0;
+        padding-bottom: 2vh;
+    }
+
+    .filter-section-container{
+        width: 100%;
+    }
+
+    /* Horizontal stuff */
+    .testimonial-group > .row {
+        display: flex;
+        flex-wrap: nowrap;
+        overflow-x: auto;
+        margin: 0;
+
+        width: 100%;
+        padding-right: 0;
+        padding-left: 0;
+    }
+
+    .row-card{
+        min-width: 45vh;
+        align-content: left;
+    }
+
+    #check-filter{
+        width: 100vh;
+    }
+
+    .img-container{
+        width: 100%;
+    }
+    .tmp{
+        margin-top: 30px;
+    }
+}

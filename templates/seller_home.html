@@ -1,0 +1,60 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load customfilter%}
+{%block title%}
+    Profile      
+{%endblock title%}
+{%block link%}
+    <link rel='stylesheet' href='{%static "stylesheet/profile.css"%}'>
+    <link rel='stylesheet' href='{%static "stylesheet/snackbar.css"%}'>
+    <script src="{%static 'js/snack.js'%}"></script>
+{%endblock link%}
+{%block content%}
+
+<div class="px-4 card-inner row">
+    <img class="seller-image col-md-4 svg-container" src="{%static 'assets/icons/people.svg'%}">
+    <div class="seller-details col-md-7">
+        <div class="row" style="padding: 0;">
+            <div class="seller-head col-lg-8 col-sm-6">{{seller.bs_name}}</div>
+            <div class="col-lg-4 col-sm-6 d-flex align-items-center justify-content-end">
+            <a href="{%url 'sheet'%}"class="nav-link">
+                <div class="px-3 py-2" id="banner-btn">Add Products</div>
+            </a>
+            </div>
+        </div>
+        <div class="seller-username">{{user.username}}<br></div>
+        <div class="seller-stock">{{seller.bs_category}}<br></div>
+        <div class="seller-address"><span class="add-head">Address: </span>{{seller.address|safe}}<br></div>
+        <span class="add-head">Email-ID: </span>{{user.email}}<br>
+        <span class="add-head">Phone No: </span>{{user.phone}}<br>
+        <span class="add-head">Rating: </span>{{seller.rating}}<br>
+        <span class="add-head">Total Reviews: </span>{{seller.total_ratings}}<br>
+    </div>
+</div>
+
+<div class="lower-home">
+        <label for="myInput"><span class="add-head">Your Personal Link: </span></label><br>
+        <div class="row link">
+            <div class="col-md-8">
+                <input class="col-md-9 w-60" type="text" value="{{base}}{%url 'seller_shop' seller.bs_category seller.bs_name seller.id%}" id="myInput" readonly>
+                <button class="col-md-2" onclick="myFunction()"><i class="fa fa-copy" aria-hidden="true"></i> Copy</button>
+            </div>
+            <div class="col-md-1"></div>
+            <a href="{%url 'seller_shop' seller.bs_category seller.bs_name seller.id%}" class="banner-btn">
+                <div class="w-100 p-2" id="banner-btn">Visit Your Page</div>
+            </a>
+        </div>
+        
+</div>
+
+<div id="snackbar">Link Copied</div>
+<script>
+    function myFunction() {
+      var copyText = document.getElementById("myInput");
+      copyText.select();
+      copyText.setSelectionRange(0, 99999)
+      document.execCommand("copy");
+      snack();
+    }
+</script>
+{%endblock content%}

@@ -1,38 +1,42 @@
+<!-- template for other sites -->
+
+{%load static%}
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Enigma</title>
-    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="base.css">
-    <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+    <head>
+        
+        <link rel='stylesheet' href='{%static "stylesheet/base.css"%}'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="manifest" href="/manifest.json">
+        <link rel = "icon" href = "{%static 'images/icons/icon_colour.svg'%}" type = "image/x-icon"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap" rel="stylesheet">
 
-    <!--Links from original base.html-->
-    <!-- <link rel='stylesheet' href='{%static "stylesheet/base.css"%}?v = 1.4'>
-
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-        <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
         <meta charset="UTF-8">
         <meta name="description" content="To Infinity and Beyond with ProjectY">
         <meta name="keywords" content="E-Commerce, Bazaar">
         <meta name="author" content="Avishrant Sharma, Prateek Thakur, Spriha Gautam, Sitaram Rathi">
-        <meta name="viewport" content="width=device-width,initial-scale=1.0"> -->
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+        
         
         <!-- Path to manifest.json -->
-        <!-- <link rel="manifest" href="/manifest.json"> -->
 
         <!-- Icons for Apple Devices -->
-        <!-- <link rel="apple-touch-icon" href="/static/assets/icons/avatar.png" sizes="512x512">
+        <link rel="apple-touch-icon" href="{%static 'images/icons/icon_colour.svg'%}" sizes="512x512">
         <meta name="theme-color" content="#0A0302">
         <meta name="apple-mobile-web-app-capable" content="yes">
         <meta name="apple-mobile-web-app-title" content="Uphaar">
-        <meta name="apple-mobile-web-app-status-bar-style" content="default"> -->
+        <meta name="apple-mobile-web-app-status-bar-style" content="default">
+        {%block link%}
+
+        {%endblock link%}
         <!-- Service Worker Registration -->
-        <!-- <script type="text/javascript">
+        <script type="text/javascript">
             // Initialize the service worker
             if ('serviceWorker' in navigator) {
                 navigator.serviceWorker.register('/serviceworker.js').then(function (registration) {
@@ -44,153 +48,107 @@
                 });
             }
 
-        </script> -->
-</head>
-<body>
-    <!--header-->
-<header class="text-gray-700 body-font" style="background-color: blueviolet; color: cornsilk;">
-  <div class="container mx-auto flex flex-wrap p-5 flex-col md:flex-row items-center">
-    <div class="rlg:w-2/5 inline-flex lg:justify-end ml-5 lg:ml-0">
-        <input type="text" placeholder="Search Items here..." id="footer-field" name="footer-field" class="w-full bg-gray-100 rounded border border-gray-300 focus:border-blue-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
-      </div>
-      <button class="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded"><i class="fa fa-search" aria-hidden="true"></i></button>
-    <nav class="flex lg:w-2/5 flex-wrap items-center text-base md:ml-auto">
-      <a class="mr-5 hover:text-gray-900">Log in <i class="fas fa-sign-in-alt"></i></a>
-      <a class="mr-5 hover:text-gray-900">Sign up <i class="fas fa-user-plus"></i></a>
-      <!-- <a class="nav-link" href="{%url 'logout'%}">Logout <i class="fas fa-sign-out-alt"></i></a> -->
-      <a class="mr-5 hover:text-gray-900">Another Page</a>
-    </nav>
-    <a class="flex order-first lg:order-none lg:w-1/5 title-font font-medium items-center text-gray-900 lg:items-center lg:justify-center mb-4 md:mb-0">
-      <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-blue-500 rounded-full" viewBox="0 0 24 24">
-        <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-      </svg>
-      <span class="ml-3 text-xl" style="color: cornsilk;">HOLA</span>
-    </a>
-  </div>
-</header>
+        </script>
+        <title>
+            {%block title%}
+        
+            {%endblock title%}
+        </title>    
+                
+    </head>
 
-
-
-
-
-
-
-
-
-
-
-
-  
-
-
-<!--footer-->
-
-<footer class="text-gray-700 body-font">
-    <div class="container px-5 py-24 mx-auto">
-      <div class="flex flex-wrap md:text-left text-center order-first">
-        <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-          <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
-          <nav class="list-none mb-10">
-            <li>
-              <a class="text-gray-600 hover:text-gray-800">First Link</a>
-            </li>
-            <li>
-              <a class="text-gray-600 hover:text-gray-800">Second Link</a>
-            </li>
-            <li>
-              <a class="text-gray-600 hover:text-gray-800">Third Link</a>
-            </li>
-            <li>
-              <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
-            </li>
-          </nav>
-        </div>
-        <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-          <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
-          <nav class="list-none mb-10">
-            <li>
-              <a class="text-gray-600 hover:text-gray-800">First Link</a>
-            </li>
-            <li>
-              <a class="text-gray-600 hover:text-gray-800">Second Link</a>
-            </li>
-            <li>
-              <a class="text-gray-600 hover:text-gray-800">Third Link</a>
-            </li>
-            <li>
-              <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
-            </li>
-          </nav>
-        </div>
-        <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-          <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">CATEGORIES</h2>
-          <nav class="list-none mb-10">
-            <li>
-              <a class="text-gray-600 hover:text-gray-800">First Link</a>
-            </li>
-            <li>
-              <a class="text-gray-600 hover:text-gray-800">Second Link</a>
-            </li>
-            <li>
-              <a class="text-gray-600 hover:text-gray-800">Third Link</a>
-            </li>
-            <li>
-              <a class="text-gray-600 hover:text-gray-800">Fourth Link</a>
-            </li>
-          </nav>
-        </div>
-        <div class="lg:w-1/4 md:w-1/2 w-full px-4">
-          <h2 class="title-font font-medium text-gray-900 tracking-widest text-sm mb-3">SUBSCRIBE</h2>
-          <div class="flex xl:flex-no-wrap md:flex-no-wrap lg:flex-wrap flex-wrap justify-center items-end md:justify-start">
-            <div class="relative w-40 sm:w-auto xl:mr-4 lg:mr-0 sm:mr-4 mr-2">
-              <label for="footer-field" class="leading-7 text-sm text-gray-600">Placeholder</label>
-              <input type="text" id="footer-field" name="footer-field" class="w-full bg-gray-100 rounded border border-gray-300 focus:border-blue-500 text-base outline-none text-gray-700 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out">
+    <body>
+        <nav class="navbar navbar-expand-md navbar-fixed-top">
+            <div class="container-fluid my-2">
+                <a class="navbar-brand cherry" href="{%url 'home'%}" id = "head_start">Enigma</a>
+                <div style="display: flex; padding-left: 2vw;">
+                    <form action="{%url 'search'%}" style="display: flex;">
+                        <input type="text" name="product" placeholder="Search" id="search" value="{%block val%}{%endblock val%}"> 
+                        <button id="search-icon" class="nav-link" type="submit"><i class="fa fa-search"></i></button>
+                        {%block sid%}{%endblock sid%}
+                    </form>
+                </div>
+                
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarResponsive">
+                    <div class="navbar-nav ml-md-auto d-md-flex flex-row">
+                    {%if user.is_authenticated%}
+                        <a class="nav-item nav-link nav_link" href="{%url 'profile'%}"><i class="fas fa-user"></i> {{user.username}}</a>
+                        <a class="nav-item nav-link nav_link" href="{%url 'logout'%}">Logout <i class="fas fa-sign-out-alt"></i></a>
+                    {%else%}
+                        <a class="nav-item nav-link nav_link" href="{%url 'login'%}">Login <i class="fas fa-sign-in-alt"></i></a>
+                    {%endif%}
+                        <a href="{%url 'cart' %}" class="nav-item nav-link nav_link">Cart <i class="fas fa-shopping-cart"></i></a>
+                    </div>
+                </div>
             </div>
-            <button class="lg:mt-2 xl:mt-0 flex-shrink-0 inline-flex text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded">Button</button>
-          </div>
-          <p class="text-gray-500 text-sm mt-2 md:text-left text-center">Bitters chicharrones fanny pack
-            <br class="lg:block hidden">waistcoat green juice
-          </p>
+        </nav>
+
+        <div class = "main-box container-fluid">
+            {%block content%}
+            
+            {%endblock content%}
         </div>
-      </div>
-    </div>
-    <div class="bg-gray-200">
-      <div class="container px-5 py-6 mx-auto flex items-center sm:flex-row flex-col">
-        <a class="flex title-font font-medium items-center md:justify-start justify-center text-gray-900">
-          <svg xmlns="http://www.w3.org/2000/svg" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-10 h-10 text-white p-2 bg-blue-500 rounded-full" viewBox="0 0 24 24">
-            <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
-          </svg>
-          <span class="ml-3 text-xl">HOLA</span>
-        </a>
-        <p class="text-sm text-gray-500 sm:ml-6 sm:mt-0 mt-4">© 2020 HOLA —
-          <a href="#" rel="noopener noreferrer" class="text-gray-600 ml-1" target="_blank">@Enigma</a>
-        </p>
-        <span class="inline-flex sm:ml-auto sm:mt-0 mt-4 justify-center sm:justify-start">
-          <a class="text-gray-500">
-            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-              <path d="M18 2h-3a5 5 0 00-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 011-1h3z"></path>
-            </svg>
-          </a>
-          <a class="ml-3 text-gray-500">
-            <svg fill="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-              <path d="M23 3a10.9 10.9 0 01-3.14 1.53 4.48 4.48 0 00-7.86 3v1A10.66 10.66 0 013 4s-4 9 5 13a11.64 11.64 0 01-7 2c9 5 20 0 20-11.5a4.5 4.5 0 00-.08-.83A7.72 7.72 0 0023 3z"></path>
-            </svg>
-          </a>
-          <a class="ml-3 text-gray-500">
-            <svg fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" class="w-5 h-5" viewBox="0 0 24 24">
-              <rect width="20" height="20" x="2" y="2" rx="5" ry="5"></rect>
-              <path d="M16 11.37A4 4 0 1112.63 8 4 4 0 0116 11.37zm1.5-4.87h.01"></path>
-            </svg>
-          </a>
-          <a class="ml-3 text-gray-500">
-            <svg fill="currentColor" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round" stroke-width="0" class="w-5 h-5" viewBox="0 0 24 24">
-              <path stroke="none" d="M16 8a6 6 0 016 6v7h-4v-7a2 2 0 00-2-2 2 2 0 00-2 2v7h-4v-7a6 6 0 016-6zM2 9h4v12H2z"></path>
-              <circle cx="4" cy="4" r="2" stroke="none"></circle>
-            </svg>
-          </a>
-        </span>
-      </div>
-    </div>
-  </footer>
-</body>
+        
+        <footer class="py-2">
+            <div class="container-fluid">
+                <div class="row pt-2">
+                    <div class="col-md-6 col-lg-4">
+                        <h2 class="widget-title">About</h2>
+                        <div class="footer-list-div">
+                            We at <b>Engima</b> aim at providing you the easiest platform where you can sell your Products with minimal efforts as that's why we are here, to reduce all the work of selling Products online and make your Bussiness grow more.</p><br>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-2">
+                        <h2 class="widget-title">Help</h2>
+                            <div class="footer-list-div">
+                                <ul class="footer-list">
+                                    <li><a href="#">Payments and Shipping</a></li>
+                                    <li><a href="#">Cancellation and Returns</a></li>
+                                    <li><a href="#">FAQs</a></li>
+                                </ul>
+                            </div>
+                    </div>
+                    <div class="col-md-6 col-lg-2">
+                        <h2 class="widget-title">Policy</h2>
+                            <div class="footer-list-div">
+                                <ul class="footer-list">
+                                    <li><a href="#">Security</a></li>
+                                    <li><a href="#">Privacy Policy</a></li>
+                                    <li><a href="#">Terms and Conditions</a></li>
+                                </ul>
+                            </div>
+                    </div>
+                    <div class="col-md-6 col-lg-4">
+                        <h2 class="widget-title">Contact info</h2>
+                            <div class="footer-list-div">
+                                <ul class="footer-list">
+                                    <li><i class="fas fa-phone-square"></i> Contact us: +91 1234567890</li>
+                                    <li><i class="fas fa-envelope"></i> E-mail: ecommerce@gmail.com</li>
+                                    <li><i class="fas fa-map-marker-alt"></i> Address: Himadri Boys Hostel, Nit-Hamirpur, Hamirpur-177001, Himachal Pradesh</li>
+                                </ul>
+                            </div>
+                        </div>
+                </div>
+               
+            <div class="container-fluid">
+                <div class="container text-center" style="background-color: #eee;">
+                        <h2 class="widget-title">Follow us on</h2>
+                        <div>
+                            <ul>
+                                </li><a href="#"><i id="fb" class="fab fa-facebook-square fa-2x"></i></a>
+                                <a href="#"><i id="insta" class="fab fa-instagram fa-2x"></i></a>
+                                <a href="#"><i id="twit" class="fab fa-twitter fa-2x"></i></a>
+                                <a href="#"><i id="link" class="fab fa-linkedin fa-2x"></i></a>
+                            </ul>
+                        </div>
+                        &copy; Copyright Team Enigma
+                </div>
+            </div>
+        </div>
+        </footer>
+        
+    </body>
 </html>

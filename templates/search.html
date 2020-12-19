@@ -1,0 +1,173 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load customfilter%}
+{%block title%}
+    Product Search        
+{%endblock title%}
+{%block link%}
+    <link rel='stylesheet' href='{%static "stylesheet/search.css"%}'>
+    <link rel='stylesheet' href='{%static "stylesheet/snackbar.css"%}'>
+    <script src="{%static 'js/snack.js'%}"></script>
+    <script>
+        function send(element){
+            var form = document.getElementById('product_form');
+            $()
+            $.ajax({
+                url: '/additem/cart/',
+                data: {
+                    "csrfmiddlewaretoken": form.csrfmiddlewaretoken.value,
+                    "add": $(element).val()
+                },
+                cache: false,
+                method: 'POST',
+                dataType : "json",
+                success : function (data) {
+                    // console.log(data);
+                    if (data.error) {
+                        $("#snackbar").html("Snap. Something went wrong");
+                        snack();
+                    } else if (data.success) {
+                        $(element).html("Added <i class='fa fa-check'></i>")
+                        $(element).css('background-color', 'green');
+                        $("#snackbar").html("Added to Cart");
+                        snack();
+                    }
+                },
+                error: function() {
+                   $("#snackbar").html("Connection Error");
+                   snack();
+                 }
+            }).responseJSON;
+        }
+    </script>
+{%endblock link%}
+{%block val%}{%if search%}{{search}}{%endif%}{%endblock val%}
+{%if sid%}{%block sid%}<input type="hidden" name="id" value="{{sid}}"/>{%endblock sid%}{%endif%}
+{%block content%}
+{%if found%}
+<div class="row">
+    <div class="col-md-2 row" style="margin:0; padding:0;">
+        <div class="col-12 order-2 order-lg-1" style="font-size: 20px; left: 1%;">{{total}} results found</div>
+        <div class="filter-pane order-1 order-lg-2 h-100 col-12">
+            <h4>Filters</h4>
+            <form>
+                {%if sid%}<input type="hidden" name="id" value="{{sid}}"/>{%endif%}
+                {%if search%}<input type="hidden" name="product" value="{{search}}"/>{%endif%}
+                <div class="filter-section-container">
+                    <div class="testimonial-group">
+                        <div class="row">
+                            <div class="col-10">
+                                <div class="filter-section m-2">
+                                    Sort By
+                                    <select class="custom-select" name="sort">
+                                        <optgroup label="Rating">
+                                            <option value="rating" {%if sort_type == "price"%}selected{%endif%}>Customer Ratings</option>
+                                            <option value="most" {%if sort_type == "most"%}selected{%endif%}>Maximum Reviews</option>
+                                        </optgroup>
+                                        <optgroup label="Price">
+                                            <option value="price_asc" {%if sort_type == "price_asc"%}selected{%endif%}>Price:Low to High</option>
+                                            <option value="price_dsc" {%if sort_type == "price_dsc"%}selected{%endif%}>Price: High to Low</option>
+                                        </optgroup>
+                                        <optgroup label="Product">
+                                            <option value="trend" {%if sort_type == "trend"%}selected{%endif%}>Trending</option>
+                                            <option value="fresh" {%if sort_type == "fresh"%}selected{%endif%}>Latest Arrivals</option>
+                                        </optgroup>
+                                    </select>
+                                </div>
+                                <div class="filter-section pt-2 m-2">
+                                    Language Code
+                                    <select class="custom-select" name="lang">
+                                        <option value="all" selected style="font-weight: bold;">All</option>
+                                        {%for i in valid_lang%}
+                                        <option value="{{i}}" {%if lang == i%}selected{%endif%}>{{i|lang}}</option>
+                                        {%endfor%}
+                                    </select>
+                                </div>
+                            </div>
+
+                            <div class="filter-section col-8 m-2">
+                                Categories
+                                {%for i in valid_cat%}
+                                    <div class="checkbox">
+                                        <label><input type="checkbox" class="mx-3" name="{{i}}" {%if i in category%}checked{%endif%}/>{{i}}</label>
+                                    </div>
+                                {%endfor%}   
+                            </div>
+
+                        </div>
+                    </div>    
+                
+                </div>
+                <input id="apply-btn" type="submit" value="Apply"/>
+            </form>
+        </div>
+    </div>
+    <!-- Product Panel -->
+    <div class="col-md-10 tmp">
+        <form id="product_form" style="display: flex;">
+            <div class="row search-container">
+                {%csrf_token%}
+                {%for i in products%}
+                <div class="card-container col-lg-3 col-md-6">
+                    <div class="card">
+                        <a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="_blank">
+                            <img class="card-img-top" src="{%static 'assets/icons/product.svg'%}" alt="Card image" style="width:90%;">
+                            <div class="card-details">
+                                <h4 class="card-title" style="font-size: 20px; margin-top: 2vh;">{{i.name|trim}}</h4>
+                                <h6 class="card-title">{{i.brand|trim}}</h6>
+                                <h4><b>Rs {{i.base_price}}</b></h4>
+
+                                <p class="card-text">{{i.description|dtrim}}</p>
+                                Authors: {{i.additional|author|authtrim}}<br>
+                                {{i.additional|pages}} Pages | 
+                                {{i.additional|language}} |
+                                {{i.category}}
+                            </div>
+                        </a>
+                        <div class="cart-btn">
+                            {%if user.is_authenticated%}
+                            <button type="button" name="add_cart" value="{{i.id}}" onclick="send(this)" id="cart-btn">Add to Cart</button>
+                            {%else%}
+                            <a href="{%url 'login'%}" style="text-decoration: none;"><button type="button" name="add_cart" value="{{i.id}}" id="cart-btn">Add to Cart</button></a>
+                            {%endif%}
+                        </div>
+                    </div>
+                </div>
+                {%endfor%}
+            </div>
+        </form>
+
+    </div>
+</div>
+
+{% if products.has_other_pages %}
+<nav aria-label="Page navigation conatiner">
+    <ul class="pagination justify-content-center">
+        <form>
+            {%if sid%}<input type="hidden" name="id" value="{{sid}}"/>{%endif%}
+            {%if search%}<input type="hidden" name="product" value="{{search}}"/>{%endif%}
+            <input type="hidden" name="lang" value="{{lang}}"/>
+            {%for i in category%}
+            <input type="hidden" name="{{i}}" value="on"/>
+            {%endfor%}
+            <input type="hidden" name="sort" value="{{sort_type}}"/>
+            {% if products.has_previous %}
+                <button type="submit" name="page" value="{{ products.previous_page_number }}" class="page-link">&laquo; Previous </button>
+            {% endif %}
+            {% if products.has_next %}
+            <button type="submit" name="page" value="{{ products.next_page_number }}" class="page-link"> Next &raquo;</button>
+            {% endif %}
+        </form>
+    </ul>
+</nav>
+<div id="snackbar">Added to Cart</div>
+
+{% endif %}
+{%else%}
+<div class="error-box container">
+    <img class="img-container" src="../../static/assets/images/page-not-found.png"><br>
+    Oh heck. We couldn't find any product related to your search.<br>Hmmmmm, looks like <b>someone</b> has a knack for breaking things up . . . ;) <br>
+    <br> Try visiting the <a href="{%url 'home'%}">home</a>, or find what you're looking for with our equally cool PWA.
+</div>
+{%endif%}
+{%endblock content%}

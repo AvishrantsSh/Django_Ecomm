@@ -15,7 +15,7 @@ class CustomUserAdmin(UserAdmin):
     # that reference specific fields on auth.User.
     fieldsets = (
         (None, {'fields': ('username', 'password', 'email')}),
-        ('Personal info', {'fields': ('phone','first_name','last_name',)}),
+        ('Personal info', {'fields': ('phone','address')}),
     )
     # add_fieldsets is not a standard ModelAdmin attribute. UserAdmin
     # overrides get_fieldsets to use this attribute when creating a user.

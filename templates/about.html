@@ -1,0 +1,83 @@
+{%extends 'base.html'%}
+{%load static%}
+{%load customfilter%}
+{%block title%}
+    About
+{%endblock title%}
+{%block link%}
+    <link rel='stylesheet' href='{%static "stylesheet/about.css"%}'>
+    
+{%endblock link%}
+{%block content%}
+    
+<div class="container-fluid">
+    <div id="cardid3" class="card container">
+        <h3 id="card-head">So what're we doin' ova here?</h3>
+        <div class="container p-4 pt-0">
+            <div>
+                Our aim is to make the entire process of taking a business model online simpler for the local sellers. Just an excel sheet or pdf is enough for the site.
+                By connecting the seller with the customers clustered by location and preference, we plan to make this process a whole lot profitable.
+            </div>
+        </div>
+    </div>
+
+
+    <div id="cardid2" class="card">
+        <h3 id="card-head">How it Works</h3>
+        <div class="row work-sec container-fluid">
+            <div class="col-md-3"><img class="prod-image" src="../../static/assets/icons/idea-bulb.svg" style="max-height: 30vh; padding:0; padding-left: 30%;">
+            </div>
+            <div class="col-md-8">
+                Integrating local vendors and create a reliable network for local community of a particular town. We make the complicated hassle and process of taking your business online simpler than ever before.<br>
+                How are we different?<br>
+                <ul>
+                    <li><b>We focus on the local shops and vendors.</b> The needs and methods of a local shops are completely different from a huge wholesale markets. Local shops have a)limited products b) limited delivery range c) are  habitual of their own personal space d)hesitate to mingle with technology and go through a cumbersome tiring process of uploading their products online
+                    <li>Our website's <b>flexible back end </b> allows it form various clusters based on location, sellers, product range etc.., thus opening more and more opportunities for the seller to expand. 
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div id="cardid1" class="card">
+        <h3 id="card-head">The <b>Catch</b></h3>
+        <div class="define-container container-fluid">
+            <p class=" define-sec" id = "left_define">
+                <b style="font-size: 20px;">For the seller :</b><br>
+                The seller can easily start off with his existing customer base and give them a better user shopping experience . The seller will slowly capture more customers online through <b>native advertising </b> which shall <b>solely be handled by us</b>.<br>
+                <br><b>The scope for growth is immense.</b><br> The seller can expand his business slowly at his own comfort by changing the delivery range and product parameters. <br>
+                Indigenous local shops , artistic vendors , book hubs look for personalisation and we provide them with the same.            </p>
+            <p class="define-sec" id = "right_define">
+                <b style="font-size: 20px;">For the user :</b><br>
+
+                Get your results based on the fastest delivery possible, different products at the particular online stores and much more.
+                Experience visiting your market online from the safe comfort of your home. 	<br>
+
+                Apart from all this, comes social distancing into play in the <b>COVID crisis situation.</b> The social distancing required during shopping from the local stores will come into play with pre-confirmation & payments of orders online form your local stores. 
+                The customers save time through quick, reliable purchases from the local vendors online. <br> <b>Drive through</b> is yet another valuable feature. Carrying all the items he needs in one go. Thus, <b>saving time</b> and <b>maintaining social distancing.</b>
+            </p>
+        </div>
+    </div>
+
+    
+
+    <div id="cardid4" class="card">
+        <h3 id="card-head">About Us</h3><br>
+        <div class="row about-us container-fluid">
+            Yeah we kool
+        </div>
+    </div>
+    <div class="container d-flex justify-content-center ">
+        <a href="{%url 'home'%}" class="cart-btn">
+            <div id="cart-btn">GO TO HOME</div>
+        </a>
+    </div>
+</div>
+
+<div class="d-flex justify-content-center end-sec">
+    Reliable. 
+    Efficient. 
+    Quick. 
+    Personalised.
+</div>
+
+{%endblock content%}
