@@ -159,7 +159,7 @@ def Extract_dt(request):
 
 def put(request):
     if request.method == "GET":
-        if request.user.is_authenticated:
+        if request.user.is_superuser:
             with open('core/tmp.json') as f:
                 data = json.loads(f.read())
 
@@ -218,6 +218,9 @@ def Product_Dscr(request, pk):
 def Profile(request):
     try:
         seller = Seller.objects.get(id = request.user.id)
+        if seller.status != "Active":
+            raise Seller.DoesNotExist
+
         return render(
                         request,
                         'seller_home.html',

@@ -4,57 +4,27 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        
-        <link rel='stylesheet' href='{%static "stylesheet/base.css"%}'>
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
-        <link rel="manifest" href="/manifest.json">
-        <link rel = "icon" href = "{%static 'images/icons/icon_colour.svg'%}" type = "image/x-icon"> 
-        <link rel="preconnect" href="https://fonts.gstatic.com">
-        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap" rel="stylesheet">
-
+        <meta http-equiv="Cache-control" content="public">
         <meta charset="UTF-8">
         <meta name="description" content="To Infinity and Beyond with ProjectY">
         <meta name="keywords" content="E-Commerce, Bazaar">
         <meta name="author" content="Avishrant Sharma, Prateek Thakur, Spriha Gautam, Sitaram Rathi">
         <meta name="viewport" content="width=device-width,initial-scale=1.0">
-
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-        <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
-        
-        
-        <!-- Path to manifest.json -->
-
-        <!-- Icons for Apple Devices -->
-        <link rel="apple-touch-icon" href="{%static 'images/icons/icon_colour.svg'%}" sizes="512x512">
-        <meta name="theme-color" content="#0A0302">
-        <meta name="apple-mobile-web-app-capable" content="yes">
-        <meta name="apple-mobile-web-app-title" content="Uphaar">
-        <meta name="apple-mobile-web-app-status-bar-style" content="default">
-        {%block link%}
-
-        {%endblock link%}
-        <!-- Service Worker Registration -->
-        <script type="text/javascript">
-            // Initialize the service worker
-            if ('serviceWorker' in navigator) {
-                navigator.serviceWorker.register('/serviceworker.js').then(function (registration) {
-                    // Registration was successful
-                    console.log('django-progressive-web-app: ServiceWorker registration successful');
-                }, function (err) {
-                    // registration failed :(
-                    console.log('django-progressive-web-app: ServiceWorker registration failed: ', err);
-                });
-            }
-
-        </script>
         <title>
             {%block title%}
         
             {%endblock title%}
-        </title>    
-                
+        </title>
+        <link rel='stylesheet' href='{%static "stylesheet/base.css"%}'>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+        <link rel="manifest" href="/manifest.json">
+        <link rel = "icon" href = "{%static 'images/icons/icon_colour.svg'%}" type = "image/x-icon"> 
+        <link rel="preconnect" href="https://fonts.gstatic.com">
+        <link href="https://fonts.googleapis.com/css2?family=Pacifico&family=Poppins&display=swap" rel="stylesheet">    
+        {%block link%}
+
+	    {%endblock link%}     
+                      
     </head>
 
     <body>
@@ -64,12 +34,12 @@
                 <div style="display: flex; padding-left: 2vw;">
                     <form action="{%url 'search'%}" style="display: flex;">
                         <input type="text" name="product" placeholder="Search" id="search" value="{%block val%}{%endblock val%}"> 
-                        <button id="search-icon" class="nav-link" type="submit"><i class="fa fa-search"></i></button>
+                        <button aria-label="search" id="search-icon" class="nav-link" type="submit"><i class="fa fa-search"></i></button>
                         {%block sid%}{%endblock sid%}
                     </form>
                 </div>
                 
-                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
+                <button aria-label="toggle" class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive">
                     <i class="fas fa-bars"></i>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarResponsive">
@@ -126,7 +96,7 @@
                             <div class="footer-list-div">
                                 <ul class="footer-list">
                                     <li><i class="fas fa-phone-square"></i> Contact us: +91 1234567890</li>
-                                    <li><i class="fas fa-envelope"></i> E-mail: ecommerce@gmail.com</li>
+                                    <li><i class="fas fa-envelope"></i> E-mail: sample@gmail.com</li>
                                     <li><i class="fas fa-map-marker-alt"></i> Address: Himadri Boys Hostel, Nit-Hamirpur, Hamirpur-177001, Himachal Pradesh</li>
                                 </ul>
                             </div>
@@ -149,6 +119,10 @@
             </div>
         </div>
         </footer>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+        <script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
         
     </body>
 </html>

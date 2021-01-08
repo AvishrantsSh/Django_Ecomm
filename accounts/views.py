@@ -40,4 +40,5 @@ def SignUp(request):
 def Logout(request):
     logout(request)
     return redirect('home')
+    
 # Create your views here.

@@ -32,4 +32,3 @@ class AuthRequired(MiddlewareMixin):
             return redirect('home')
         return None
             
-        
