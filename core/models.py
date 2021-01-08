@@ -31,7 +31,6 @@ def validate_file_extension(value):
 class Product_List(models.Model):
     
     id = models.UUIDField(default=uuid4, primary_key=True)
-
     # # Site supports the upload and storage of Files. However due to Platform limitation, this option is currently disabled.
     # img = models.ImageField(default="/product.svg", upload_to = img_path)
 

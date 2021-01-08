@@ -7,8 +7,25 @@
 {%block link%}
 	<link rel='stylesheet' href='{%static "stylesheet/home.css"%}'>
 	<link rel='stylesheet' href='{%static "stylesheet/product_dscr.css"%}'>
-	<script src='{%static "js/animate.js"%}'></script>
+	<link rel="apple-touch-icon" href="{%static 'images/icons/icon_colour.svg'%}" sizes="512x512">
+	<meta name="theme-color" content="#0A0302">
+	<meta name="apple-mobile-web-app-capable" content="yes">
+	<meta name="apple-mobile-web-app-title" content="Uphaar">
+	<meta name="apple-mobile-web-app-status-bar-style" content="default">
+	<!-- Service Worker Registration -->
+	<script type="text/javascript">
+		// Initialize the service worker
+		if ('serviceWorker' in navigator) {
+			navigator.serviceWorker.register('/serviceworker.js').then(function (registration) {
+				// Registration was successful
+				console.log('django-progressive-web-app: ServiceWorker registration successful');
+			}, function (err) {
+				// registration failed :(
+				console.log('django-progressive-web-app: ServiceWorker registration failed: ', err);
+			});
+		}
 
+	</script> 
 {%endblock link%}
 {%block content%}
 <div class="carousel-container" id="carousel">
@@ -23,7 +40,7 @@
 			<div class="carousel-item active">
 				<div class="row">
 					<div class="image-box col-md-4">
-						<img id="slide-image" class="svg-container" src="../../static/assets/icons/idea-bulb.svg">
+						<img id="slide-image" class="svg-container" src="../../static/assets/icons/idea-bulb.svg" alt="bulb">
 					</div>
 					<div class="carousel-text col-md-8">
 						<h1 class="slide-head">Join us Today!</h1> 
@@ -42,7 +59,7 @@
 			<div class="carousel-item"> 
 				<div class="row">
 					<div class="image-box col-md-4">
-						<img id="slide-image" class="svg-container" src="../../static/assets/icons/people.svg">
+						<img alt="people" id="slide-image" class="svg-container" src="../../static/assets/icons/people.svg">
 					</div>
 					<div class="carousel-text col-md-8">
 						<div class="slide-head-2">Featured Seller</div>
@@ -86,9 +103,11 @@
 	<h2 class="row-title">Top Rated</h2>
 	<br>
 	<div class = "row" style=" width: 100%;">
-		<div class="card col-md-10 p-2 top-item">
+		<div class="card p-2 top-item">
 			<div class="card-inner row">
-				<img class="prod-image col-md-4" src="../../static/assets/images/calvin.jpg">
+				<div class="prod-cont col-md-4">
+				<img alt="top_best" class="prod-image" src="../../static/assets/images/calvin.jpg">
+				</div>
 				<div class="product-details col-md-8">
 					<div class="prod-head">{{bestproduct.name}}<br></div>
 					<div class="prod-brand">{{bestproduct.brand|trim}} | Humour<br></div>
@@ -114,7 +133,7 @@
 			<div class="card-container row-card col-lg-3 col-md-6">
 				<div class="card">
 					<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="_blank">
-						<img class="card-img-top" src="{%static 'assets/icons/product.svg'%}" alt="Card image" style="width:60%">
+						<img alt="best" class="card-img-top" src="{%static 'assets/icons/product.svg'%}" alt="Card image">
 						<div class="card-details">
 							<h4 class="card-title" style="font-size: 20px; margin-top: 2vh;">{{i.name|trim}}</h4>
 							<h6 class="card-title">{{i.brand|trim}}</h6>
@@ -138,8 +157,8 @@
 	<div class = "row">
 		<div class="card col-md-10 p-2 top-item">
 			<div class="card-inner row" id="top-item-row">
-				<div class="col-md-4">
-					<img class="prod-image" src="../../static/assets/images/thehobbit.jpg" style="max-height: 50vh; padding:0; margin: auto; display: block;">
+				<div class="prod-cont col-md-4">
+					<img alt="top_trending" class="prod-image" src="../../static/assets/images/thehobbit.jpg" style="max-height: 50vh; padding:0; margin: auto; display: block;">
 				</div>
 				<div class="product-details col-md-8">
 					<div class="prod-head">{{trendingproduct.name}}<br></div>
@@ -166,7 +185,7 @@
 			<div class="card-container  row-card col-lg-3 col-md-6">
 				<div class="card">
 					<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="_blank">
-						<img class="card-img-top" src="{%static 'assets/icons/product.svg'%}" alt="Card image" style="width:60%">
+						<img alt="trending" class="card-img-top" src="{%static 'assets/icons/product.svg'%}" alt="Card image">
 						<div class="card-details">
 							<h4 class="card-title" style="font-size: 20px; margin-top: 2vh;">{{i.name|trim}}</h4>
 							<h6 class="card-title">{{i.brand|trim}}</h6>
@@ -190,8 +209,8 @@
 	<div class = "row">
 		<div class="card col-md-10 p-2 top-item">
 			<div class="card-inner row" id="top-item-row">
-				<div class="col-md-4">
-					<img class="prod-image" src="../../static/assets/images/glamorous.jpg" style="max-height: 50vh; padding:0; margin: auto; display: block;">
+				<div class="prod-cont col-md-4">
+					<img alt="top_latest" class="prod-image" src="../../static/assets/images/glamorous.jpg" style="max-height: 50vh; padding:0; margin: auto; display: block;">
 				</div>
 				<div class="product-details col-md-8">
 					<div class="prod-head">{{latestproduct.name}}<br></div>
@@ -218,7 +237,7 @@
 			<div class="card-container  row-card col-lg-3 col-md-6">
 				<div class="card">
 					<a href="{%url 'product' i.pk%}" class="btn" style="padding: 0;" target="_blank">
-						<img class="card-img-top" src="{%static 'assets/icons/product.svg'%}" alt="Card image" style="width:60%">
+						<img alt="Latest" class="card-img-top" src="{%static 'assets/icons/product.svg'%}" alt="Card image">
 						<div class="card-details">
 							<h4 class="card-title" style="font-size: 20px; margin-top: 2vh;">{{i.name|trim}}</h4>
 							<h6 class="card-title">{{i.brand|trim}}</h6>
@@ -237,29 +256,4 @@
 	</div>
 </div>
 {%endif%}
-<div id="title_sec" style="display: none;">
-	<div id="welcome">
-
-	</div>
-</div>
-<script>
-    function run(){
-		if(typeof(window.localStorage.getItem('welcomeShown')) != null && window.localStorage.getItem('welcomeShown') != 'true'){
-			document.getElementById('title_sec').style.display = 'block';
-			setTimeout(typing, 500);
-            setTimeout(fade, 3000);
-            setTimeout(show, 4000);
-			setTimeout(typing2, 4500);
-            setTimeout(transition, 7500);
-			window.localStorage.setItem('welcomeShown','true');
-			
-        }
-        else{
-		   	document.getElementById('title_sec').style.display = 'none';
-		   	
-		}
-		
-    }
-    run();
-</script>
 {%endblock content%}
